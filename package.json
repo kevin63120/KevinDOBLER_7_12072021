@@ -1,0 +1,25 @@
+{
+  "name": "p7_kevin-dobler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "sass --watch ./sass/main.scss:public/css/style.css",
+    "start": "parcel index.html"
+  },
+  "author": "Kevin DOBLER",
+  "license": "ISC",
+  "dependencies": {
+    "parcel-plugin-asset-copier": "^1.1.0"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5",
+    "sass": "^1.35.2"
+  },
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "maintained node versions"
+  ]
+}
