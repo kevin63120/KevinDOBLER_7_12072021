@@ -1,8 +1,9 @@
 import "../assets/data/recipes" 
 import { recipes } from "../assets/data/recipes"
 import {Card} from"./class/card"
+import {search} from "./search"
   console.log(recipes)
-
+const containerCart = document.querySelector('main');
 const input = document.querySelector('.header_searchbar_mainSearch');
 /*input.addEventListener((e)=>{
    const currentInput  = e.target.value ;
@@ -18,24 +19,25 @@ const input = document.querySelector('.header_searchbar_mainSearch');
   2. test les ustensiles
   3. test les appareil 
   */  
-   
-recipes.forEach(recipe =>{
-  const card = new Card(recipe);
-  console.log(card)
-})
 
-
-function testInput(input, data) {
-   input.addEventListener('keydown',(e)=>{
-      const  userInput = e.target.value; 
-      console.log(userInput)
-      if(data.name === userInput){
-         console.log(data)
-      }  
+  async function displayCardBase(){
+     await recipes.forEach((recipe) =>{
+       new Card(recipe).createACard(containerCart)
+      })
+      const input = document.querySelector('.header_searchbar_mainSearch');
+      input.addEventListener('keyup',(e)=>{
+      const curentInput = e.target.value
+      search(curentInput, recipes);
    })
-}
 
-recipes.forEach(recipe=>{testInput(input,recipe)})
+     
+
+  }
+
+displayCardBase()
+
+
+
 
 
 

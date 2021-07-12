@@ -1,6 +1,14 @@
+main{
+    display: flex;
+    flex-wrap: wrap;
+
+}
 article{
-    width: 30%;
-    margin: 3% 0;
+    width: 25%;
+    height: 364px;
+    margin: 3% 3%;
+    overflow: hidden;
+    
 }
 .cart_text-descriptionContainer{
  font-size: 12px;

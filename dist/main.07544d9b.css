@@ -50,6 +50,10 @@ header ul {
 .header_searchbar-secondarySearchContainer1 {
   background-color: #3282F7;
   margin: 0 2% 0 0;
+  height: 50px;
+  color: white;
+  display: flex;
+  align-items: center;
 }
 .header_searchbar-secondarySearchContainer1 input {
   border: none;
@@ -61,6 +65,10 @@ header ul {
 .header_searchbar-secondarySearchContainer2 {
   background-color: #68D9A4;
   margin: 0 2% 0 0;
+  height: 50px;
+  color: white;
+  display: flex;
+  align-items: center;
 }
 .header_searchbar-secondarySearchContainer2 input {
   border: none;
@@ -72,6 +80,10 @@ header ul {
 .header_searchbar-secondarySearchContainer3 {
   background-color: #ED6454;
   margin: 0 2% 0 0;
+  height: 50px;
+  color: white;
+  display: flex;
+  align-items: center;
 }
 .header_searchbar-secondarySearchContainer3 input {
   border: none;
@@ -99,9 +111,16 @@ header ul {
   transition-duration: 500ms;
 }
 
+main {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 article {
-  width: 30%;
-  margin: 3% 0;
+  width: 25%;
+  height: 364px;
+  margin: 3% 3%;
+  overflow: hidden;
 }
 
 .cart_text-descriptionContainer {

@@ -1,94 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/f80ec18dc5.js" crossorigin="anonymous"></script>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="/sass/main.scss" >
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/f80ec18dc5.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&family=Lato:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/sass/main.scss" />
     <script src="./javaScript/script.js"></script>
     <title>Les petits plats</title>
-</head>
-<body class="container">
+  </head>
+  <body class="container">
     <header>
-        <div class="header_logo-container">
-            <div class="logo">
-                <img src="assets/pictures/logo.png" alt="logo du site"  class="header_logo_item">
-            </div>
-        
-            <h1 class="header_title row">Les petits plats</h1>
-            <div class="header_searchbar-mainSearchContainer row">
-                <input class="header_searchbar_mainSearch" type="text"  placeholder="Rechercher un ingrédient, appareil, ustensiles  ou une recette" >
-                <i class="fas fa-search"></i>
-            </div>
-            <ul class="header_historySelection">
-                <li class="header_historySelection-item">ancienne selection</li>
-            </ul>
+      <div class="header_logo-container">
+        <div class="logo">
+          <img
+            src="assets/pictures/logo.png"
+            alt="logo du site"
+            class="header_logo_item"
+          />
         </div>
 
-
-        <div class="header_searchbar-secondarySearchContainer row">
-            <div class="header_searchbar-secondarySearchContainer1">
-                <input type="text" placeholder="Ingredients" class="search_secondarySearchContainer-secondarySearch1"><i class="fas fa-chevron-up chevron "></i>
-                <ul class="secondarySearch1_suggestions">
-                    <li class="suggestions_items"></li>
-                </ul>
-                
-            </div>
-            <div class="header_searchbar-secondarySearchContainer2">
-                <input type="text" placeholder="Appareil" class="search_secondarySearchContainer-secondarySearch2"><i class="fas fa-chevron-up chevron "></i>
-                <ul class="secondarySearch2_suggestions">
-                    <li class="suggestions_items"></li>
-                </ul>
-            </div>
-            <div class="header_searchbar-secondarySearchContainer3">
-                <input type="text" placeholder="Ustensiles" class="search_secondarySearchContainer-secondarySearch3"><i class="fas fa-chevron-up chevron "></i>
-                
-                <ul class="secondarySearch3_suggestions">
-                    <li class="suggestions_items "></li>
-                </ul>
-            </div>
-                
-                
+        <h1 class="header_title row">Les petits plats</h1>
+        <div class="header_searchbar-mainSearchContainer row">
+          <input
+            class="header_searchbar_mainSearch"
+            type="text"
+            placeholder="Rechercher un ingrédient, appareil, ustensiles  ou une recette"
+          />
+          <img
+            src="./assets/pictures/search.svg"
+            width="22px"
+            height="22px"
+            alt=""
+          />
         </div>
+        <ul class="header_historySelection">
+          <li class="header_historySelection-item">ancienne selection</li>
+        </ul>
+      </div>
+
+      <div class="card col-2">
+        plat<button type="button" class="btn-close col-2" aria-label="Close">
+          <img
+            src="./assets/pictures/x-circle.svg"
+            width="22px"
+            height="22px"
+            alt=""
+          />
+        </button>
+      </div>
+      <div class="header_searchbar-secondarySearchContainer row">
+        <div class="header_searchbar-secondarySearchContainer1">
+          <input
+            type="text"
+            placeholder="Ingredients"
+            class="search_secondarySearchContainer-secondarySearch1"
+          /><img
+            src="./assets/pictures/chevron-down.svg"
+            class="chevron"
+            height="22px"
+            width="22px"
+          />
+          <ul class="secondarySearch1_suggestions">
+            <li class="suggestions_items"></li>
+          </ul>
+        </div>
+        <div class="header_searchbar-secondarySearchContainer2">
+          <input
+            type="text"
+            placeholder="Appareil"
+            class="search_secondarySearchContainer-secondarySearch2"
+          /><img
+            src="./assets/pictures/chevron-down.svg"
+            class="chevron"
+            height="22px"
+            width="22px"
+          />
+          <ul class="secondarySearch2_suggestions">
+            <li class="suggestions_items"></li>
+          </ul>
+        </div>
+        <div class="header_searchbar-secondarySearchContainer3">
+          <input
+            type="text"
+            placeholder="Ustensiles"
+            class="search_secondarySearchContainer-secondarySearch3"
+          /><img
+            src="./assets/pictures/chevron-down.svg"
+            class="chevron"
+            height="22px"
+            width="22px"
+          />
+
+          <ul class="secondarySearch3_suggestions">
+            <li class="suggestions_items"></li>
+          </ul>
+        </div>
+      </div>
     </header>
-    <main>
-        <article>
-            <div class="cart_container-image jumbotron">
-
-            </div>
-            <div class="cart_container-text">
-                <header>
-                    
-                    <div class="cart_text-timerContainer row">
-                        <div class="col-6" >
-                            <h5 class="card-title ">un titre</h5>
-                        </div>
-                        <div class="col-6 row">
-                            <i class="far fa-clock  col"></i>
-                            <p class="text_timer_timer  col-8">60 min</p>
-                        </div>
-                        
-                    </div>
-                </header>
-                    <div class="cart_text-descriptionContainer row">
-                        <ul class="cart_text-ingredient list-unstyled col-6 ">
-                            <li>un ingredient</li>
-                            <li>un autre ingredient</li>
-                        </ul>
-                        <p class="card-text col ">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Modi aliquid magnam consectetur, earum mollitia fugit hic repudiandae exercitationem, repellat commodi, fuga cumque blanditiis accusantium vel veniam libero unde ipsam nemo.</p>
-                    </div>
-                
-            </div>
-        </article>
+    <main class="">
+     
     </main>
- <script src="./javaScript/script.js"></script>
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-</body>
+    <script src="./javaScript/script.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

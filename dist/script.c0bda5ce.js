@@ -1504,59 +1504,118 @@ Object.defineProperty(exports, "__esModule", {
 exports.Card = void 0;
 
 class Card {
-  constructor(id, name, serving, [ingredients]) {
-    this.id = id;
-    this.name = name;
-    this.serving = serving;
-    this.time = time;
-    this.description = description;
-    this.ingredients = [ingredients];
+  constructor(recipes) {
+    this.appliance = recipes.appliance;
+    this.description = recipes.description;
+    this.id = recipes.id;
+    this.ingredients = recipes.ingredients;
+    this.name = recipes.name;
+    this.servings = recipes.servings;
+    this.time = recipes.time;
+    this.ustensils = recipes.ustensils;
   }
 
-  createACard() {
-    const ingredient = ingredients.forEach(ingredient => {
-      `<li>${ingredient}</li>`;
+  createACard(rootElement) {
+    const article = rootElement.appendChild(document.createElement("article"));
+    const ingredients = this.ingredients.map(ingredient => {
+      return `<li>${ingredient.ingredient}</li>`;
     });
     const cart = `
-            <article>
-                <div class="cart_container-image jumbotron">
-                </div>
-                <div class="cart_container-text">
-                <header>
-                    <div class="cart_text-timerContainer row">
-                        <div class="col-6" >
-                            <h2 class="cart_text-title ">${this.name}</h2>
-                        </div>
-                        <div class="col-6 row">
-                            <i class="far fa-clock  col"></i>
-                            <p class="text_timer_timer  col-8">${this.time}</p>
-                        </div>
-                     
-                    </div>
-                </header>
-                <div class="cart_text-descriptionContainer row">
-                        <ul class="cart_text-ingredient col-6 ">
-                          ${ingredient}
-                        </ul>
-                        <p class="cart_text-description col ">${this.description}</p>
-                    </div>
-                </div>
-            </article>`;
-    const containerCart = document.querySelector('main');
-    containerCart.innerHTML = cart;
+        
+        <div class="cart_container-image jumbotron"></div>
+        <div class="cart_container-text">
+          <header>
+            <div class="cart_text-timerContainer row">
+              <div class="col-6">
+                <h5 class="card-title">${this.name}</h5>
+              </div>
+              <div class="col-6 row">
+                <img
+                  src="./pictures/clock.svg"
+                  width="22px"
+                  height="22px"
+                  alt=""
+                />
+                <p class="text_timer_timer col-8">${this.time} min</p>
+              </div>
+            </div>
+          </header>
+          <div class="cart_text-descriptionContainer row">
+            <ul class="cart_text-ingredient list-unstyled col-6">
+              ${ingredients.join("")}
+            </ul>
+            <p class="card-text col">
+              ${this.description}
+            </p>
+          </div>
+        </div>
+      `;
+    article.innerHTML = cart;
   }
 
 }
 
 exports.Card = Card;
-},{}],"javaScript/script.js":[function(require,module,exports) {
+},{}],"javaScript/search.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.search = search;
+
+var _recipes = require("../assets/data/recipes");
+
+var _card = require("./class/card");
+
+// Algo 1 
+
+/*
+La fonction de recherche prend en entré une recherche utilisateur grace a une saisie dans un champ de recherche
+La function recupère la saisie 
+elle lis les information 
+et elle cherche une correspondance
+si elle en trouve elle renvoi les données
+*/
+async function displayCard(datas) {
+  const containerCart = document.querySelector('main');
+  await datas;
+  new _card.Card().createACard(containerCart);
+}
+
+function removeCard() {
+  const articles = document.querySelectorAll('article');
+  articles.forEach(article => {
+    article.remove();
+  });
+}
+
+function search(userInput, datas) {
+  console.log(userInput);
+
+  if (userInput.length >= 3) {
+    datas.forEach(data => {
+      if (data.name === userInput) {
+        console.log(data);
+        const containerCart = document.querySelector('main');
+        new _card.Card(data).createACard(containerCart);
+      }
+    });
+  } else {
+    removeCard();
+  }
+}
+},{"../assets/data/recipes":"assets/data/recipes.js","./class/card":"javaScript/class/card.js"}],"javaScript/script.js":[function(require,module,exports) {
 "use strict";
 
 var _recipes = require("../assets/data/recipes");
 
 var _card = require("./class/card");
 
+var _search = require("./search");
+
 console.log(_recipes.recipes);
+const containerCart = document.querySelector('main');
 const input = document.querySelector('.header_searchbar_mainSearch');
 /*input.addEventListener((e)=>{
    const currentInput  = e.target.value ;
@@ -1572,26 +1631,19 @@ const input = document.querySelector('.header_searchbar_mainSearch');
 3. test les appareil 
 */
 
-_recipes.recipes.forEach(recipe => {
-  const card = new _card.Card(recipe);
-  console.log(card);
-});
-
-function testInput(input, data) {
-  input.addEventListener('keydown', e => {
-    const userInput = e.target.value;
-    console.log(userInput);
-
-    if (data.name === userInput) {
-      console.log(data);
-    }
+async function displayCardBase() {
+  await _recipes.recipes.forEach(recipe => {
+    new _card.Card(recipe).createACard(containerCart);
+  });
+  const input = document.querySelector('.header_searchbar_mainSearch');
+  input.addEventListener('keyup', e => {
+    const curentInput = e.target.value;
+    (0, _search.search)(curentInput, _recipes.recipes);
   });
 }
 
-_recipes.recipes.forEach(recipe => {
-  testInput(input, recipe);
-});
-},{"../assets/data/recipes":"assets/data/recipes.js","./class/card":"javaScript/class/card.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+displayCardBase();
+},{"../assets/data/recipes":"assets/data/recipes.js","./class/card":"javaScript/class/card.js","./search":"javaScript/search.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -1619,7 +1671,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60872" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57682" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -38,10 +38,16 @@ header ul {
 }
 .header_searchbar-secondarySearchContainer {
     margin: 2% 0;
+  
 }
 .header_searchbar-secondarySearchContainer1{
     background-color: #3282F7;
     margin: 0 2% 0 0 ;
+    height: 50px;
+    color: white;  
+    display: flex;
+    align-items: center;
+    
     input{
             border: none;
         }
@@ -53,6 +59,10 @@ header ul {
 .header_searchbar-secondarySearchContainer2{
     background-color:  #68D9A4; 
     margin: 0 2% 0 0 ;
+    height: 50px;
+    color: white;
+    display: flex;
+    align-items: center;
      input{
             border: none;
         }
@@ -64,6 +74,10 @@ header ul {
 .header_searchbar-secondarySearchContainer3{
     background-color: #ED6454;
     margin: 0 2% 0 0 ;
+    height: 50px;
+    color: white; 
+    display: flex;
+    align-items: center;
      input{
             border: none;
             
