@@ -11,7 +11,9 @@ export class Card {
     }
 
     createACard(rootElement)
-    {const article = rootElement.appendChild(document.createElement("article"));
+    {
+      const createArticle = document.createElement('article');
+      const article = rootElement.appendChild(createArticle);
 
         const ingredients = this.ingredients.map((ingredient) =>{
             return `<li>${ingredient.ingredient}</li>`
@@ -49,6 +51,8 @@ export class Card {
         
         article.innerHTML = (cart)
     }
+
+   
 
     
 }

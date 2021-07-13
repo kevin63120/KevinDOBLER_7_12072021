@@ -1516,7 +1516,8 @@ class Card {
   }
 
   createACard(rootElement) {
-    const article = rootElement.appendChild(document.createElement("article"));
+    const createArticle = document.createElement('article');
+    const article = rootElement.appendChild(createArticle);
     const ingredients = this.ingredients.map(ingredient => {
       return `<li>${ingredient.ingredient}</li>`;
     });
@@ -1590,19 +1591,42 @@ function removeCard() {
   });
 }
 
+function searchByName(userInput, datas) {
+  datas.forEach(data => {
+    if (data.name === userInput) {
+      console.log(data);
+      const containerCart = document.querySelector('main');
+      return new _card.Card(data).createACard(containerCart);
+    }
+  });
+}
+
+function searchByIngredient(userInput, datas) {
+  datas.forEach(data => {
+    data.ingredients.forEach(ingredient => {
+      console.log(ingredient);
+
+      if (ingredient.ingredient === userInput) {
+        console.log(data);
+        const containerCart = document.querySelector('main');
+        return new _card.Card(data).createACard(containerCart);
+      }
+    });
+  });
+}
+
 function search(userInput, datas) {
   console.log(userInput);
 
   if (userInput.length >= 3) {
-    datas.forEach(data => {
-      if (data.name === userInput) {
-        console.log(data);
-        const containerCart = document.querySelector('main');
-        new _card.Card(data).createACard(containerCart);
-      }
-    });
-  } else {
     removeCard();
+    searchByName(userInput, datas);
+    searchByIngredient(userInput, datas);
+  }
+
+  if (userInput.length === 0) {
+    const containerCart = document.querySelector('main');
+    new _card.Card(datas).createACard(containerCart);
   }
 }
 },{"../assets/data/recipes":"assets/data/recipes.js","./class/card":"javaScript/class/card.js"}],"javaScript/script.js":[function(require,module,exports) {
@@ -1671,7 +1695,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57682" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50479" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

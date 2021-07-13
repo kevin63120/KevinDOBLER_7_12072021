@@ -15,33 +15,53 @@ si elle en trouve elle renvoi les données
 
 
 
-async function displayCard(datas){
+async function displayCard(datas) {
     const containerCart = document.querySelector('main');
     await datas
     new Card().createACard(containerCart)
 }
 
-function removeCard(){
+function removeCard() {
     const articles = document.querySelectorAll('article');
-    articles.forEach( article =>{
-            article.remove();
+    articles.forEach(article => {
+        article.remove();
+    })
+}
+
+function searchByName(userInput, datas) {
+    datas.forEach((data) => {
+        if (data.name === userInput) {
+            console.log(data)
+            const containerCart = document.querySelector('main');
+           return new Card(data).createACard(containerCart)
+        }
+    })
+}
+
+function searchByIngredient(userInput, datas) {
+    datas.forEach((data) => {
+        data.ingredients.forEach((ingredient) => {
+            console.log(ingredient)
+            if (ingredient.ingredient === userInput) {
+                    console.log(data)
+                    const containerCart = document.querySelector('main');
+                 return   new Card(data).createACard(containerCart)
+                }
+        })
     })
 }
 
 
-export  function search (userInput , datas){
+export function search(userInput, datas) {
     console.log(userInput)
-   
-    if(userInput.length >= 3){
-       datas.forEach((data)=>{
-         if(data.name === userInput){
-             console.log(data)
-             const containerCart = document.querySelector('main');
-            new Card(data).createACard(containerCart) 
-         }
-       })
-       
-    }else{
+
+    if (userInput.length >= 3) {
         removeCard()
+        searchByName(userInput, datas)
+        searchByIngredient(userInput, datas)
+
+    } if(userInput.length === 0) {
+        const containerCart = document.querySelector('main');
+        new Card(datas).createACard(containerCart)
     }
 }
