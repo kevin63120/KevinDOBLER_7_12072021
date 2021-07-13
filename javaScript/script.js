@@ -20,9 +20,9 @@ const input = document.querySelector('.header_searchbar_mainSearch');
   3. test les appareil 
   */  
 
-  async function displayCardBase(){
-     await recipes.forEach((recipe) =>{
-       new Card(recipe).createACard(containerCart)
+  function displayCardBase(){
+     recipes.forEach((recipe) =>{
+       new Card(recipe).create(containerCart)
       })
       const input = document.querySelector('.header_searchbar_mainSearch');
       input.addEventListener('keyup',(e)=>{

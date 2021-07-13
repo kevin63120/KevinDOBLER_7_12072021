@@ -23,21 +23,23 @@
     <script src="./javaScript/script.js"></script>
     <title>Les petits plats</title>
   </head>
-  <body class="container">
-    <header>
-      <div class="header_logo-container">
-        <div class="logo">
+  <body class="container-fluid mt-4" style="width: 90%;">
+    <header class="container-fluid " >
+      <div class="header_logo-container ">
+        <div class="logo mb-4"style="widht:100%; text-align:center">
           <img
             src="assets/pictures/logo.png"
             alt="logo du site"
             class="header_logo_item"
           />
+          <h1 class="header_title ">Les petits plats</h1>
         </div>
 
-        <h1 class="header_title row">Les petits plats</h1>
-        <div class="header_searchbar-mainSearchContainer row">
+        
+        <div class="header_searchbar-mainSearchContainer row ">
           <input
-            class="header_searchbar_mainSearch"
+            class="header_searchbar_mainSearch " 
+            
             type="text"
             placeholder="Rechercher un ingrédient, appareil, ustensiles  ou une recette"
           />
@@ -49,27 +51,29 @@
           />
         </div>    
         <div class="tag-container">
-        
+          <button type="button" class="btn-close" aria-label="Close">x</button>
       </div>
       <div class="header_searchbar-secondarySearchContainer row">
-        <div class="header_searchbar-secondarySearchContainer1">
+        <div class="header_searchbar-secondarySearchContainer1  text-light  mr-4 mt-2">
           <input
             type="text"
             placeholder="Ingredients"
-            class="search_secondarySearchContainer-secondarySearch1"
+            class="search_secondarySearchContainer-secondarySearch1   text-light"
           /><img
             src="./assets/pictures/chevron-down.svg"
             class="chevron"
             height="22px"
             width="22px"
           />
+          <div class="container-secondarySearch1_suggestions"></div>
           <ul class="secondarySearch1_suggestions">
             <li class="suggestions_items"></li>
           </ul>
         </div>
-        <div class="header_searchbar-secondarySearchContainer2">
+        <div class="header_searchbar-secondarySearchContainer2 mr-4 mt-2 text-light">
           <input
             type="text"
+           
             placeholder="Appareil"
             class="search_secondarySearchContainer-secondarySearch2"
           /><img
@@ -82,7 +86,7 @@
             <li class="suggestions_items"></li>
           </ul>
         </div>
-        <div class="header_searchbar-secondarySearchContainer3">
+        <div class="header_searchbar-secondarySearchContainer3 mr-4 mt-2">
           <input
             type="text"
             placeholder="Ustensiles"
@@ -100,7 +104,7 @@
         </div>
       </div>
     </header>
-    <main class="">
+    <main class="row" >
      
     </main>
     <script src="./javaScript/script.js"></script>

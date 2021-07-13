@@ -15,10 +15,10 @@ si elle en trouve elle renvoi les données
 
 
 
-async function displayCard(datas) {
+function displayCard(datas) {
     const containerCart = document.querySelector('main');
-    await datas
-    new Card().createACard(containerCart)
+   
+    
 }
 
 function removeCard() {
@@ -33,21 +33,24 @@ function searchByName(userInput, datas) {
         if (data.name === userInput) {
             console.log(data)
             const containerCart = document.querySelector('main');
-           return new Card(data).createACard(containerCart)
+           return new Card(data).create(containerCart)
+        }
+        if(data.ingredients){
+           data.ingredients.forEach((ingredient) => {
+            console.log(ingredient)
+            if (ingredient.ingredient === userInput) {
+                    console.log(data)
+                    const containerCart = document.querySelector('main');
+                  new Card(data).create(containerCart)
+                }
+        }) 
         }
     })
 }
 
 function searchByIngredient(userInput, datas) {
     datas.forEach((data) => {
-        data.ingredients.forEach((ingredient) => {
-            console.log(ingredient)
-            if (ingredient.ingredient === userInput) {
-                    console.log(data)
-                    const containerCart = document.querySelector('main');
-                 return   new Card(data).createACard(containerCart)
-                }
-        })
+        
     })
 }
 
@@ -62,6 +65,6 @@ export function search(userInput, datas) {
 
     } if(userInput.length === 0) {
         const containerCart = document.querySelector('main');
-        new Card(datas).createACard(containerCart)
+        new Card(datas).create(containerCart)
     }
 }

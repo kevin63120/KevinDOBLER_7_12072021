@@ -1504,54 +1504,56 @@ Object.defineProperty(exports, "__esModule", {
 exports.Card = void 0;
 
 class Card {
-  constructor(recipes) {
-    this.appliance = recipes.appliance;
-    this.description = recipes.description;
-    this.id = recipes.id;
-    this.ingredients = recipes.ingredients;
-    this.name = recipes.name;
-    this.servings = recipes.servings;
-    this.time = recipes.time;
-    this.ustensils = recipes.ustensils;
+  constructor(recipe) {
+    this.appliance = recipe.appliance;
+    this.description = recipe.description;
+    this.id = recipe.id;
+    this.ingredients = recipe.ingredients;
+    this.name = recipe.name;
+    this.servings = recipe.servings;
+    this.time = recipe.time;
+    this.ustensils = recipe.ustensils;
   }
 
-  createACard(rootElement) {
+  create(rootElement) {
     const createArticle = document.createElement('article');
     const article = rootElement.appendChild(createArticle);
     const ingredients = this.ingredients.map(ingredient => {
       return `<li>${ingredient.ingredient}</li>`;
     });
-    const cart = `
-        
-        <div class="cart_container-image jumbotron"></div>
-        <div class="cart_container-text">
-          <header>
-            <div class="cart_text-timerContainer row">
-              <div class="col-6">
-                <h5 class="card-title">${this.name}</h5>
+    const card = `
+        <div class="card mr-4 mt-4 mb-4 ml-3 overflow-hidden"  style="width: 31rem; height: 25rem; ">
+          <div class="card_container-image jumbotron bg-secondary"></div>
+          <div class="card-body">
+            <header>
+              <div class="card_text-timerContainer row">
+                <div class="col-6">
+                  <h5 class="card-title">${this.name}</h5>
+                </div>
+                <div class="col-6 row">
+                  <img
+                    src="./pictures/clock.svg"
+                    width="22px"
+                    height="22px"
+                    alt=""
+                  />
+                  <p class="text_timer_timer col-8">${this.time} min</p>
+                </div>
               </div>
-              <div class="col-6 row">
-                <img
-                  src="./pictures/clock.svg"
-                  width="22px"
-                  height="22px"
-                  alt=""
-                />
-                <p class="text_timer_timer col-8">${this.time} min</p>
-              </div>
+            </header>
+            <div class="card_text-descriptionContainer row">
+              <ul class="card-text list-unstyled col-6">
+                ${ingredients.join("")}
+              </ul>
+              <p class="card-text  col">
+                ${this.description}
+              </p>
             </div>
-          </header>
-          <div class="cart_text-descriptionContainer row">
-            <ul class="cart_text-ingredient list-unstyled col-6">
-              ${ingredients.join("")}
-            </ul>
-            <p class="card-text col">
-              ${this.description}
-            </p>
           </div>
         </div>
+        
       `;
-    article.innerHTML = cart;
+    article.innerHTML = card;
   }
 
 }
@@ -1578,10 +1580,8 @@ elle lis les information
 et elle cherche une correspondance
 si elle en trouve elle renvoi les données
 */
-async function displayCard(datas) {
+function displayCard(datas) {
   const containerCart = document.querySelector('main');
-  await datas;
-  new _card.Card().createACard(containerCart);
 }
 
 function removeCard() {
@@ -1596,23 +1596,25 @@ function searchByName(userInput, datas) {
     if (data.name === userInput) {
       console.log(data);
       const containerCart = document.querySelector('main');
-      return new _card.Card(data).createACard(containerCart);
+      return new _card.Card(data).create(containerCart);
+    }
+
+    if (data.ingredients) {
+      data.ingredients.forEach(ingredient => {
+        console.log(ingredient);
+
+        if (ingredient.ingredient === userInput) {
+          console.log(data);
+          const containerCart = document.querySelector('main');
+          new _card.Card(data).create(containerCart);
+        }
+      });
     }
   });
 }
 
 function searchByIngredient(userInput, datas) {
-  datas.forEach(data => {
-    data.ingredients.forEach(ingredient => {
-      console.log(ingredient);
-
-      if (ingredient.ingredient === userInput) {
-        console.log(data);
-        const containerCart = document.querySelector('main');
-        return new _card.Card(data).createACard(containerCart);
-      }
-    });
-  });
+  datas.forEach(data => {});
 }
 
 function search(userInput, datas) {
@@ -1626,7 +1628,7 @@ function search(userInput, datas) {
 
   if (userInput.length === 0) {
     const containerCart = document.querySelector('main');
-    new _card.Card(datas).createACard(containerCart);
+    new _card.Card(datas).create(containerCart);
   }
 }
 },{"../assets/data/recipes":"assets/data/recipes.js","./class/card":"javaScript/class/card.js"}],"javaScript/script.js":[function(require,module,exports) {
@@ -1655,10 +1657,11 @@ const input = document.querySelector('.header_searchbar_mainSearch');
 3. test les appareil 
 */
 
-async function displayCardBase() {
-  await _recipes.recipes.forEach(recipe => {
-    new _card.Card(recipe).createACard(containerCart);
+function displayCardBase() {
+  _recipes.recipes.forEach(recipe => {
+    new _card.Card(recipe).create(containerCart);
   });
+
   const input = document.querySelector('.header_searchbar_mainSearch');
   input.addEventListener('keyup', e => {
     const curentInput = e.target.value;
@@ -1695,7 +1698,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50479" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60429" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
