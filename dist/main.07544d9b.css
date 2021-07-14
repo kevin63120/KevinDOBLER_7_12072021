@@ -3,6 +3,12 @@
   font-weight: 400;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 /* custom color */
 .header_searchbar-secondarySearchContainer1 {
   background-color: #3282F7;
@@ -30,7 +36,7 @@
 .header_searchbar-secondarySearchContainer3 input {
   background-color: #ED6454;
 }
-.header_searchbar-secondarySearchContainer3 input :-ms-input-placeholder {
+.header_searchbar-secondarySearchContainer3 input ::placeholder {
   color: white;
 }
 
@@ -51,6 +57,11 @@
 
 input:focus-visible {
   outline: none;
+  border: none;
+}
+
+input {
+  border: none;
 }
 
 /*main{

@@ -1,4 +1,6 @@
 import "../assets/data/recipes" 
+import "../javaScript/tags"
+import "../javaScript/secondarySearch"
 import { recipes } from "../assets/data/recipes"
 import {Card} from"./class/card"
 import {search} from "./search"
@@ -22,7 +24,7 @@ const input = document.querySelector('.header_searchbar_mainSearch');
 
   function displayCardBase(){
      recipes.forEach((recipe) =>{
-       new Card(recipe).create(containerCart)
+       new Card(recipe).createCard(containerCart)
       })
       const input = document.querySelector('.header_searchbar_mainSearch');
       input.addEventListener('keyup',(e)=>{

@@ -27,7 +27,7 @@ $colorSecondarySearch3 : #ED6454;
     background-color: $colorSecondarySearch3;
     input{
         background-color: $colorSecondarySearch3;
-      :-ms-input-placeholder{
+      ::placeholder{
        color: white; 
     }  
     }
@@ -35,7 +35,8 @@ $colorSecondarySearch3 : #ED6454;
 }
 
 .header_searchbar-mainSearchContainer{
-    width: 95%; height:69px;
+    width: 95%; 
+    height:69px;
     border: 2px black solid;
     border-radius: 5px;
     display: flex;
@@ -48,5 +49,9 @@ $colorSecondarySearch3 : #ED6454;
     border: none;
 }
 input:focus-visible {
-    outline:none
+    outline:none;
+    border:none
+}
+input{
+    border: none
 }

@@ -1495,6 +1495,14 @@ const recipes = [{
   "ustensils": ["rouleau à patisserie", "fouet"]
 }];
 exports.recipes = recipes;
+},{}],"javaScript/tags.js":[function(require,module,exports) {
+const tagContainer = document.querySelector('.tag-container');
+const tag = `<button type="button" class="btn btn-primary">Primary<img
+    src="./pictures/x-circle.svg"    width="20px"
+    height="20px"
+    alt=""
+  /></button>`;
+tagContainer.innerHTML = tag;
 },{}],"javaScript/class/card.js":[function(require,module,exports) {
 "use strict";
 
@@ -1515,7 +1523,7 @@ class Card {
     this.ustensils = recipe.ustensils;
   }
 
-  create(rootElement) {
+  createCard(rootElement) {
     const createArticle = document.createElement('article');
     const article = rootElement.appendChild(createArticle);
     const ingredients = this.ingredients.map(ingredient => {
@@ -1556,10 +1564,37 @@ class Card {
     article.innerHTML = card;
   }
 
+  createSecondarySearchList(rootElement) {
+    const containerListSecondarySearch = rootElement;
+    const itemSecondarySearch = this.ingredients.map(ingredient => {
+      return `<li>${ingredient.ingredient}</li>`;
+    });
+    console.log(itemSecondarySearch); //containerListSecondarySearch.innerHTML=(itemSecondarySearch.join(""))
+  }
+
 }
 
 exports.Card = Card;
-},{}],"javaScript/search.js":[function(require,module,exports) {
+},{}],"javaScript/secondarySearch.js":[function(require,module,exports) {
+"use strict";
+
+var _card = require("./class/card");
+
+var _recipes = require("../assets/data/recipes");
+
+const inputIngredient = document.querySelector('.search_secondarySearchContainer-secondarySearch1');
+const secondaryList = document.querySelector('.secondarySearch1_suggestions');
+const li = document.createElement('li');
+inputIngredient.addEventListener("click", e => {
+  const ingredientMap = _recipes.recipes.forEach(recipe => {
+    recipe.ingredients.map(ingredient => {
+      return `<option value="${ingredient.ingredient}"></option>`;
+    });
+  });
+
+  secondaryList.innerHTML = ingredientMap;
+});
+},{"./class/card":"javaScript/class/card.js","../assets/data/recipes":"assets/data/recipes.js"}],"javaScript/search.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1606,7 +1641,7 @@ function searchByName(userInput, datas) {
         if (ingredient.ingredient === userInput) {
           console.log(data);
           const containerCart = document.querySelector('main');
-          new _card.Card(data).create(containerCart);
+          new _card.Card(data).createCard(containerCart);
         }
       });
     }
@@ -1636,6 +1671,10 @@ function search(userInput, datas) {
 
 var _recipes = require("../assets/data/recipes");
 
+require("../javaScript/tags");
+
+require("../javaScript/secondarySearch");
+
 var _card = require("./class/card");
 
 var _search = require("./search");
@@ -1659,7 +1698,7 @@ const input = document.querySelector('.header_searchbar_mainSearch');
 
 function displayCardBase() {
   _recipes.recipes.forEach(recipe => {
-    new _card.Card(recipe).create(containerCart);
+    new _card.Card(recipe).createCard(containerCart);
   });
 
   const input = document.querySelector('.header_searchbar_mainSearch');
@@ -1670,7 +1709,7 @@ function displayCardBase() {
 }
 
 displayCardBase();
-},{"../assets/data/recipes":"assets/data/recipes.js","./class/card":"javaScript/class/card.js","./search":"javaScript/search.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"../assets/data/recipes":"assets/data/recipes.js","../javaScript/tags":"javaScript/tags.js","../javaScript/secondarySearch":"javaScript/secondarySearch.js","./class/card":"javaScript/class/card.js","./search":"javaScript/search.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -1698,7 +1737,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60429" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59181" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

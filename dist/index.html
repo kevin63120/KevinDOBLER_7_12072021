@@ -12,48 +12,95 @@
     <script src="/script.c0bda5ce.js"></script>
     <title>Les petits plats</title>
   <script src="/main.07544d9b.js"></script></head>
-  <body class="container-fluid mt-4" style="width: 90%;">
-    <header class="container-fluid ">
-      <div class="header_logo-container ">
-        <div class="logo mb-4" style="widht:100%; text-align:center">
+  <body class="container-fluid mt-4" style="width: 90%">
+    <header class="container-fluid">
+      <div class="header_logo-container">
+        <div class="logo mb-4" style="widht: 100%; text-align: center">
           <img src="/logo.33f9e146.png" alt="logo du site" class="header_logo_item">
-          <h1 class="header_title ">Les petits plats</h1>
+          <h1 class="header_title">Les petits plats</h1>
         </div>
-
-        
-        <div class="header_searchbar-mainSearchContainer row ">
-          <input class="header_searchbar_mainSearch " type="text" placeholder="Rechercher un ingrédient, appareil, ustensiles  ou une recette">
-          <img src="/search.d5512805.svg" width="22px" height="22px" alt="">
-        </div>    
-        <div class="tag-container">
-          <button type="button" class="btn-close" aria-label="Close">x</button>
+        <input list="datalistOptions" id="exampleDataList" placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette" class="
+            header_searchbar-mainSearchContainer
+            row
+            form-control
+            text-light
+          ">
+        <datalist class="header_searchbar_mainSearch" id="datalistOptions">
+          <option value="San Francisco"></option>
+          <option value="New York"></option>
+          <option value="Seattle"></option>
+          <option value="pioche"></option>
+          <option value="manche"></option>
+        </datalist>
+        <img src="/search.d5512805.svg" width="22px" height="22px" alt="">
       </div>
-      <div class="header_searchbar-secondarySearchContainer row">
-        <div class="header_searchbar-secondarySearchContainer1  text-light  mr-4 mt-2">
-          <input type="text" placeholder="Ingredients" class="search_secondarySearchContainer-secondarySearch1   text-light"><img src="/chevron-down.7ca24774.svg" class="chevron" height="22px" width="22px">
-          <div class="container-secondarySearch1_suggestions"></div>
-          <ul class="secondarySearch1_suggestions">
-            <li class="suggestions_items"></li>
-          </ul>
+      <div class="tag-container">
+        <button type="button" class="btn-close" aria-label="Close">x</button>
+      </div>
+      <div class="row">
+        <div class="
+            header_searchbar-secondarySearchContainer1
+            text-light
+            mr-4
+            mt-2
+          ">
+          <input list="datalistOptions" id="exampleDataList" placeholder="ingrédient" class="
+              search_secondarySearchContainer-secondarySearch1
+              form-control
+              text-light
+            ">
+          <!--<img src="./assets/pictures/chevron-down.svg" class="chevron" height="22px" width="22px"/>-->
+          <datalist class="container-secondarySearch1_suggestions" id="datalistOptions">
+            <option value="San Francisco" class="bg-primary"></option>
+            <option value="New York"></option>
+            <option value="Seattle"></option>
+            <option value="pioche"></option>
+            <option value="manche"></option>
+          </datalist>
         </div>
-        <div class="header_searchbar-secondarySearchContainer2 mr-4 mt-2 text-light">
-          <input type="text" placeholder="Appareil" class="search_secondarySearchContainer-secondarySearch2"><img src="/chevron-down.7ca24774.svg" class="chevron" height="22px" width="22px">
-          <ul class="secondarySearch2_suggestions">
-            <li class="suggestions_items"></li>
-          </ul>
+        <div class="
+            header_searchbar-secondarySearchContainer2
+            text-light
+            mr-4
+            mt-2
+          ">
+          <input list="datalistOptions" id="exampleDataList" placeholder="ingrédient" class="
+              search_secondarySearchContainer-secondarySearch2
+              form-control
+              text-light
+            ">
+          <!--<img src="./assets/pictures/chevron-down.svg" class="chevron" height="22px" width="22px"/>-->
+          <datalist class="container-secondarySearch2_suggestions" id="datalistOptions">
+            <option value="San Francisco"></option>
+            <option value="New York"></option>
+            <option value="Seattle"></option>
+            <option value="pioche"></option>
+            <option value="manche"></option>
+          </datalist>
         </div>
-        <div class="header_searchbar-secondarySearchContainer3 mr-4 mt-2">
-          <input type="text" placeholder="Ustensiles" class="search_secondarySearchContainer-secondarySearch3"><img src="/chevron-down.7ca24774.svg" class="chevron" height="22px" width="22px">
-
-          <ul class="secondarySearch3_suggestions">
-            <li class="suggestions_items"></li>
-          </ul>
+        <div class="
+            header_searchbar-secondarySearchContainer3
+            text-light
+            mr-4
+            mt-2
+          ">
+          <input list="datalistOptions" id="exampleDataList" placeholder="ingrédient" class="
+              search_secondarySearchContainer-secondarySearch3
+              form-control
+              text-light
+            ">
+          <!--<img src="./assets/pictures/chevron-down.svg" class="chevron" height="22px" width="22px"/>-->
+          <datalist class="container-secondarySearch1_suggestions" id="datalistOptions">
+            <option value="San Francisco"></option>
+            <option value="New York"></option>
+            <option value="Seattle"></option>
+            <option value="pioche"></option>
+            <option value="manche"></option>
+          </datalist>
         </div>
       </div>
-    </div></header>
-    <main class="row">
-     
-    </main>
+    </header>
+    <main class="row"></main>
     <script src="/script.c0bda5ce.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

@@ -10,7 +10,7 @@ export class Card {
         this.ustensils = recipe.ustensils;        
     }
 
-    create(rootElement)
+    createCard(rootElement)
     {
       const createArticle = document.createElement('article');
       const article = rootElement.appendChild(createArticle);
@@ -53,7 +53,17 @@ export class Card {
       article.innerHTML=(card)
     }
 
-   
+   createSecondarySearchList(rootElement){
+     const containerListSecondarySearch = rootElement;
+     
+    const itemSecondarySearch = this.ingredients.map((ingredient)=>{
+      return `<li>${ingredient.ingredient}</li>`
+    })
+    console.log(itemSecondarySearch)
+    //containerListSecondarySearch.innerHTML=(itemSecondarySearch.join(""))
+
+
+   }
 
     
 }
