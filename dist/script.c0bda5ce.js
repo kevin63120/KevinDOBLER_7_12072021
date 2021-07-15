@@ -1527,28 +1527,38 @@ class Card {
     const createArticle = document.createElement('article');
     const article = rootElement.appendChild(createArticle);
     const ingredients = this.ingredients.map(ingredient => {
-      return `<li>${ingredient.ingredient}</li>`;
+      if (!ingredient.quantity) {
+        return `<li class="ingredient">${ingredient.ingredient}</li>`;
+      }
+
+      if (!ingredient.unit || ingredient.unit === undefined) {
+        return `<li class="ingredient">${ingredient.ingredient} : <span> ${ingredient.quantity} </span></li>`;
+      } else {
+        return `<li class="ingredient">${ingredient.ingredient} : <span> ${ingredient.quantity} ${ingredient.unit}</span></li>`;
+      }
     });
     const card = `
-        <div class="card mr-4 mt-4 mb-4 ml-3 overflow-hidden"  style="width: 31rem; height: 25rem; ">
+        <div class="card mr-4 mt-4 mb-4 ml-3 overflow-hidden "  style="width: 31rem; height: 25rem; ">
           <div class="card_container-image jumbotron bg-secondary"></div>
-          <div class="card-body">
-            <header>
-              <div class="card_text-timerContainer row">
-                <div class="col-6">
-                  <h5 class="card-title">${this.name}</h5>
-                </div>
-                <div class="col-6 row">
-                  <img
-                    src="./pictures/clock.svg"
-                    width="22px"
-                    height="22px"
-                    alt=""
-                  />
-                  <p class="text_timer_timer col-8">${this.time} min</p>
+          <div class="card-body container">
+            <div class="row">
+              <div class="card_text-timerContainer container">
+                <div class="row">
+                  <div class="col-6">
+                   <h5 class="card-title">${this.name}</h5>
+                 </div>
+                  <div class="col-6 text-right">
+                   <img
+                      src="./pictures/clock.svg"
+                      width="22px"
+                      height="22px"
+                      alt=""
+                    />
+                    <span class="text_timer_timer col-8">${this.time} min</span>
+                  </div>
                 </div>
               </div>
-            </header>
+            </div>
             <div class="card_text-descriptionContainer row">
               <ul class="card-text list-unstyled col-6">
                 ${ingredients.join("")}
@@ -1737,7 +1747,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59181" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59442" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

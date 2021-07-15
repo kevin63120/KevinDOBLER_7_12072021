@@ -11,30 +11,30 @@ body {
 
 /* custom color */
 .header_searchbar-secondarySearchContainer1 {
-  background-color: #3282F7;
+  background-color: #3282f7;
 }
 .header_searchbar-secondarySearchContainer1 input {
-  background-color: #3282F7;
+  background-color: #3282f7;
 }
 .header_searchbar-secondarySearchContainer1 input :-ms-input-placeholder {
   color: white;
 }
 
 .header_searchbar-secondarySearchContainer2 {
-  background-color: #68D9A4;
+  background-color: #68d9a4;
 }
 .header_searchbar-secondarySearchContainer2 input {
-  background-color: #68D9A4;
+  background-color: #68d9a4;
 }
 .header_searchbar-secondarySearchContainer2 input :-ms-input-placeholder {
   color: white;
 }
 
 .header_searchbar-secondarySearchContainer3 {
-  background-color: #ED6454;
+  background-color: #ed6454;
 }
 .header_searchbar-secondarySearchContainer3 input {
-  background-color: #ED6454;
+  background-color: #ed6454;
 }
 .header_searchbar-secondarySearchContainer3 input ::placeholder {
   color: white;
@@ -43,7 +43,6 @@ body {
 .header_searchbar-mainSearchContainer {
   width: 95%;
   height: 69px;
-  border: 2px black solid;
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -64,61 +63,37 @@ input {
   border: none;
 }
 
-/*main{
-    display: flex;
-    flex-wrap: wrap;
+.form-control:focus {
+  background-color: inherit;
+}
 
+.container-secondarySearch1_suggestions:focus-visible {
+  background-color: inherit;
 }
-article{
-    width: 25%;
-    height: 364px;
-    margin: 3% 3%;
-    overflow: hidden;
-    .card-text {
-      text-overflow: ellipsis;  
-    }
 
+input {
+  border: none;
+}
 
+.form-control:focus {
+  border: none;
+  box-shadow: none;
 }
-.tag-container{
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-}
-.tag{
-    margin-top: 2%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: auto;
-    padding: 0 2%;
-    border-radius: 2px;
-    background-color: #3282F7 ;
-    p{
-        margin-bottom: 0;
-        margin-right: 2%;
-        width: 50%;
-    }
-    .btn-close{
-        display: flex;
-        height: 100%;
-        width: 50%;
-        margin-left: 2%;
-        justify-content: center;
-        align-items: center;
-        border: none;
-        background-color: #3282F7 ;
-    }
 
+#dataInput-mainSearch {
+  background-color: #e7e7e7;
 }
-.cart_text-descriptionContainer{
- font-size: 12px;
+
+.btn-searchMain {
+  background-color: #e7e7e7;
 }
-.fa-clock{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}*/
+
+.ingredient {
+  font-weight: 700;
+}
+
+.text_timer_timer {
+  font-weight: 700;
+}
 
 /*# sourceMappingURL=/main.07544d9b.css.map */

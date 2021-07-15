@@ -1,57 +1,76 @@
 /* custom color */
 
-$colorSecondarySearch1 : #3282F7;
-$colorSecondarySearch2 : #68D9A4;
-$colorSecondarySearch3 : #ED6454;
+$colorSecondarySearch1: #3282f7;
+$colorSecondarySearch2: #68d9a4;
+$colorSecondarySearch3: #ed6454;
 
-
-.header_searchbar-secondarySearchContainer1{
+.header_searchbar-secondarySearchContainer1 {
+  background-color: $colorSecondarySearch1;
+  input {
     background-color: $colorSecondarySearch1;
-    input{
-        background-color: $colorSecondarySearch1;
-      :-ms-input-placeholder{
-       color: white; 
-    }  
+    :-ms-input-placeholder {
+      color: white;
     }
+  }
 }
-.header_searchbar-secondarySearchContainer2{
+.header_searchbar-secondarySearchContainer2 {
+  background-color: $colorSecondarySearch2;
+  input {
     background-color: $colorSecondarySearch2;
-    input{
-        background-color: $colorSecondarySearch2;
-      :-ms-input-placeholder{
-       color: white; 
-    }  
+    :-ms-input-placeholder {
+      color: white;
     }
+  }
 }
-.header_searchbar-secondarySearchContainer3{
+.header_searchbar-secondarySearchContainer3 {
+  background-color: $colorSecondarySearch3;
+  input {
     background-color: $colorSecondarySearch3;
-    input{
-        background-color: $colorSecondarySearch3;
-      ::placeholder{
-       color: white; 
-    }  
+    ::placeholder {
+      color: white;
     }
-    
+  }
 }
 
-.header_searchbar-mainSearchContainer{
-    width: 95%; 
-    height:69px;
-    border: 2px black solid;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
+.header_searchbar-mainSearchContainer {
+  width: 95%;
+  height: 69px;
+
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
 }
 
-.header_searchbar_mainSearch{
-    width: 90%;
-    height: 100%;
-    border: none;
+.header_searchbar_mainSearch {
+  width: 90%;
+  height: 100%;
+  border: none;
 }
 input:focus-visible {
-    outline:none;
-    border:none
+  outline: none;
+  border: none;
 }
-input{
-    border: none
+input {
+  border: none;
+}
+
+.form-control:focus {
+  background-color: inherit;
+}
+.container-secondarySearch1_suggestions:focus-visible {
+  background-color: inherit;
+}
+
+input {
+  border: none;
+}
+.form-control:focus {
+  border: none;
+  box-shadow: none;
+}
+#dataInput-mainSearch {
+  background-color: #e7e7e7;
+}
+.btn-searchMain {
+  background-color: #e7e7e7;
 }

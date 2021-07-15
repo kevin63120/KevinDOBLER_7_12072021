@@ -26,7 +26,7 @@
   <body class="container-fluid mt-4" style="width: 90%">
     <header class="container-fluid">
       <div class="header_logo-container">
-        <div class="logo mb-4" style="widht: 100%; text-align: center">
+        <div class="logo mb-4" style="width: 100%; text-align: center">
           <img
             src="assets/pictures/logo.png"
             alt="logo du site"
@@ -34,30 +34,32 @@
           />
           <h1 class="header_title">Les petits plats</h1>
         </div>
-        <input
-          list="datalistOptions"
-          id="exampleDataList"
-          placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette"
-          class="
-            header_searchbar-mainSearchContainer
-            row
-            form-control
-            text-light
-          "
-        />
-        <datalist class="header_searchbar_mainSearch" id="datalistOptions">
-          <option value="San Francisco"></option>
-          <option value="New York"></option>
-          <option value="Seattle"></option>
-          <option value="pioche"></option>
-          <option value="manche"></option>
-        </datalist>
-        <img
-          src="./assets/pictures/search.svg"
-          width="22px"
-          height="22px"
-          alt=""
-        />
+        <div class="row">
+          <input
+            list="datalistOption-mainSearch"
+            id="dataInput-mainSearch"
+            placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette"
+            class="header_searchbar-mainSearchContainer form-control text-light"
+          />
+          <datalist
+            class="header_searchbar_mainSearch"
+            id="datalistOption-mainSearch"
+          >
+            <option value="San Francisco"></option>
+            <option value="New York"></option>
+            <option value="Seattle"></option>
+            <option value="fr"></option>
+            <option value="manche"></option>
+          </datalist>
+          <button class="btn btn-transparent btn-sm btn-searchMain">
+            <img
+              src="./assets/pictures/search.svg"
+              width="22px"
+              height="22px"
+              alt=""
+            />
+          </button>
+        </div>
       </div>
       <div class="tag-container">
         <button type="button" class="btn-close" aria-label="Close">x</button>
@@ -73,7 +75,7 @@
         >
           <input
             list="datalistOptions"
-            id="exampleDataList"
+            id="dataListSecondarySearch1"
             placeholder="ingrédient"
             class="
               search_secondarySearchContainer-secondarySearch1
@@ -83,14 +85,22 @@
           />
           <!--<img src="./assets/pictures/chevron-down.svg" class="chevron" height="22px" width="22px"/>-->
           <datalist
-            class="container-secondarySearch1_suggestions"
-            id="datalistOptions"
+            class="container-secondarySearch1_suggestions bg-primary"
+            id="datalistOptionsSecondarySearch1"
           >
-            <option value="San Francisco" class="bg-primary"></option>
-            <option value="New York"></option>
-            <option value="Seattle"></option>
-            <option value="pioche"></option>
-            <option value="manche"></option>
+            <div class="row">
+              <div class="col-4">
+                <option value="San Francisco"></option>
+              </div>
+              <div class="col-4">
+                <option value="New York"></option>
+                <option value="Seattle"></option>
+              </div>
+              <div class="col-4">
+                <option value="pioche"></option>
+                <option value="manche"></option>
+              </div>
+            </div>
           </datalist>
         </div>
         <div
@@ -103,7 +113,7 @@
         >
           <input
             list="datalistOptions"
-            id="exampleDataList"
+            id="dataListSecondarySearch2"
             placeholder="ingrédient"
             class="
               search_secondarySearchContainer-secondarySearch2
@@ -114,7 +124,7 @@
           <!--<img src="./assets/pictures/chevron-down.svg" class="chevron" height="22px" width="22px"/>-->
           <datalist
             class="container-secondarySearch2_suggestions"
-            id="datalistOptions"
+            id="datalistOptionsSecondarySearch2"
           >
             <option value="San Francisco"></option>
             <option value="New York"></option>
