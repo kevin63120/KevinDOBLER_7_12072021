@@ -1511,6 +1511,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Card = void 0;
 
+var _recipes = require("../../assets/data/recipes");
+
 class Card {
   constructor(recipe) {
     this.appliance = recipe.appliance;
@@ -1576,16 +1578,18 @@ class Card {
 
   createSecondarySearchList(rootElement) {
     const containerListSecondarySearch = rootElement;
-    const itemSecondarySearch = this.ingredients.map(ingredient => {
-      return `<li>${ingredient.ingredient}</li>`;
+
+    _recipes.recipes.forEach(recipe => {
+      const itemSecondarySearch = this.ingredients.map(ingredient => {
+        return `<option value="${ingredient.ingredient}"></option>`;
+      });
     });
-    console.log(itemSecondarySearch); //containerListSecondarySearch.innerHTML=(itemSecondarySearch.join(""))
   }
 
 }
 
 exports.Card = Card;
-},{}],"javaScript/secondarySearch.js":[function(require,module,exports) {
+},{"../../assets/data/recipes":"assets/data/recipes.js"}],"javaScript/secondarySearch.js":[function(require,module,exports) {
 "use strict";
 
 var _card = require("./class/card");
@@ -1604,7 +1608,30 @@ inputIngredient.addEventListener("click", e => {
 
   secondaryList.innerHTML = ingredientMap;
 });
-},{"./class/card":"javaScript/class/card.js","../assets/data/recipes":"assets/data/recipes.js"}],"javaScript/search.js":[function(require,module,exports) {
+},{"./class/card":"javaScript/class/card.js","../assets/data/recipes":"assets/data/recipes.js"}],"javaScript/produts.js":[function(require,module,exports) {
+"use strict";
+
+var _recipes = require("../assets/data/recipes");
+
+const arrayOfIngredient = [];
+
+_recipes.recipes.forEach(recipe => {
+  recipe.ingredients.forEach((ingredient, index) => {
+    if (ingredient.ingredient) {
+      arrayOfIngredient.forEach(ingredientInArray => {
+        if (ingredient.ingredient != ingredientInArray) {
+          arrayOfIngredient.push(ingredient.ingredient);
+          return arrayOfIngredient;
+        } else {
+          console.log("dejapresent");
+        }
+      });
+    }
+
+    console.log(arrayOfIngredient);
+  });
+});
+},{"../assets/data/recipes":"assets/data/recipes.js"}],"javaScript/search.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1685,12 +1712,15 @@ require("../javaScript/tags");
 
 require("../javaScript/secondarySearch");
 
+require("../javaScript/produts");
+
 var _card = require("./class/card");
 
 var _search = require("./search");
 
 console.log(_recipes.recipes);
 const containerCart = document.querySelector('main');
+const containerSecondaryOption = document.querySelector('container-secondarySearch1_suggestions');
 const input = document.querySelector('.header_searchbar_mainSearch');
 /*input.addEventListener((e)=>{
    const currentInput  = e.target.value ;
@@ -1719,7 +1749,7 @@ function displayCardBase() {
 }
 
 displayCardBase();
-},{"../assets/data/recipes":"assets/data/recipes.js","../javaScript/tags":"javaScript/tags.js","../javaScript/secondarySearch":"javaScript/secondarySearch.js","./class/card":"javaScript/class/card.js","./search":"javaScript/search.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"../assets/data/recipes":"assets/data/recipes.js","../javaScript/tags":"javaScript/tags.js","../javaScript/secondarySearch":"javaScript/secondarySearch.js","../javaScript/produts":"javaScript/produts.js","./class/card":"javaScript/class/card.js","./search":"javaScript/search.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -1747,7 +1777,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59442" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64057" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -56,6 +56,8 @@ input {
 
 .form-control:focus {
   background-color: inherit;
+  border: none;
+  box-shadow: none;
 }
 .container-secondarySearch1_suggestions:focus-visible {
   background-color: inherit;
@@ -64,9 +66,8 @@ input {
 input {
   border: none;
 }
-.form-control:focus {
-  border: none;
-  box-shadow: none;
+.btn {
+  border-radius: none;
 }
 #dataInput-mainSearch {
   background-color: #e7e7e7;

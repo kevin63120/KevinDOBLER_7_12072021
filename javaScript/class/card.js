@@ -1,3 +1,5 @@
+import { recipes } from "../../assets/data/recipes";
+
 export class Card {
   constructor(recipe) {
     this.appliance = recipe.appliance;
@@ -64,16 +66,20 @@ export class Card {
 
   createSecondarySearchList(rootElement) {
     const containerListSecondarySearch = rootElement;
+    recipes.forEach(recipe => {
+      const itemSecondarySearch = this.ingredients.map((ingredient) => {
+        return `<option value="${ingredient.ingredient}"></option>`
+      })
 
-    const itemSecondarySearch = this.ingredients.map((ingredient) => {
-      return `<li>${ingredient.ingredient}</li>`
     })
-    console.log(itemSecondarySearch)
-    //containerListSecondarySearch.innerHTML=(itemSecondarySearch.join(""))
+
+
+
 
 
   }
 
 
 }
+
 
