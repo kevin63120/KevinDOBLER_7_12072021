@@ -70,6 +70,7 @@ export class Card {
       const itemSecondarySearch = this.ingredients.map((ingredient) => {
         return `<option value="${ingredient.ingredient}"></option>`
       })
+    containerListSecondarySearch.innerHTML(itemSecondarySearch.join('')) 
 
     })
 

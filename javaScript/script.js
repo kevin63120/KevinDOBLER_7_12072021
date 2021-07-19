@@ -1,7 +1,7 @@
 import "../assets/data/recipes"
 import "../javaScript/tags"
 import "../javaScript/secondarySearch"
-import "../javaScript/produts"
+import "../javaScript/recipesTypes"
 import { recipes } from "../assets/data/recipes"
 import { Card } from "./class/card"
 import { search } from "./search"
@@ -29,7 +29,7 @@ function displayCardBase() {
     new Card(recipe).createCard(containerCart)
 
   })
-  const input = document.querySelector('.header_searchbar_mainSearch');
+  const input = document.querySelector('.header_searchbar-mainSearchContainer');
   input.addEventListener('keyup', (e) => {
     const curentInput = e.target.value
     search(curentInput, recipes);

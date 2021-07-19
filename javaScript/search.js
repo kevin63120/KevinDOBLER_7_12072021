@@ -35,21 +35,27 @@ function searchByName(userInput, datas) {
             const containerCart = document.querySelector('main');
             return new Card(data).create(containerCart)
         }
-        if (data.ingredients) {
-            data.ingredients.forEach((ingredient) => {
-                console.log(ingredient)
-                if (ingredient.ingredient === userInput) {
-                    console.log(data)
-                    const containerCart = document.querySelector('main');
-                    new Card(data).createCard(containerCart)
-                }
-            })
-        }
+        
     })
 }
 
 function searchByIngredient(userInput, datas) {
     datas.forEach((data) => {
+        if (data.ingredients) {
+            data.ingredients.forEach((ingredient) => {
+                console.log(ingredient)
+                if (ingredient["ingredient"] === userInput) {
+                    console.log(data)
+                    const containerCart = document.querySelector('main');
+                    new Card(data).createCard(containerCart)
+                } if (ingredient["quantity"].concate(ingredient["unit"])  === userInput) {
+                    console.log(data)
+                    const containerCart = document.querySelector('main');
+                    new Card(data).createCard(containerCart)
+                }
+                
+            })
+        }
 
     })
 }
@@ -63,8 +69,10 @@ export function search(userInput, datas) {
         searchByName(userInput, datas)
         searchByIngredient(userInput, datas)
 
-    } if (userInput.length === 0) {
+    } if (userInput.length < 3) {
         const containerCart = document.querySelector('main');
         new Card(datas).create(containerCart)
     }
 }
+
+

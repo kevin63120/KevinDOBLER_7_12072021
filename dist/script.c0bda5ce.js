@@ -1497,12 +1497,49 @@ const recipes = [{
 exports.recipes = recipes;
 },{}],"javaScript/tags.js":[function(require,module,exports) {
 const tagContainer = document.querySelector('.tag-container');
-const tag = `<button type="button" class="btn btn-primary">Primary<img
+const tagsBtnClose = document.querySelectorAll('.tags_Btn-Close');
+const dataSecondarySearch = document.querySelector('#dataListSecondarySearch1');
+tagsDisplay = [];
+
+function tagAdd(value, array) {
+  if (array.lenght < 4) {
+    array.push(value);
+    return array;
+  } else {
+    array.splice(0, 0, value);
+    array.splice(3, 1);
+    return array;
+  }
+}
+
+;
+
+function createTag(array) {
+  if (array.lenght != 0) {
+    array.map(tag => {
+      const tagHTML = `<button type="button" class="tag btn btn-primary mt-3 mb-3">${tag}<img
+    class="tags_Btn-Close ml-3 "
     src="./pictures/x-circle.svg"    width="20px"
     height="20px"
     alt=""
   /></button>`;
-tagContainer.innerHTML = tag;
+      return tagContainer.innerHTML = tagHTML;
+    });
+  }
+}
+
+dataSecondarySearch.addEventListener("keyup", e => {
+  e.preventDefault();
+  let value = e.target.value;
+
+  if (e.key === "Enter" && value != "") {
+    dataSecondarySearch.value = "";
+    tagAdd(value, tagsDisplay);
+    createTag(tagsDisplay);
+  }
+
+  console.log(tagsDisplay);
+});
 },{}],"javaScript/class/card.js":[function(require,module,exports) {
 "use strict";
 
@@ -1583,6 +1620,7 @@ class Card {
       const itemSecondarySearch = this.ingredients.map(ingredient => {
         return `<option value="${ingredient.ingredient}"></option>`;
       });
+      containerListSecondarySearch.innerHTML(itemSecondarySearch.join(''));
     });
   }
 
@@ -1608,29 +1646,25 @@ inputIngredient.addEventListener("click", e => {
 
   secondaryList.innerHTML = ingredientMap;
 });
-},{"./class/card":"javaScript/class/card.js","../assets/data/recipes":"assets/data/recipes.js"}],"javaScript/produts.js":[function(require,module,exports) {
+},{"./class/card":"javaScript/class/card.js","../assets/data/recipes":"assets/data/recipes.js"}],"javaScript/recipesTypes.js":[function(require,module,exports) {
 "use strict";
 
 var _recipes = require("../assets/data/recipes");
 
 const arrayOfIngredient = [];
 
-_recipes.recipes.forEach(recipe => {
-  recipe.ingredients.forEach((ingredient, index) => {
-    if (ingredient.ingredient) {
-      arrayOfIngredient.forEach(ingredientInArray => {
-        if (ingredient.ingredient != ingredientInArray) {
-          arrayOfIngredient.push(ingredient.ingredient);
-          return arrayOfIngredient;
-        } else {
-          console.log("dejapresent");
-        }
-      });
+const ingredientArray = _recipes.recipes.forEach(recipe => {
+  recipe.ingredients.forEach(ingredient => {
+    if (ingredient['ingredient']) {
+      ingredient['ingredient'].map;
+      arrayOfIngredient.push(ingredient['ingredient']);
     }
 
     console.log(arrayOfIngredient);
   });
 });
+
+console.log(ingredientArray);
 },{"../assets/data/recipes":"assets/data/recipes.js"}],"javaScript/search.js":[function(require,module,exports) {
 "use strict";
 
@@ -1670,12 +1704,22 @@ function searchByName(userInput, datas) {
       const containerCart = document.querySelector('main');
       return new _card.Card(data).create(containerCart);
     }
+  });
+}
 
+function searchByIngredient(userInput, datas) {
+  datas.forEach(data => {
     if (data.ingredients) {
       data.ingredients.forEach(ingredient => {
         console.log(ingredient);
 
-        if (ingredient.ingredient === userInput) {
+        if (ingredient["ingredient"] === userInput) {
+          console.log(data);
+          const containerCart = document.querySelector('main');
+          new _card.Card(data).createCard(containerCart);
+        }
+
+        if (ingredient["quantity"].concate(ingredient["unit"]) === userInput) {
           console.log(data);
           const containerCart = document.querySelector('main');
           new _card.Card(data).createCard(containerCart);
@@ -1683,10 +1727,6 @@ function searchByName(userInput, datas) {
       });
     }
   });
-}
-
-function searchByIngredient(userInput, datas) {
-  datas.forEach(data => {});
 }
 
 function search(userInput, datas) {
@@ -1698,7 +1738,7 @@ function search(userInput, datas) {
     searchByIngredient(userInput, datas);
   }
 
-  if (userInput.length === 0) {
+  if (userInput.length < 3) {
     const containerCart = document.querySelector('main');
     new _card.Card(datas).create(containerCart);
   }
@@ -1712,7 +1752,7 @@ require("../javaScript/tags");
 
 require("../javaScript/secondarySearch");
 
-require("../javaScript/produts");
+require("../javaScript/recipesTypes");
 
 var _card = require("./class/card");
 
@@ -1741,7 +1781,7 @@ function displayCardBase() {
     new _card.Card(recipe).createCard(containerCart);
   });
 
-  const input = document.querySelector('.header_searchbar_mainSearch');
+  const input = document.querySelector('.header_searchbar-mainSearchContainer');
   input.addEventListener('keyup', e => {
     const curentInput = e.target.value;
     (0, _search.search)(curentInput, _recipes.recipes);
@@ -1749,7 +1789,7 @@ function displayCardBase() {
 }
 
 displayCardBase();
-},{"../assets/data/recipes":"assets/data/recipes.js","../javaScript/tags":"javaScript/tags.js","../javaScript/secondarySearch":"javaScript/secondarySearch.js","../javaScript/produts":"javaScript/produts.js","./class/card":"javaScript/class/card.js","./search":"javaScript/search.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"../assets/data/recipes":"assets/data/recipes.js","../javaScript/tags":"javaScript/tags.js","../javaScript/secondarySearch":"javaScript/secondarySearch.js","../javaScript/recipesTypes":"javaScript/recipesTypes.js","./class/card":"javaScript/class/card.js","./search":"javaScript/search.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -1777,7 +1817,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64057" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56247" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
