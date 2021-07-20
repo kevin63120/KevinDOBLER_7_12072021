@@ -30,7 +30,9 @@ function removeCard() {
 
 function searchByName(userInput, datas) {
     datas.forEach((data) => {
-        if (data.name === userInput) {
+        if (data.name.includes(userInput)) {
+            data.name.toLowerCase()
+            userInput.toLowerCase()
             console.log(data)
             const containerCart = document.querySelector('main');
             return new Card(data).create(containerCart)
@@ -44,16 +46,12 @@ function searchByIngredient(userInput, datas) {
         if (data.ingredients) {
             data.ingredients.forEach((ingredient) => {
                 console.log(ingredient)
-                if (ingredient["ingredient"] === userInput) {
-                    console.log(data)
-                    const containerCart = document.querySelector('main');
-                    new Card(data).createCard(containerCart)
-                } if (ingredient["quantity"].concate(ingredient["unit"])  === userInput) {
+               
+                if (ingredient["ingredient"].includes(userInput)) {
                     console.log(data)
                     const containerCart = document.querySelector('main');
                     new Card(data).createCard(containerCart)
                 }
-                
             })
         }
 
@@ -71,7 +69,7 @@ export function search(userInput, datas) {
 
     } if (userInput.length < 3) {
         const containerCart = document.querySelector('main');
-        new Card(datas).create(containerCart)
+        new Card(datas).createCard(containerCart)
     }
 }
 

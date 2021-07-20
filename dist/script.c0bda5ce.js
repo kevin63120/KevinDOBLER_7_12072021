@@ -1502,12 +1502,12 @@ const dataSecondarySearch = document.querySelector('#dataListSecondarySearch1');
 tagsDisplay = [];
 
 function tagAdd(value, array) {
-  if (array.lenght < 4) {
+  if (array.length < 4) {
     array.push(value);
     return array;
   } else {
     array.splice(0, 0, value);
-    array.splice(3, 1);
+    array.splice(4, 1);
     return array;
   }
 }
@@ -1515,16 +1515,16 @@ function tagAdd(value, array) {
 ;
 
 function createTag(array) {
-  if (array.lenght != 0) {
-    array.map(tag => {
-      const tagHTML = `<button type="button" class="tag btn btn-primary mt-3 mb-3">${tag}<img
+  if (array.length != 0) {
+    const result = array.map(tag => {
+      return tagHTML = `<button type="button" class="tag btn btn-primary mt-3 mb-3">${tag}<img
     class="tags_Btn-Close ml-3 "
     src="./pictures/x-circle.svg"    width="20px"
     height="20px"
     alt=""
   /></button>`;
-      return tagContainer.innerHTML = tagHTML;
     });
+    return tagContainer.innerHTML = result.join(" ");
   }
 }
 
@@ -1565,6 +1565,7 @@ class Card {
   createCard(rootElement) {
     const createArticle = document.createElement('article');
     const article = rootElement.appendChild(createArticle);
+    article.className = ' col-12 col-lg-4';
     const ingredients = this.ingredients.map(ingredient => {
       if (!ingredient.quantity) {
         return `<li class="ingredient">${ingredient.ingredient}</li>`;
@@ -1576,8 +1577,9 @@ class Card {
         return `<li class="ingredient">${ingredient.ingredient} : <span> ${ingredient.quantity} ${ingredient.unit}</span></li>`;
       }
     });
+    const descriptionSubString = this.description.substring(0, 180) + '...';
     const card = `
-        <div class="card mr-4 mt-4 mb-4 ml-3 overflow-hidden "  style="width: 31rem; height: 25rem; ">
+        <div class="card  mt-4 mb-4  overflow-hidden "  style="  ">
           <div class="card_container-image jumbotron bg-secondary"></div>
           <div class="card-body container">
             <div class="row">
@@ -1603,7 +1605,7 @@ class Card {
                 ${ingredients.join("")}
               </ul>
               <p class="card-text  col">
-                ${this.description}
+                ${descriptionSubString}
               </p>
             </div>
           </div>
@@ -1634,17 +1636,133 @@ var _card = require("./class/card");
 
 var _recipes = require("../assets/data/recipes");
 
+const containerInput1 = document.querySelector('.header_searchbar-secondarySearchContainer1');
+const containerInput2 = document.querySelector('.header_searchbar-secondarySearchContainer2');
+const containerInput3 = document.querySelector('.header_searchbar-secondarySearchContainer3');
 const inputIngredient = document.querySelector('.search_secondarySearchContainer-secondarySearch1');
+const inputApareil = document.querySelector('.search_secondarySearchContainer-secondarySearch2');
+const inputUstensile = document.querySelector('.search_secondarySearchContainer-secondarySearch3');
 const secondaryList = document.querySelector('.secondarySearch1_suggestions');
+const containerIngredient = document.querySelector('.active-ingredient');
+const containerAppareil = document.querySelector('.active-appareil');
+const containerUstensil = document.querySelector('.active-ustensile');
 const li = document.createElement('li');
-inputIngredient.addEventListener("click", e => {
-  const ingredientMap = _recipes.recipes.forEach(recipe => {
-    recipe.ingredients.map(ingredient => {
-      return `<option value="${ingredient.ingredient}"></option>`;
-    });
-  });
+const arrayIngredients = [];
+const arrayUstensiles = [];
+const arrayAppareils = [];
 
-  secondaryList.innerHTML = ingredientMap;
+_recipes.recipes.forEach(recipe => {
+  const ingredient = recipe.ingredients.map(elt => {
+    return elt['ingredient'];
+  });
+  ingredient.forEach(elt => {
+    testIngredient(elt);
+  });
+});
+
+_recipes.recipes.forEach(recipe => {
+  const appareil = recipe.appliance;
+  testvalue(appareil, arrayAppareils);
+});
+
+_recipes.recipes.forEach(recipe => {
+  const ustensile = recipe.ustensils.map(elm => {
+    return elm;
+  });
+  testvalue(ustensile, arrayUstensiles);
+});
+
+_recipes.recipes.forEach(recipe => {
+  const ingredient = recipe.ingredients.map(elt => {
+    return elt['ingredient'];
+  });
+  ingredient.forEach(elt => {
+    testIngredient(elt);
+  });
+});
+
+function testIngredient(value) {
+  if (!arrayIngredients.includes(value)) {
+    arrayIngredients.push(value);
+  }
+
+  ;
+}
+
+function testvalue(value, array) {
+  if (!array.includes(value)) {
+    array.push(value);
+  }
+
+  ;
+}
+
+const returnIngredient = arrayIngredients.map(ingredient => {
+  return `<li class="secondarySearch-item_1 col-4">${ingredient}</li> `;
+});
+const returnAppareils = arrayAppareils.map(appareil => {
+  return `<li class="secondarySearch-item_2 col-4">${appareil}</li> `;
+});
+const returnUstensiles = arrayUstensiles.map(ustensile => {
+  return `<li class="secondarySearch-item_3 col-4">${ustensile}</li> `;
+});
+
+function removeSecondSearch(array, rootElement) {
+  const elem = array.splice(0, array.length);
+  rootElement.innerHTML = elem;
+}
+
+function comparseValue(valueData, valueInput) {
+  if (valueData.includes(valueInput)) {
+    return containerIngredient.innerHTML = valueData;
+  }
+}
+
+inputIngredient.addEventListener("keyup", e => {
+  comparseValue(arrayIngredients, e.target.value);
+});
+document.addEventListener("click", e => {
+  switch (e.target) {
+    case inputIngredient:
+      containerInput1.classList.replace('col-2', 'col-6');
+      containerInput2.classList.replace('col-6', 'col-2');
+      containerInput3.classList.replace('col-6', 'col-2');
+      containerIngredient.innerHTML = returnIngredient.join("");
+      removeSecondSearch(arrayAppareils, containerAppareil);
+      removeSecondSearch(arrayUstensiles, containerUstensil);
+      break;
+
+    case inputUstensile:
+      console.log(arrayUstensiles);
+      containerInput1.classList.replace('col-6', 'col-2');
+      containerInput2.classList.replace('col-6', 'col-2');
+      containerInput3.classList.replace('col-2', 'col-6');
+      containerUstensil.innerHTML = returnUstensiles.join("");
+      removeSecondSearch(arrayIngredients, containerIngredient);
+      removeSecondSearch(arrayAppareils, containerAppareil);
+      break;
+
+    case inputApareil:
+      console.log('appareil');
+      containerInput1.classList.replace('col-6', 'col-2');
+      containerInput2.classList.replace('col-2', 'col-6');
+      containerInput3.classList.replace('col-6', 'col-2');
+      containerAppareil.innerHTML = returnAppareils.join("");
+      removeSecondSearch(arrayIngredients, containerIngredient);
+      removeSecondSearch(arrayUstensiles, containerUstensil);
+      break;
+
+    default:
+      removeSecondSearch(arrayIngredients, containerIngredient);
+      removeSecondSearch(arrayAppareils, containerAppareil);
+      removeSecondSearch(arrayUstensiles, containerUstensil);
+      containerInput1.classList.replace('col-6', 'col-2');
+      containerInput2.classList.replace('col-6', 'col-2');
+      containerInput3.classList.replace('col-6', 'col-2');
+      break;
+  }
+
+  if (e.target == inputIngredient) {}
 });
 },{"./class/card":"javaScript/class/card.js","../assets/data/recipes":"assets/data/recipes.js"}],"javaScript/recipesTypes.js":[function(require,module,exports) {
 "use strict";
@@ -1659,12 +1777,8 @@ const ingredientArray = _recipes.recipes.forEach(recipe => {
       ingredient['ingredient'].map;
       arrayOfIngredient.push(ingredient['ingredient']);
     }
-
-    console.log(arrayOfIngredient);
   });
 });
-
-console.log(ingredientArray);
 },{"../assets/data/recipes":"assets/data/recipes.js"}],"javaScript/search.js":[function(require,module,exports) {
 "use strict";
 
@@ -1699,7 +1813,9 @@ function removeCard() {
 
 function searchByName(userInput, datas) {
   datas.forEach(data => {
-    if (data.name === userInput) {
+    if (data.name.includes(userInput)) {
+      data.name.toLowerCase();
+      userInput.toLowerCase();
       console.log(data);
       const containerCart = document.querySelector('main');
       return new _card.Card(data).create(containerCart);
@@ -1713,13 +1829,7 @@ function searchByIngredient(userInput, datas) {
       data.ingredients.forEach(ingredient => {
         console.log(ingredient);
 
-        if (ingredient["ingredient"] === userInput) {
-          console.log(data);
-          const containerCart = document.querySelector('main');
-          new _card.Card(data).createCard(containerCart);
-        }
-
-        if (ingredient["quantity"].concate(ingredient["unit"]) === userInput) {
+        if (ingredient["ingredient"].includes(userInput)) {
           console.log(data);
           const containerCart = document.querySelector('main');
           new _card.Card(data).createCard(containerCart);
@@ -1740,7 +1850,7 @@ function search(userInput, datas) {
 
   if (userInput.length < 3) {
     const containerCart = document.querySelector('main');
-    new _card.Card(datas).create(containerCart);
+    new _card.Card(datas).createCard(containerCart);
   }
 }
 },{"../assets/data/recipes":"assets/data/recipes.js","./class/card":"javaScript/class/card.js"}],"javaScript/script.js":[function(require,module,exports) {
@@ -1817,7 +1927,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56247" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58702" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

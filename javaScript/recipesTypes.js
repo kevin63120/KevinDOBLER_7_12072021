@@ -10,8 +10,7 @@ const ingredientArray = recipes.forEach((recipe) => {
            ingredient['ingredient'].map
            arrayOfIngredient.push(ingredient['ingredient'])
        }
-        console.log(arrayOfIngredient)
+        
     })
 })
 
-console.log(ingredientArray)

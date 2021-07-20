@@ -34,9 +34,6 @@ function displayCardBase() {
     const curentInput = e.target.value
     search(curentInput, recipes);
   })
-
-
-
 }
 
 displayCardBase()

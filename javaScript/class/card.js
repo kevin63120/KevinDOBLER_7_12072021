@@ -15,6 +15,7 @@ export class Card {
   createCard(rootElement) {
     const createArticle = document.createElement('article');
     const article = rootElement.appendChild(createArticle);
+    article.className = ' col-12 col-lg-4'
 
     const ingredients = this.ingredients.map((ingredient) => {
       if (!ingredient.quantity) {
@@ -27,8 +28,10 @@ export class Card {
       }
 
     })
+
+    const descriptionSubString = this.description.substring(0,180) + '...'
     const card = `
-        <div class="card mr-4 mt-4 mb-4 ml-3 overflow-hidden "  style="width: 31rem; height: 25rem; ">
+        <div class="card  mt-4 mb-4  overflow-hidden "  style="  ">
           <div class="card_container-image jumbotron bg-secondary"></div>
           <div class="card-body container">
             <div class="row">
@@ -54,7 +57,7 @@ export class Card {
                 ${ingredients.join("")}
               </ul>
               <p class="card-text  col">
-                ${this.description}
+                ${descriptionSubString}
               </p>
             </div>
           </div>
