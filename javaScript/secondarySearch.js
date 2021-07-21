@@ -8,7 +8,7 @@ const inputIngredient = document.querySelector('.search_secondarySearchContainer
 const inputApareil = document.querySelector('.search_secondarySearchContainer-secondarySearch2');
 const inputUstensile = document.querySelector('.search_secondarySearchContainer-secondarySearch3');
 
-const secondaryList = document.querySelector('.secondarySearch1_suggestions');
+
 const containerIngredient = document.querySelector('.active-ingredient');
 const containerAppareil = document.querySelector('.active-appareil')
 const containerUstensil = document.querySelector('.active-ustensile')
@@ -37,7 +37,7 @@ recipes.forEach((recipe) => {
         return elm
     });
     testvalue(ustensile, arrayUstensiles)
-    
+
 })
 
 recipes.forEach((recipe) => {
@@ -93,6 +93,15 @@ inputIngredient.addEventListener("keyup", (e) => {
 document.addEventListener("click", (e) => {
     switch (e.target) {
         case inputIngredient:
+            if (inputIngredient) {
+                containerIngredient.addEventListener("click", (e) => {
+                    e.stopImmediatePropagation()
+                    const value = e.target.innerHTML
+                    inputIngredient.innerHTML = value
+                    //removeSecondSearch(arrayIngredients, containerIngredient); 
+
+                })
+            }
             containerInput1.classList.replace('col-2', 'col-6');
             containerInput2.classList.replace('col-6', 'col-2');
             containerInput3.classList.replace('col-6', 'col-2')

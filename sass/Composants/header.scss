@@ -44,8 +44,18 @@ color: white;
 
   }
 }
+
+.container-input1{
+  height: 69px;
+  border-radius: 20%;
+  
+}
+
 .header_searchbar-secondarySearchContainer2 {
   background-color: $colorSecondarySearch2;
+  .container-input2{
+    height: 69px;
+  }
   input {
     background-color: $colorSecondarySearch2;
     :-ms-input-placeholder {
@@ -55,8 +65,12 @@ color: white;
 }
 .header_searchbar-secondarySearchContainer3 {
   background-color: $colorSecondarySearch3;
+  .container-input3{
+    height: 69px;
+  }
   input {
     background-color: $colorSecondarySearch3;
+    
     ::placeholder {
       color: white;
     }
@@ -92,12 +106,18 @@ input {
 }
 .container-secondarySearch1_suggestions{
   background-color: inherit;
+  position: absolute;
+  right: 0;
 }
 .container-secondarySearch2_suggestions{
   background-color: inherit;
+  position: absolute;
+  right: 0;
 }
 .container-secondarySearch3_suggestions{
   background-color: inherit;
+  position: absolute;
+  right: 0;
 }
 
 input {
@@ -135,9 +155,26 @@ ul{
   z-index: 2;
 }
 li{
+  cursor: pointer;
    position: relative;
   z-index: 2;
   text-decoration: none;
   list-style: none;
+  margin-left: -15px;
 
+}
+.secondarySearch-item_1:hover{
+  border-radius: 5px;
+background-color: darken($color: #3282F7
+, $amount: 30%);
+
+}
+.secondarySearch-item_2:hover{
+  background-color: darken($color:#68D9A4 , $amount: 30%);
+  border-radius: 5px;
+
+}
+.secondarySearch-item_3:hover{
+  background-color: darken($color:#ED6454 , $amount: 30%);
+  border-radius: 5px;
 }
