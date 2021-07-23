@@ -1496,9 +1496,11 @@ const recipes = [{
 }];
 exports.recipes = recipes;
 },{}],"javaScript/tags.js":[function(require,module,exports) {
-const tagContainer = document.querySelector('.tag-container');
-const tagsBtnClose = document.querySelectorAll('.tags_Btn-Close');
-const dataSecondarySearch = document.querySelector('#dataListSecondarySearch1');
+const tagContainer = document.querySelector(".tag-container");
+const tagsBtnClose = document.querySelectorAll(".tags_Btn-Close");
+const dataSecondarySearch1 = document.querySelector("#dataListSecondarySearch1");
+const dataSecondarySearch2 = document.querySelector("#dataListSecondarySearch2");
+const dataSecondarySearch3 = document.querySelector("#dataListSecondarySearch3");
 tagsDisplay = [];
 
 function tagAdd(value, array) {
@@ -1512,7 +1514,17 @@ function tagAdd(value, array) {
   }
 }
 
-;
+function tagRemove() {}
+
+const tagsBtnsClose = document.querySelector(".tags_Btn-Close");
+const tags = document.querySelectorAll("button");
+tags.forEach(tag => {
+  tag.addEventListener("click", e => {
+    if (e.tag.firstChild()) {
+      tag.remove();
+    }
+  });
+});
 
 function createTag(array) {
   if (array.length != 0) {
@@ -1528,18 +1540,25 @@ function createTag(array) {
   }
 }
 
-dataSecondarySearch.addEventListener("keyup", e => {
+const displayTag = e => {
   e.preventDefault();
   let value = e.target.value;
 
   if (e.key === "Enter" && value != "") {
-    dataSecondarySearch.value = "";
+    if (dataSecondarySearch1 || dataSecondarySearch2 || dataSecondarySearch3) {
+      dataSecondarySearch1.value = "";
+      dataSecondarySearch2.value = "";
+      dataSecondarySearch3.value = "";
+    }
+
     tagAdd(value, tagsDisplay);
     createTag(tagsDisplay);
   }
+};
 
-  console.log(tagsDisplay);
-});
+dataSecondarySearch1.addEventListener("keyup", displayTag);
+dataSecondarySearch2.addEventListener("keyup", displayTag);
+dataSecondarySearch3.addEventListener("keyup", displayTag);
 },{}],"javaScript/class/card.js":[function(require,module,exports) {
 "use strict";
 
@@ -1626,6 +1645,12 @@ class Card {
     });
   }
 
+  searchEmpty(rootElement) {
+    const createArticle = document.createElement('article');
+    const article = rootElement.appendChild(createArticle);
+    article.innerHTML = `<p>Aucun article ne corespond à votre recherche essayer , poisson , oeuf ...</p>`;
+  }
+
 }
 
 exports.Card = Card;
@@ -1636,28 +1661,19 @@ var _card = require("./class/card");
 
 var _recipes = require("../assets/data/recipes");
 
-const containerInput1 = document.querySelector('.header_searchbar-secondarySearchContainer1');
-const containerInput2 = document.querySelector('.header_searchbar-secondarySearchContainer2');
-const containerInput3 = document.querySelector('.header_searchbar-secondarySearchContainer3');
-const inputIngredient = document.querySelector('.search_secondarySearchContainer-secondarySearch1');
-const inputApareil = document.querySelector('.search_secondarySearchContainer-secondarySearch2');
-const inputUstensile = document.querySelector('.search_secondarySearchContainer-secondarySearch3');
-const containerIngredient = document.querySelector('.active-ingredient');
-const containerAppareil = document.querySelector('.active-appareil');
-const containerUstensil = document.querySelector('.active-ustensile');
-const li = document.createElement('li');
+const containerInput1 = document.querySelector(".header_searchbar-secondarySearchContainer1");
+const containerInput2 = document.querySelector(".header_searchbar-secondarySearchContainer2");
+const containerInput3 = document.querySelector(".header_searchbar-secondarySearchContainer3");
+const inputIngredient = document.querySelector("#dataListSecondarySearch1");
+const inputApareil = document.querySelector("#dataListSecondarySearch2");
+const inputUstensile = document.querySelector("#dataListSecondarySearch3");
+const containerIngredient = document.querySelector(".active-ingredient");
+const containerAppareil = document.querySelector(".active-appareil");
+const containerUstensil = document.querySelector(".active-ustensile");
+const li = document.createElement("li");
 const arrayIngredients = [];
 const arrayUstensiles = [];
 const arrayAppareils = [];
-
-_recipes.recipes.forEach(recipe => {
-  const ingredient = recipe.ingredients.map(elt => {
-    return elt['ingredient'];
-  });
-  ingredient.forEach(elt => {
-    testIngredient(elt);
-  });
-});
 
 _recipes.recipes.forEach(recipe => {
   const appareil = recipe.appliance;
@@ -1665,7 +1681,7 @@ _recipes.recipes.forEach(recipe => {
 });
 
 _recipes.recipes.forEach(recipe => {
-  const ustensile = recipe.ustensils.map(elm => {
+  const ustensile = recipe.ustensils.forEach(elm => {
     return elm;
   });
   testvalue(ustensile, arrayUstensiles);
@@ -1673,7 +1689,7 @@ _recipes.recipes.forEach(recipe => {
 
 _recipes.recipes.forEach(recipe => {
   const ingredient = recipe.ingredients.map(elt => {
-    return elt['ingredient'];
+    return elt["ingredient"];
   });
   ingredient.forEach(elt => {
     testIngredient(elt);
@@ -1684,16 +1700,12 @@ function testIngredient(value) {
   if (!arrayIngredients.includes(value)) {
     arrayIngredients.push(value);
   }
-
-  ;
 }
 
 function testvalue(value, array) {
   if (!array.includes(value)) {
     array.push(value);
   }
-
-  ;
 }
 
 const returnIngredient = arrayIngredients.map(ingredient => {
@@ -1711,49 +1723,58 @@ function removeSecondSearch(array, rootElement) {
   rootElement.innerHTML = elem;
 }
 
-function comparseValue(valueData, valueInput) {
-  if (valueData.includes(valueInput)) {
-    return containerIngredient.innerHTML = valueData;
+function comparseValue(valueData, valueInput, containerElmReturn) {
+  let inputModify = valueInput.toLowerCase();
+
+  if (valueData.includes(inputModify)) {
+    console.log(valueData);
+    return containerElmReturn.innerHTML = `<li class="secondarySearch-item_3 col-4">${valueData}</li> `;
   }
 }
 
-inputIngredient.addEventListener("keyup", e => {
-  comparseValue(arrayIngredients, e.target.value);
-});
+const inputClick = e => {
+  let inputIngredient = e.target.value;
+
+  if (arrayIngredients.includes(inputIngredient)) {
+    containerIngredient.innerHTML = arrayIngredients.filter(ingredient => {
+      console.log("moi je suis");
+      removeSecondSearch(arrayIngredients, containerIngredient);
+      return `<li class="secondarySearch-item_1 col-4">${ingredient}</li> `;
+    });
+    containerInput1.classList.replace("col-2", "col-6");
+    containerInput2.classList.replace("col-6", "col-2");
+    containerInput3.classList.replace("col-6", "col-2");
+    containerIngredient.innerHTML = returnIngredient.join("");
+    removeSecondSearch(arrayAppareils, containerAppareil);
+    removeSecondSearch(arrayUstensiles, containerUstensil);
+  }
+};
+
+inputIngredient.addEventListener("keydown", inputClick);
 document.addEventListener("click", e => {
   switch (e.target) {
     case inputIngredient:
-      if (inputIngredient) {
-        containerIngredient.addEventListener("click", e => {
-          e.stopImmediatePropagation();
-          const value = e.target.innerHTML;
-          inputIngredient.innerHTML = value; //removeSecondSearch(arrayIngredients, containerIngredient); 
-        });
-      }
-
-      containerInput1.classList.replace('col-2', 'col-6');
-      containerInput2.classList.replace('col-6', 'col-2');
-      containerInput3.classList.replace('col-6', 'col-2');
+      containerInput1.classList.replace("col-2", "col-6");
+      containerInput2.classList.replace("col-6", "col-2");
+      containerInput3.classList.replace("col-6", "col-2");
       containerIngredient.innerHTML = returnIngredient.join("");
       removeSecondSearch(arrayAppareils, containerAppareil);
       removeSecondSearch(arrayUstensiles, containerUstensil);
       break;
 
     case inputUstensile:
-      console.log(arrayUstensiles);
-      containerInput1.classList.replace('col-6', 'col-2');
-      containerInput2.classList.replace('col-6', 'col-2');
-      containerInput3.classList.replace('col-2', 'col-6');
+      containerInput1.classList.replace("col-6", "col-2");
+      containerInput2.classList.replace("col-6", "col-2");
+      containerInput3.classList.replace("col-2", "col-6");
       containerUstensil.innerHTML = returnUstensiles.join("");
       removeSecondSearch(arrayIngredients, containerIngredient);
       removeSecondSearch(arrayAppareils, containerAppareil);
       break;
 
     case inputApareil:
-      console.log('appareil');
-      containerInput1.classList.replace('col-6', 'col-2');
-      containerInput2.classList.replace('col-2', 'col-6');
-      containerInput3.classList.replace('col-6', 'col-2');
+      containerInput1.classList.replace("col-6", "col-2");
+      containerInput2.classList.replace("col-2", "col-6");
+      containerInput3.classList.replace("col-6", "col-2");
       containerAppareil.innerHTML = returnAppareils.join("");
       removeSecondSearch(arrayIngredients, containerIngredient);
       removeSecondSearch(arrayUstensiles, containerUstensil);
@@ -1763,9 +1784,9 @@ document.addEventListener("click", e => {
       removeSecondSearch(arrayIngredients, containerIngredient);
       removeSecondSearch(arrayAppareils, containerAppareil);
       removeSecondSearch(arrayUstensiles, containerUstensil);
-      containerInput1.classList.replace('col-6', 'col-2');
-      containerInput2.classList.replace('col-6', 'col-2');
-      containerInput3.classList.replace('col-6', 'col-2');
+      containerInput1.classList.replace("col-6", "col-2");
+      containerInput2.classList.replace("col-6", "col-2");
+      containerInput3.classList.replace("col-6", "col-2");
       break;
   }
 
@@ -1780,9 +1801,9 @@ const arrayOfIngredient = [];
 
 const ingredientArray = _recipes.recipes.forEach(recipe => {
   recipe.ingredients.forEach(ingredient => {
-    if (ingredient['ingredient']) {
-      ingredient['ingredient'].map;
-      arrayOfIngredient.push(ingredient['ingredient']);
+    if (ingredient["ingredient"]) {
+      ingredient["ingredient"].map;
+      arrayOfIngredient.push(ingredient["ingredient"]);
     }
   });
 });
@@ -1810,80 +1831,109 @@ si elle en trouve elle renvoi les données
 function removeCard() {
   const articles = document.querySelectorAll('article');
   articles.forEach(article => {
+    article.remove('h1');
     article.remove();
   });
 }
-
+/*
 function searchByName(userInput, datas) {
-  datas.forEach(data => {
-    console.log(data.name);
-    let inputModify = userInput.toLowerCase();
+    datas.forEach((data) => {
+        let inputModify = userInput.toLowerCase()
+        if (data.name.toLowerCase().includes(inputModify)) {
+            const containerCart = document.querySelector('main');
+            return new Card(data).createCard(containerCart)
+        }
 
-    if (data.name.toLowerCase().includes(inputModify)) {
-      const containerCart = document.querySelector('main');
+    })
+}
+
+function searchByIngredient(userInput, datas) {
+    datas.forEach((data) => {
+        if (data.ingredients) {
+            data.ingredients.forEach((ingredient) => {
+                let inputModify = userInput.toLowerCase()
+                if (ingredient["ingredient"].toLowerCase().includes(inputModify)) {
+                    const containerCart = document.querySelector('main');
+                    new Card(data).createCard(containerCart)
+                }
+            })
+        }
+
+    })
+}
+
+function searchByUstensiles(userInput, datas) {
+    datas.forEach((data) => {
+        if (data.ustensils) {
+            let inputModify = userInput.toLowerCase()
+            data.ustensils.forEach((ustensil) => {
+                if (ustensil.toLowerCase().includes(inputModify)) {
+                    const containerCart = document.querySelector('main');
+                    new Card(data).createCard(containerCart)
+                }
+            })
+        }
+
+    })
+}
+
+function searchByAppliance(userInput, datas) {
+    datas.forEach((data) => {
+        let userModify = userInput.toLowerCase()
+        if (data.appliance.toLowerCase().includes(userModify)) {
+            const containerCart = document.querySelector('main');
+            new Card(data).createCard(containerCart)
+        }
+    })
+}*/
+
+
+function searchByReference(userInput, datas) {
+  let userInputModify = userInput.toLowerCase();
+  const containerCart = document.querySelector('main');
+  datas.forEach(data => {
+    if (data.appliance.toLowerCase().includes(userInputModify)) {
+      new _card.Card(data).createCard(containerCart);
+    }
+
+    if (data.ustensils) {
+      data.ustensils.forEach(ustensil => {
+        if (ustensil.toLowerCase().includes(userInputModify)) {
+          new _card.Card(data).createCard(containerCart);
+        }
+      });
+    }
+
+    if (data.ingredients) {
+      data.ingredients.forEach(ingredient => {
+        if (ingredient["ingredient"].toLowerCase().includes(userInputModify)) {
+          new _card.Card(data).createCard(containerCart);
+        }
+      });
+    }
+
+    if (data.name.toLowerCase().includes(userInputModify)) {
       return new _card.Card(data).createCard(containerCart);
     }
   });
 }
 
-function searchByIngredient(userInput, datas) {
-  datas.forEach(data => {
-    if (data.ingredients) {
-      data.ingredients.forEach(ingredient => {
-        let inputModify = userInput.toLowerCase();
-
-        if (ingredient["ingredient"].toLowerCase().includes(inputModify)) {
-          console.log(data);
-          const containerCart = document.querySelector('main');
-          new _card.Card(data).createCard(containerCart);
-        }
-      });
-    }
-  });
-}
-
-function searchByUstensiles(userInput, datas) {
-  datas.forEach(data => {
-    if (data.ustensils) {
-      let inputModify = userInput.toLowerCase();
-      data.ustensils.forEach(ustensil => {
-        console.log(ustensil);
-
-        if (ustensil.toLowerCase().includes(inputModify)) {
-          const containerCart = document.querySelector('main');
-          new _card.Card(data).createCard(containerCart);
-        }
-      });
-    }
-  });
-}
-
-function searchByAppliance(userInput, datas) {
-  datas.forEach(data => {
-    let userModify = userInput.toLowerCase();
-
-    if (data.appliance.toLowerCase().includes(userModify)) {
-      console.log(data);
-      const containerCart = document.querySelector('main');
-      new _card.Card(data).createCard(containerCart);
-    }
-  });
-}
-
 function search(userInput, datas) {
-  console.log(userInput);
-
   if (userInput.length >= 3) {
     removeCard();
-    searchByName(userInput, datas);
-    searchByIngredient(userInput, datas);
-    searchByUstensiles(userInput, datas);
-    searchByAppliance(userInput, datas);
+    /* searchByName(userInput, datas)
+     searchByIngredient(userInput, datas)
+     searchByUstensiles(userInput, datas)
+     searchByAppliance(userInput, datas)*/
+
+    searchByReference(userInput, datas);
   }
 
   if (userInput.length < 3) {
-    const containerCart = document.querySelector('main');
-    new _card.Card(datas).createCard(containerCart);
+    datas.forEach(data => {
+      const containerCart = document.querySelector('main');
+      new _card.Card(data).createCard(containerCart);
+    });
   }
 }
 },{"../assets/data/recipes":"assets/data/recipes.js","./class/card":"javaScript/class/card.js"}],"javaScript/script.js":[function(require,module,exports) {
@@ -1901,7 +1951,6 @@ var _card = require("./class/card");
 
 var _search = require("./search");
 
-console.log(_recipes.recipes);
 const containerCart = document.querySelector('main');
 const containerSecondaryOption = document.querySelector('container-secondarySearch1_suggestions');
 const input = document.querySelector('.header_searchbar_mainSearch');
@@ -1960,7 +2009,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61465" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59564" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

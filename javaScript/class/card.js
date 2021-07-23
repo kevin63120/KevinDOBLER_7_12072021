@@ -13,23 +13,22 @@ export class Card {
   }
 
   createCard(rootElement) {
-    const createArticle = document.createElement('article');
+    const createArticle = document.createElement("article");
     const article = rootElement.appendChild(createArticle);
-    article.className = ' col-12 col-lg-4'
+    article.className = " col-12 col-lg-4";
 
     const ingredients = this.ingredients.map((ingredient) => {
       if (!ingredient.quantity) {
-        return `<li class="ingredient">${ingredient.ingredient}</li>`
+        return `<li class="ingredient">${ingredient.ingredient}</li>`;
       }
       if (!ingredient.unit || ingredient.unit === undefined) {
-        return `<li class="ingredient">${ingredient.ingredient} : <span> ${ingredient.quantity} </span></li>`
+        return `<li class="ingredient">${ingredient.ingredient} : <span> ${ingredient.quantity} </span></li>`;
       } else {
-        return `<li class="ingredient">${ingredient.ingredient} : <span> ${ingredient.quantity} ${ingredient.unit}</span></li>`
+        return `<li class="ingredient">${ingredient.ingredient} : <span> ${ingredient.quantity} ${ingredient.unit}</span></li>`;
       }
+    });
 
-    })
-
-    const descriptionSubString = this.description.substring(0,180) + '...'
+    const descriptionSubString = this.description.substring(0, 180) + "...";
     const card = `
         <div class="card  mt-4 mb-4  overflow-hidden "  style="  ">
           <div class="card_container-image jumbotron bg-secondary"></div>
@@ -63,27 +62,24 @@ export class Card {
           </div>
         </div>
         
-      `
-    article.innerHTML = (card)
+      `;
+    article.innerHTML = card;
   }
 
   createSecondarySearchList(rootElement) {
     const containerListSecondarySearch = rootElement;
-    recipes.forEach(recipe => {
+    recipes.forEach((recipe) => {
       const itemSecondarySearch = this.ingredients.map((ingredient) => {
-        return `<option value="${ingredient.ingredient}"></option>`
-      })
-    containerListSecondarySearch.innerHTML(itemSecondarySearch.join('')) 
-
-    })
-
-
-
-
-
+        return `<option value="${ingredient.ingredient}"></option>`;
+      });
+      containerListSecondarySearch.innerHTML(itemSecondarySearch.join(""));
+    });
   }
 
+  searchEmpty(rootElement) {
+    const createArticle = document.createElement("article");
+    const article = rootElement.appendChild(createArticle);
 
+    article.innerHTML = `<p>Aucun article ne corespond à votre recherche essayer , poisson , oeuf ...</p>`;
+  }
 }
-
-
