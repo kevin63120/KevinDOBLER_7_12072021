@@ -24,15 +24,14 @@ function tagAdd(value, array) {
   }
 }
 function tagRemove() {}
-const tagsBtnsClose = document.querySelector(".tags_Btn-Close");
 const tags = document.querySelectorAll("button");
-tags.forEach((tag) => {
+/*tags.forEach((tag) => {
   tag.addEventListener("click", (e) => {
     if (e.tag.firstChild()) {
       tag.remove();
     }
   });
-});
+});*/
 
 function createTag(array) {
   if (array.length != 0) {
@@ -62,6 +61,6 @@ const displayTag = (e) => {
   }
 };
 
-dataSecondarySearch1.addEventListener("keyup", displayTag);
-dataSecondarySearch2.addEventListener("keyup", displayTag);
-dataSecondarySearch3.addEventListener("keyup", displayTag);
+//dataSecondarySearch1.addEventListener("keyup", displayTag);
+//dataSecondarySearch2.addEventListener("keyup", displayTag);
+//dataSecondarySearch3.addEventListener("keyup", displayTag);

@@ -1,5 +1,6 @@
 import { Card } from "./class/card";
 import { recipes } from "../assets/data/recipes";
+const containerAllSecondaryInput =document.querySelector('.container-input')
 const containerInput1 = document.querySelector(
   ".header_searchbar-secondarySearchContainer1"
 );
@@ -19,9 +20,23 @@ const containerAppareil = document.querySelector(".active-appareil");
 const containerUstensil = document.querySelector(".active-ustensile");
 const li = document.createElement("li");
 
+//tableau contenant tout les élement qui seronts utilisé pour les recherche
 const arrayIngredients = [];
 const arrayUstensiles = [];
 const arrayAppareils = [];
+
+//test le fait que la valeur n'existe pas déja dans le tableau
+function testvalue(value, array) {
+  if (!array.includes(value)) {
+    array.push(value);
+  }
+}
+
+function testIngredient(value) {
+  if (!arrayIngredients.includes(value)) {
+    arrayIngredients.push(value);
+  }
+}
 
 recipes.forEach((recipe) => {
   const appareil = recipe.appliance;
@@ -44,17 +59,7 @@ recipes.forEach((recipe) => {
   });
 });
 
-function testIngredient(value) {
-  if (!arrayIngredients.includes(value)) {
-    arrayIngredients.push(value);
-  }
-}
-function testvalue(value, array) {
-  if (!array.includes(value)) {
-    array.push(value);
-  }
-}
-
+//renvoi chaque élément en HTML 
 const returnIngredient = arrayIngredients.map((ingredient) => {
   return `<li class="secondarySearch-item_1 col-4">${ingredient}</li> `;
 });
@@ -65,40 +70,37 @@ const returnUstensiles = arrayUstensiles.map((ustensile) => {
   return `<li class="secondarySearch-item_3 col-4">${ustensile}</li> `;
 });
 
+//supprime tout éléments d'un tableau.
 function removeSecondSearch(array, rootElement) {
   const elem = array.splice(0, array.length);
-  rootElement.innerHTML = elem;
+  rootElement= elem;
 }
 
-function comparseValue(valueData, valueInput, containerElmReturn) {
+function comparseValue(valuesDatas, valueInput, containerElmReturn) {
   let inputModify = valueInput.toLowerCase();
-  if (valueData.includes(inputModify)) {
-    console.log(valueData);
+  if (valuesDatas.includes(inputModify)) {
+    removeSecondSearch(containerElmReturn)
+    console.log(valuesDatas);
     return (containerElmReturn.innerHTML = `<li class="secondarySearch-item_3 col-4">${valueData}</li> `);
   }
 }
 
 const inputClick = (e) => {
   let inputIngredient = e.target.value;
-  if(arrayIngredients.includes(inputIngredient)){
-     containerIngredient.innerHTML = arrayIngredients.filter((ingredient) => {
-    console.log("moi je suis");
-    removeSecondSearch(arrayIngredients, containerIngredient);
-    return `<li class="secondarySearch-item_1 col-4">${ingredient}</li> `;
-  });
+  comparseValue(arrayIngredients,inputIngredient,containerIngredient)
   containerInput1.classList.replace("col-2", "col-6");
   containerInput2.classList.replace("col-6", "col-2");
   containerInput3.classList.replace("col-6", "col-2");
   containerIngredient.innerHTML = returnIngredient.join("");
   removeSecondSearch(arrayAppareils, containerAppareil);
   removeSecondSearch(arrayUstensiles, containerUstensil); 
-  }
+
   
 };
 
-inputIngredient.addEventListener("keydown", inputClick);
+//inputIngredient.addEventListener("keydown", inputClick);
 
-document.addEventListener("click", (e) => {
+containerAllSecondaryInput.addEventListener("click", (e) => {
   switch (e.target) {
     case inputIngredient:
       containerInput1.classList.replace("col-2", "col-6");
