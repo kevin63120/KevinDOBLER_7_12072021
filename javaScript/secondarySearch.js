@@ -84,7 +84,7 @@ const inputClick = (e) => {
      containerIngredient.innerHTML = arrayIngredients.filter((ingredient) => {
     console.log("moi je suis");
     removeSecondSearch(arrayIngredients, containerIngredient);
-    return `<li class="secondarySearch-item_1 col-4">${ingredient}</li> `;
+    return `<li class="secondarySearch-item_1 col-4 ml-2">${ingredient}</li> `;
   });
   containerInput1.classList.replace("col-2", "col-6");
   containerInput2.classList.replace("col-6", "col-2");

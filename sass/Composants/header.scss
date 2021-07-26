@@ -4,8 +4,17 @@ $colorSecondarySearch1: #3282f7;
 $colorSecondarySearch2: #68d9a4;
 $colorSecondarySearch3: #ed6454;
 
+.header_title{
+  color: #D04F4F;
+}
+
 .header_searchbar-secondarySearchContainer1 {
   background-color: $colorSecondarySearch1;
+  .active-ingredient{
+   background-color:  $colorSecondarySearch1;
+
+   
+  }
   input {
     background-color: $colorSecondarySearch1;
     :-ms-input-placeholder {
@@ -47,7 +56,6 @@ color: white;
 
 .container-input1{
   height: 69px;
-  border-radius: 20%;
   
 }
 
@@ -107,17 +115,17 @@ input {
 .container-secondarySearch1_suggestions{
   background-color: inherit;
   position: absolute;
-  right: 0;
+ 
 }
 .container-secondarySearch2_suggestions{
   background-color: inherit;
   position: absolute;
-  right: 0;
+  
 }
 .container-secondarySearch3_suggestions{
   background-color: inherit;
   position: absolute;
-  right: 0;
+ 
 }
 
 input {
@@ -153,20 +161,24 @@ input {
 ul{
   position:absolute;
   z-index: 2;
+  padding: 0;
+  width: 100%;
 }
 li{
   cursor: pointer;
-   position: relative;
+  position: relative;
+  margin-left: 0;
   z-index: 2;
   text-decoration: none;
   list-style: none;
-  margin-left: -15px;
+
 
 }
 .secondarySearch-item_1:hover{
   border-radius: 5px;
 background-color: darken($color: #3282F7
 , $amount: 30%);
+ 
 
 }
 .secondarySearch-item_2:hover{
