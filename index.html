@@ -19,37 +19,43 @@
 <body class="container-fluid mt-4" style="width: 90%">
   <header class="container-fluid">
     <div class="header_logo-container">
-      <div class="logo mb-4" style="width: 100%; text-align: center">
+      <div class="logo mb-4 text-center">
         <img src="assets/pictures/logo.png" alt="logo du site" class="header_logo_item" />
         <h1 class="header_title">Les petits plats</h1>
       </div>
       <div class="row header-mainSearch-Container">
         <input id="dataInput-mainSearch" placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette"
-          class="header_searchbar-mainSearchContainer col col-12 col-xs-2" />
+          class="header_searchbar-mainSearchContainer col-9 col-xs-10 col-md-11 " />
 
-        <button class="btn btn-transparent btn-sm btn-searchMain">
-          <img src="./assets/pictures/search.svg" width="22px" alt="" />
+        <button class="btn btn-transparent btn-sm w-25 col-2 col-md-1 text-end btn-searchMain">
+          <img class="search_primary-img"src="./assets/pictures/search.svg"  alt="" />
         </button>
       </div>
     </div>
     <div class="tag-container">
 
     </div>
-    <div class="row container-input ">
+    <div class=" container-input row ">
+      
       <div class="
             header_searchbar-secondarySearchContainer1
+            secondarySearchContainer-all
             rounded
             text-light
+            
             mr-4
             mt-2
-            col-2
+            col
+            col-lg-2
+            col-10
           ">
-        <div class="row rounded container-input1">
+        <div class="row rounded container-input1 ">
           <input list="datalistOptions" id="dataListSecondarySearch1" placeholder="Ingrédients" class="
               search_secondarySearchContainer-secondarySearch1 
+              col-10
              rounded
               text-light
-              col-10
+              
             " />
           <img src="./assets/pictures/chevron-down.svg" class="chevron" width="22px" />
         </div>
@@ -61,11 +67,13 @@
 
       <div class="
             header_searchbar-secondarySearchContainer2
+            secondarySearchContainer-all
             text-light
             rounded
             mr-4
             mt-2
-            col-2
+            col-lg-2
+            col-10
           ">
         <div class="row container-input2">
         <input list="datalistOptions" id="dataListSecondarySearch2" placeholder="Appareils" class="
@@ -81,11 +89,15 @@
       </div>
       <div class="
             header_searchbar-secondarySearchContainer3
+            secondarySearchContainer-all
             text-light
             rounded
             mr-4
             mt-2
-            col-2
+            col-lg-2
+            col-10
+           
+
           ">
         <div class="row rounded container-input3">
         <input list="datalistOptions" id="dataListSecondarySearch3" placeholder="Ustensiles" class="

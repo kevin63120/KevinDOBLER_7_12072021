@@ -7,13 +7,13 @@ $colorSecondarySearch3: #ed6454;
 .header_title{
   color: #D04F4F;
 }
-
+.search_primary-img{
+  width: 22px;
+}
 .header_searchbar-secondarySearchContainer1 {
   background-color: $colorSecondarySearch1;
   .active-ingredient{
-   background-color:  $colorSecondarySearch1;
-
-   
+   background-color:  $colorSecondarySearch1;  
   }
   input {
     background-color: $colorSecondarySearch1;
@@ -31,34 +31,27 @@ color: white;
 .search_secondarySearchContainer-secondarySearch3::placeholder{
 color: white;
 }
-
 .container-input1:focus-within{
   img{
     transform: rotate(180deg)  ;
     transition-duration: 0.4s;
-
   }
 }
 .container-input2:focus-within{
   img{
     transform: rotate(180deg)  ;
     transition-duration: 0.4s;
-
   }
 }
 .container-input3:focus-within{
   img{
     transform: rotate(180deg)  ;
     transition-duration: 0.4s;
-
   }
 }
-
 .container-input1{
-  height: 69px;
-  
+  height: 69px; 
 }
-
 .header_searchbar-secondarySearchContainer2 {
   background-color: $colorSecondarySearch2;
   .container-input2{
@@ -84,14 +77,9 @@ color: white;
     }
   }
 }
-
 .header_searchbar-mainSearchContainer {
- 
   height: 69px;
-
   border-radius: 5px;
-
-  
 }
 
 .header_searchbar_mainSearch {
@@ -151,6 +139,7 @@ input {
 }
 .btn-searchMain {
   background-color: transparent;
+  text-align: end;
 }
 
 .active-ingredient{
@@ -168,7 +157,6 @@ li{
   cursor: pointer;
   position: relative;
   margin-left: 0;
-  z-index: 2;
   text-decoration: none;
   list-style: none;
 

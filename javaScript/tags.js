@@ -1,17 +1,11 @@
 const tagContainer = document.querySelector(".tag-container");
 const tagsBtnClose = document.querySelectorAll(".tags_Btn-Close");
 
-const dataSecondarySearch1 = document.querySelector(
-  "#dataListSecondarySearch1"
-);
-const dataSecondarySearch2 = document.querySelector(
-  "#dataListSecondarySearch2"
-);
-const dataSecondarySearch3 = document.querySelector(
-  "#dataListSecondarySearch3"
-);
+const dataSecondarySearch1 = document.querySelector("#dataListSecondarySearch1");
+const dataSecondarySearch2 = document.querySelector("#dataListSecondarySearch2");
+const dataSecondarySearch3 = document.querySelector("#dataListSecondarySearch3");
 
-tagsDisplay = [];
+let tagsDisplay = [];
 
 function tagAdd(value, array) {
   if (array.length < 4) {
@@ -24,7 +18,6 @@ function tagAdd(value, array) {
   }
 }
 function tagRemove() {}
-const tagsBtnsClose = document.querySelector(".tags_Btn-Close");
 const tags = document.querySelectorAll("button");
 tags.forEach((tag) => {
   tag.addEventListener("click", (e) => {
@@ -37,7 +30,7 @@ tags.forEach((tag) => {
 function createTag(array) {
   if (array.length != 0) {
     const result = array.map((tag) => {
-      return (tagHTML = `<button type="button" class="tag btn btn-primary mt-3 mb-3">${tag}<img
+      return (`<button type="button" class="tag btn btn-primary mt-3 mb-3">${tag}<img
     class="tags_Btn-Close ml-3 "
     src="./pictures/x-circle.svg"    width="20px"
     height="20px"
@@ -48,7 +41,7 @@ function createTag(array) {
   }
 }
 
-const displayTag = (e) => {
+export const displayTag = (e) => {
   e.preventDefault();
   let value = e.target.value;
   if (e.key === "Enter" && value != "") {

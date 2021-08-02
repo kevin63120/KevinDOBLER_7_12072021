@@ -6,5 +6,11 @@
   font-weight: 700;
 }
 .card{
-  position: sticky;
+  height: 92%;
+}
+.card-body{
+  z-index:0 ;
+}
+.text_timer_timer{
+  padding: 0;
 }
