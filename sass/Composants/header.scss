@@ -4,19 +4,19 @@ $colorSecondarySearch1: #3282f7;
 $colorSecondarySearch2: #68d9a4;
 $colorSecondarySearch3: #ed6454;
 
-.header_title{
-  color: #D04F4F;
+.header_title {
+  color: #d04f4f;
 }
-.search_primary-img{
+.search_primary-img {
   width: 22px;
 }
 .header_searchbar-secondarySearchContainer1 {
   background-color: $colorSecondarySearch1;
-  .active-ingredient{
-   background-color:  $colorSecondarySearch1;
-   max-height: 15em;
-   overflow: hidden;
-   overflow-y: scroll; 
+  .active-ingredient {
+    background-color: $colorSecondarySearch1;
+    max-height: 15em;
+    overflow: hidden;
+    overflow-y: scroll;
   }
   input {
     background-color: $colorSecondarySearch1;
@@ -25,42 +25,42 @@ $colorSecondarySearch3: #ed6454;
     }
   }
 }
-.search_secondarySearchContainer-secondarySearch1::placeholder{
-color: white;
+.search_secondarySearchContainer-secondarySearch1::placeholder {
+  color: white;
 }
-.search_secondarySearchContainer-secondarySearch2::placeholder{
- color: white;
+.search_secondarySearchContainer-secondarySearch2::placeholder {
+  color: white;
 }
-.search_secondarySearchContainer-secondarySearch3::placeholder{
-color: white;
+.search_secondarySearchContainer-secondarySearch3::placeholder {
+  color: white;
 }
-.container-input1:focus-within{
-  img{
-    transform: rotate(180deg)  ;
+.container-input1:focus-within {
+  img {
+    transform: rotate(180deg);
     transition-duration: 0.4s;
   }
 }
-.container-input2:focus-within{
-  img{
-    transform: rotate(180deg)  ;
+.container-input2:focus-within {
+  img {
+    transform: rotate(180deg);
     transition-duration: 0.4s;
   }
 }
-.container-input3:focus-within{
-  img{
-    transform: rotate(180deg)  ;
+.container-input3:focus-within {
+  img {
+    transform: rotate(180deg);
     transition-duration: 0.4s;
   }
 }
-.container-input1{
-  height: 69px; 
+.container-input1 {
+  height: 69px;
 }
 .header_searchbar-secondarySearchContainer2 {
   background-color: $colorSecondarySearch2;
   max-height: 15em;
-  overflow-y: scroll;
-  overflow: hidden;
-  .container-input2{
+  
+  
+  .container-input2 {
     height: 69px;
   }
   input {
@@ -73,14 +73,13 @@ color: white;
 .header_searchbar-secondarySearchContainer3 {
   background-color: $colorSecondarySearch3;
   max-height: 15em;
-  overflow-y: scroll;
-  overflow: hidden;
-  .container-input3{
+
+  .container-input3 {
     height: 69px;
   }
   input {
     background-color: $colorSecondarySearch3;
-    
+
     ::placeholder {
       color: white;
     }
@@ -109,20 +108,17 @@ input {
   border: none;
   box-shadow: none;
 }
-.container-secondarySearch1_suggestions{
+.container-secondarySearch1_suggestions {
   background-color: inherit;
   position: absolute;
- 
 }
-.container-secondarySearch2_suggestions{
+.container-secondarySearch2_suggestions {
   background-color: inherit;
   position: absolute;
-  
 }
-.container-secondarySearch3_suggestions{
+.container-secondarySearch3_suggestions {
   background-color: inherit;
   position: absolute;
- 
 }
 
 input {
@@ -131,7 +127,7 @@ input {
 .btn {
   border-radius: none;
 }
-.header-mainSearch-Container{
+.header-mainSearch-Container {
   background-color: #e7e7e7;
   border-radius: 5px;
 }
@@ -139,11 +135,11 @@ input {
 #dataInput-mainSearch {
   color: black;
   background-color: transparent;
-  border:none;
+  border: none;
   box-shadow: none;
 }
-#dataInput-mainSearch:focus{
-  border:none;
+#dataInput-mainSearch:focus {
+  border: none;
   box-shadow: none;
 }
 .btn-searchMain {
@@ -151,39 +147,31 @@ input {
   text-align: end;
 }
 
-.active-ingredient{
+.active-ingredient {
   display: flex;
-  
- 
 }
-ul{
-  position:absolute;
+ul {
+  position: absolute;
   z-index: 2;
   padding: 0;
   width: 100%;
 }
-li{
+li {
   cursor: pointer;
   position: relative;
   margin-left: 0;
   text-decoration: none;
   list-style: none;
-
-
 }
-.secondarySearch-item_1:hover{
+.secondarySearch-item_1:hover {
   border-radius: 5px;
-background-color: darken($color: #3282F7
-, $amount: 30%);
- 
-
+  background-color: darken($color: #3282f7, $amount: 30%);
 }
-.secondarySearch-item_2:hover{
-  background-color: darken($color:#68D9A4 , $amount: 30%);
+.secondarySearch-item_2:hover {
+  background-color: darken($color: #68d9a4, $amount: 30%);
   border-radius: 5px;
-
 }
-.secondarySearch-item_3:hover{
-  background-color: darken($color:#ED6454 , $amount: 30%);
+.secondarySearch-item_3:hover {
+  background-color: darken($color: #ed6454, $amount: 30%);
   border-radius: 5px;
 }

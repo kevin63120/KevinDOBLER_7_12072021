@@ -28,7 +28,10 @@ export function initTags() {
     let value = e.target.value;
     if (e.key === "Enter" && value != "") {
       if (
-        dataSecondarySearch1 ||dataSecondarySearch2 ||dataSecondarySearch3) {
+        dataSecondarySearch1 ||
+        dataSecondarySearch2 ||
+        dataSecondarySearch3
+      ) {
         dataSecondarySearch1.value = "";
         dataSecondarySearch2.value = "";
         dataSecondarySearch3.value = "";
@@ -44,7 +47,7 @@ export function initTags() {
         return `<button type="button" class="tag btn btn-primary mt-3 mb-3">${tag}<img class="tags_Btn-Close ml-3 " src="./pictures/x-circle.svg" width="20px" height="20px" alt=""/>
         </button>`;
       });
-      return  (container.innerHTML = result.join(""));
+      return (container.innerHTML = result.join(""));
     }
   }
 

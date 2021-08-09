@@ -1,7 +1,6 @@
 import { recipes } from "../assets/data/recipes";
 import { testvalue } from "./testValueFunction";
 
-
 export function initSecondarySearch() {
   const containerInput1 = document.querySelector(
     ".header_searchbar-secondarySearchContainer1"
@@ -27,16 +26,14 @@ export function initSecondarySearch() {
   const arrayUstensiles = [];
   const arrayAppareils = [];
 
-
-
   recipes.forEach((recipe) => {
     const appareil = recipe.appliance;
     testvalue(appareil, arrayAppareils);
   });
 
   recipes.forEach((recipe) => {
-   recipe.ustensils.forEach((ustensil)=>{
-        testvalue(ustensil, arrayUstensiles); 
+    recipe.ustensils.forEach((ustensil) => {
+      testvalue(ustensil, arrayUstensiles);
     });
   });
 
@@ -45,7 +42,7 @@ export function initSecondarySearch() {
       return elt["ingredient"];
     });
     ingredient.forEach((elt) => {
-      testvalue(elt , arrayIngredients)
+      testvalue(elt, arrayIngredients);
     });
   });
 
@@ -65,37 +62,45 @@ export function initSecondarySearch() {
   }
 
   const displayUserSecondarySearchIgrendient = (e) => {
-    let  userInput = e.target.value.toLowerCase(); 
-    let modifyArray = []
-    arrayIngredients.map((ingredient)=>{
-       if (ingredient.toLowerCase().includes( userInput)) {
+    let userInput = e.target.value.toLowerCase();
+    let modifyArray = [];
+    arrayIngredients.map((ingredient) => {
+      if (ingredient.toLowerCase().includes(userInput)) {
         removeSecondSearch(returnIngredient);
-        modifyArray.push(`<li class="secondarySearch-item_1 col-4">${ingredient}</li> `) 
-       return containerIngredient.innerHTML = modifyArray.join("");
-    }
-    })
+        modifyArray.push(
+          `<li class="secondarySearch-item_1 col-4">${ingredient}</li> `
+        );
+        return (containerIngredient.innerHTML = modifyArray.join(""));
+      }
+    });
   };
+
   const displayUserSecondarySearchAppareils = (e) => {
-    let  userInput= e.target.value.toLowerCase(); 
-    let modifyArray = []
-    arrayAppareils.map((appareil)=>{
-       if (appareil.toLowerCase().includes( userInput)) {
+    let userInput = e.target.value.toLowerCase();
+    let modifyArray = [];
+    arrayAppareils.map((appareil) => {
+      if (appareil.toLowerCase().includes(userInput)) {
         removeSecondSearch(returnAppareils);
-        modifyArray.push(`<li class="secondarySearch-item_2 col-4">${appareil}</li> `) 
-       return containerAppareil.innerHTML = modifyArray.join("");
-    }
-    })
+        modifyArray.push(
+          `<li class="secondarySearch-item_2 col-4">${appareil}</li> `
+        );
+        return (containerAppareil.innerHTML = modifyArray.join(""));
+      }
+    });
   };
+
   const displayUserSecondarySearchUstensile = (e) => {
-    let userInput = e.target.value.toLowerCase(); 
-    let modifyArray = []
-    arrayUstensiles.map((ustensile)=>{
-       if (ustensile.toLowerCase().includes(userInput)) {
+    let userInput = e.target.value.toLowerCase();
+    let modifyArray = [];
+    arrayUstensiles.map((ustensile) => {
+      if (ustensile.toLowerCase().includes(userInput)) {
         removeSecondSearch(returnUstensiles);
-        modifyArray.push(`<li class="secondarySearch-item_3 col-4">${ustensile}</li> `) 
-       return containerUstensil.innerHTML = modifyArray.join("");
-    }
-    })
+        modifyArray.push(
+          `<li class="secondarySearch-item_3 col-4">${ustensile}</li> `
+        );
+        return (containerUstensil.innerHTML = modifyArray.join(""));
+      }
+    });
   };
 
   let activationIngredientSearch = () => {
@@ -103,8 +108,8 @@ export function initSecondarySearch() {
     containerInput2.classList.replace("col-lg-6", "col-lg-2");
     containerInput3.classList.replace("col-lg-6", "col-lg-2");
     containerIngredient.innerHTML = returnIngredient.join("");
-    removeSecondSearch( containerAppareil);
-    removeSecondSearch( containerUstensil);
+    removeSecondSearch(containerAppareil);
+    removeSecondSearch(containerUstensil);
   };
 
   let activationUstensileSearch = () => {
@@ -112,8 +117,8 @@ export function initSecondarySearch() {
     containerInput2.classList.replace("col-lg-6", "col-lg-2");
     containerInput3.classList.replace("col-lg-2", "col-lg-6");
     containerUstensil.innerHTML = returnUstensiles.join("");
-    removeSecondSearch( containerIngredient);
-    removeSecondSearch( containerAppareil);
+    removeSecondSearch(containerIngredient);
+    removeSecondSearch(containerAppareil);
   };
 
   let activationAppareilSearch = () => {
@@ -126,23 +131,34 @@ export function initSecondarySearch() {
   };
 
   function resetSearch() {
-     if( containerInput1.classList === "col-6" ||containerInput3.classList === "col-6" ||containerInput3.classList === "col-6"){
-        containerInput1.classList.replace("col-6", "col-2");
-        containerInput2.classList.replace("col-6", "col-2");
-        containerInput3.classList.replace("col-6", "col-2");
-     }if (containerInput1.classList === "col-10" ||containerInput3.classList === "col-10" ||containerInput3.classList === "col-10") {
-        containerInput1.classList.replace("col-10", "col-2");
-        containerInput2.classList.replace("col-10", "col-2");
-        containerInput3.classList.replace("col-10", "col-2");
-     }
-    
+    if (
+      containerInput1.classList === "col-6" ||
+      containerInput3.classList === "col-6" ||
+      containerInput3.classList === "col-6"
+    ) {
+      containerInput1.classList.replace("col-6", "col-2");
+      containerInput2.classList.replace("col-6", "col-2");
+      containerInput3.classList.replace("col-6", "col-2");
+    }
+    if (
+      containerInput1.classList === "col-10" ||
+      containerInput3.classList === "col-10" ||
+      containerInput3.classList === "col-10"
+    ) {
+      containerInput1.classList.replace("col-10", "col-2");
+      containerInput2.classList.replace("col-10", "col-2");
+      containerInput3.classList.replace("col-10", "col-2");
+    }
+
     removeSecondSearch(containerIngredient);
     removeSecondSearch(containerAppareil);
     removeSecondSearch(containerUstensil);
-    
   }
 
-  inputIngredient.addEventListener("keyup", displayUserSecondarySearchIgrendient);
+  inputIngredient.addEventListener(
+    "keyup",
+    displayUserSecondarySearchIgrendient
+  );
   inputApareil.addEventListener("keyup", displayUserSecondarySearchAppareils);
   inputUstensile.addEventListener("keyup", displayUserSecondarySearchUstensile);
 
@@ -162,6 +178,4 @@ export function initSecondarySearch() {
         break;
     }
   });
-
- 
 }
