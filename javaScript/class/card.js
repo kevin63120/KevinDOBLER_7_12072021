@@ -1,5 +1,3 @@
-import { recipes } from "../../assets/data/recipes";
-
 export class Card {
   constructor(recipe) {
     this.appliance = recipe.appliance;
@@ -66,21 +64,5 @@ export class Card {
       `;
     article.innerHTML = card;
   }
-
-  createSecondarySearchList(rootElement) {
-    const containerListSecondarySearch = rootElement;
-    recipes.forEach((recipe) => {
-      const itemSecondarySearch = this.ingredients.map((ingredient) => {
-        return `<option value="${ingredient.ingredient}"></option>`;
-      });
-      containerListSecondarySearch.innerHTML(itemSecondarySearch.join(""));
-    });
-  }
-
-  searchEmpty(rootElement) {
-    const createArticle = document.createElement("article");
-    const article = rootElement.appendChild(createArticle);
-
-    article.innerHTML = `<p>Aucun article ne corespond à votre recherche essayer , poisson , oeuf ...</p>`;
-  }
+  
 }

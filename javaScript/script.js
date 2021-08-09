@@ -1,20 +1,9 @@
 import "../assets/data/recipes";
-import "../javaScript/tags";
-import "../javaScript/secondarySearch";
-import "../javaScript/recipesTypes";
+import { initTags } from "./tags";
+import { initSecondarySearch } from "./secondarySearch";
 import { recipes } from "../assets/data/recipes";
 import { Card } from "./class/card";
 import { search } from "./search";
-
-const containerCart = document.querySelector("main");
-const containerSecondaryOption = document.querySelector(
-  "container-secondarySearch1_suggestions"
-);
-const input = document.querySelector(".header_searchbar_mainSearch");
-/*input.addEventListener((e)=>{
-   const currentInput  = e.target.value ;
-   console.log(currentInput)
-})*/
 
 // algo 1
 
@@ -24,10 +13,16 @@ const input = document.querySelector(".header_searchbar_mainSearch");
 2. test les ustensiles
 3. test les appareil 
 */
+document.addEventListener("DOMContentLoaded", () => {
+  const containerCart = document.querySelector("main");
+  displayCardBase(containerCart);
+  initTags();
+  initSecondarySearch();
+});
 
-function displayCardBase() {
+function displayCardBase(container) {
   recipes.forEach((recipe) => {
-    new Card(recipe).createCard(containerCart);
+    new Card(recipe).createCard(container);
   });
   const input = document.querySelector(".header_searchbar-mainSearchContainer");
   input.addEventListener("keyup", (e) => {
@@ -35,5 +30,3 @@ function displayCardBase() {
     search(curentInput, recipes);
   });
 }
-
-displayCardBase();

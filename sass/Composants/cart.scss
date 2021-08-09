@@ -10,7 +10,20 @@
 }
 .card-body{
   z-index:0 ;
+  ul{
+    font-size: 0.8em;
+  }
+  .card-text{
+    font-size: 0.8em;
+  }
+  h5{
+    font-size: 1em;
+    width: 120%;
+  }
 }
 .text_timer_timer{
   padding: 0;
+}
+.jumbotron{
+  height: 43%;
 }

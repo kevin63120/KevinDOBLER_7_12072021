@@ -2,6 +2,8 @@
 
 import { recipes } from "../assets/data/recipes";
 import { Card } from "./class/card";
+import { testvalue } from "./testValueFunction";
+import { warningMessageText } from "./testValueFunction";
 
 function removeCard() {
   const articles = document.querySelectorAll("article");
@@ -15,39 +17,55 @@ function removeCard() {
 function searchByReference(userInput, datas) {
   let userInputModify = userInput.toLowerCase();
   const containerCart = document.querySelector("main");
+    const dataDisplayArray = [];
+    
+
   datas.forEach((data) => {
     if (data.appliance.toLowerCase().includes(userInputModify)) {
-      new Card(data).createCard(containerCart);
+      testvalue(data , dataDisplayArray)
     }
     if (data.ustensils) {
       data.ustensils.forEach((ustensil) => {
         if (ustensil.toLowerCase().includes(userInputModify)) {
-          new Card(data).createCard(containerCart);
+            testvalue(data , dataDisplayArray)
         }
       });
     }
     if (data.ingredients) {
-      data.ingredients.forEach((ingredient) => {
-        if (ingredient["ingredient"].toLowerCase().includes(userInputModify)) {
-          new Card(data).createCard(containerCart);
-        }
-      });
-    }
+        data.ingredients.forEach((ingredient) => {
+            if (ingredient["ingredient"].toLowerCase().includes(userInputModify)) {
+             testvalue(data, dataDisplayArray)
+            }
+        })
+    };
+    
     if (data.name.toLowerCase().includes(userInputModify)) {
-      return new Card(data).createCard(containerCart);
+        testvalue(data, dataDisplayArray)
     }
-  });
+    })
+    return dataDisplayArray;
 }
 
+
 export function search(userInput, datas) {
+    const containerCard = document.querySelector("main");
+    
   if (userInput.length >= 3) {
     removeCard();
-    searchByReference(userInput, datas);
+   
+    let arrayReturn = searchByReference(userInput, datas);
+    
+     arrayReturn.forEach((elementReturn) =>{
+         new Card(elementReturn).createCard(containerCard)
+    })
+     warningMessageText(arrayReturn , containerCard, "aucune recette corespondante, essayé \"coco\", \"oeuf\" ")
+    
   }
   if (userInput.length < 3) {
+    let arrayReturn = []
+    warningMessageText(arrayReturn , containerCard, "")
     datas.forEach((data) => {
-      const containerCart = document.querySelector("main");
-      new Card(data).createCard(containerCart);
+        new Card(data).createCard(containerCard)
     });
   }
 }
