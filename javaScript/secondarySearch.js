@@ -64,20 +64,38 @@ export function initSecondarySearch() {
     rootElement.innerHTML = "";
   }
 
-  const checkUserSecondarySearchEntry = (e) => {
-    let inputIngredient = e.target.value; 
-    console.log(arrayIngredients)
-    if (arrayIngredients.includes(inputIngredient)) {
-        removeSecondSearch( containerIngredient);
-        console.log('e')
-        containerIngredient.innerHTML = returnIngredient
-       //containerInput1.classList.replace("col-2", "col-6");
-       //containerInput2.classList.replace("col-6", "col-2");
-       //containerInput3.classList.replace("col-6", "col-2");
-       //containerIngredient.innerHTML = returnIngredient.join("");
-       //removeSecondSearch(containerAppareil);
-       //removeSecondSearch(containerUstensil);
+  const displayUserSecondarySearchIgrendient = (e) => {
+    let  userInput = e.target.value.toLowerCase(); 
+    let modifyArray = []
+    arrayIngredients.map((ingredient)=>{
+       if (ingredient.toLowerCase().includes( userInput)) {
+        removeSecondSearch(returnIngredient);
+        modifyArray.push(`<li class="secondarySearch-item_1 col-4">${ingredient}</li> `) 
+       return containerIngredient.innerHTML = modifyArray.join("");
     }
+    })
+  };
+  const displayUserSecondarySearchAppareils = (e) => {
+    let  userInput= e.target.value.toLowerCase(); 
+    let modifyArray = []
+    arrayAppareils.map((appareil)=>{
+       if (appareil.toLowerCase().includes( userInput)) {
+        removeSecondSearch(returnAppareils);
+        modifyArray.push(`<li class="secondarySearch-item_2 col-4">${appareil}</li> `) 
+       return containerAppareil.innerHTML = modifyArray.join("");
+    }
+    })
+  };
+  const displayUserSecondarySearchUstensile = (e) => {
+    let userInput = e.target.value.toLowerCase(); 
+    let modifyArray = []
+    arrayUstensiles.map((ustensile)=>{
+       if (ustensile.toLowerCase().includes(userInput)) {
+        removeSecondSearch(returnUstensiles);
+        modifyArray.push(`<li class="secondarySearch-item_3 col-4">${ustensile}</li> `) 
+       return containerUstensil.innerHTML = modifyArray.join("");
+    }
+    })
   };
 
   let activationIngredientSearch = () => {
@@ -124,7 +142,9 @@ export function initSecondarySearch() {
     
   }
 
-  inputIngredient.addEventListener("keyup", checkUserSecondarySearchEntry);
+  inputIngredient.addEventListener("keyup", displayUserSecondarySearchIgrendient);
+  inputApareil.addEventListener("keyup", displayUserSecondarySearchAppareils);
+  inputUstensile.addEventListener("keyup", displayUserSecondarySearchUstensile);
 
   document.addEventListener("click", (e) => {
     switch (e.target) {

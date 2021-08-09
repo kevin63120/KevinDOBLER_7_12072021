@@ -13,7 +13,10 @@ $colorSecondarySearch3: #ed6454;
 .header_searchbar-secondarySearchContainer1 {
   background-color: $colorSecondarySearch1;
   .active-ingredient{
-   background-color:  $colorSecondarySearch1;  
+   background-color:  $colorSecondarySearch1;
+   max-height: 15em;
+   overflow: hidden;
+   overflow-y: scroll; 
   }
   input {
     background-color: $colorSecondarySearch1;
@@ -54,6 +57,9 @@ color: white;
 }
 .header_searchbar-secondarySearchContainer2 {
   background-color: $colorSecondarySearch2;
+  max-height: 15em;
+  overflow-y: scroll;
+  overflow: hidden;
   .container-input2{
     height: 69px;
   }
@@ -66,6 +72,9 @@ color: white;
 }
 .header_searchbar-secondarySearchContainer3 {
   background-color: $colorSecondarySearch3;
+  max-height: 15em;
+  overflow-y: scroll;
+  overflow: hidden;
   .container-input3{
     height: 69px;
   }
