@@ -26,29 +26,14 @@ export function initSecondarySearch() {
   const arrayUstensiles = [];
   const arrayAppareils = [];
 
-  // fonction qui renverra un tableau contenant les recette comprenant element saisie 
-  const  displayUserSecondarySearch = (e, elementsSelected)=> {
-    let userInput = e.target.value.toLowerCase();
-    let modifyArray = [];
-    elementsSelected.map((newElement) => {
-      if (newElement.toLowerCase().includes(userInput)) {
-        modifyArray.push(newElement);
-      }
-    }); 
-    return console.log(modifyArray)
-  };
   recipes.forEach((recipe) => {
     const appareil = recipe.appliance;
     testvalue(appareil, arrayAppareils);
-  });
 
-  recipes.forEach((recipe) => {
     recipe.ustensils.forEach((ustensil) => {
       testvalue(ustensil, arrayUstensiles);
     });
-  });
 
-  recipes.forEach((recipe) => {
     const ingredient = recipe.ingredients.map((elt) => {
       return elt["ingredient"];
     });
@@ -72,28 +57,39 @@ export function initSecondarySearch() {
     rootElement.innerHTML = "";
   }
 
-
-const displayUserSecondarySearchIgrendient = (e) => {
+  const displayUserSecondarySearchIgrendient = (e) => {
     let userInput = e.target.value.toLowerCase();
     let modifyArray = arrayIngredients
-      .filter((ingredient) => {return ingredient.toLowerCase().includes(userInput);})
-      .map((ingredient) => { return `<li class="secondarySearch-item_1 col-4">${ingredient}</li> `});
+      .filter((ingredient) => {
+        return ingredient.toLowerCase().includes(userInput);
+      })
+      .map((ingredient) => {
+        return `<li class="secondarySearch-item_1 col-4">${ingredient}</li> `;
+      });
     containerIngredient.innerHTML = modifyArray.join("");
   };
-  
+
   const displayUserSecondarySearchAppareils = (e) => {
     let userInput = e.target.value.toLowerCase();
     let modifyArray = arrayAppareils
-      .filter((appareil)=>{return appareil.toLowerCase().includes(userInput);})
-      .map((appareil)=> {return`<li class="secondarySearch-item_2 col-4">${appareil}</li> `})
+      .filter((appareil) => {
+        return appareil.toLowerCase().includes(userInput);
+      })
+      .map((appareil) => {
+        return `<li class="secondarySearch-item_2 col-4">${appareil}</li> `;
+      });
     containerAppareil.innerHTML = modifyArray.join("");
   };
 
   const displayUserSecondarySearchUstensile = (e) => {
     let userInput = e.target.value.toLowerCase();
     let modifyArray = arrayUstensiles
-      .filter((ustensile)=>{return ustensile.toLowerCase().includes(userInput) })
-      .map((ustensile) => {return `<li class="secondarySearch-item_3 col-4">${ustensile}</li> `}); 
+      .filter((ustensile) => {
+        return ustensile.toLowerCase().includes(userInput);
+      })
+      .map((ustensile) => {
+        return `<li class="secondarySearch-item_3 col-4">${ustensile}</li> `;
+      });
     containerUstensil.innerHTML = modifyArray.join("");
   };
 
@@ -149,9 +145,15 @@ const displayUserSecondarySearchIgrendient = (e) => {
     removeSecondSearch(containerUstensil);
   }
 
-  inputIngredient.addEventListener("keyup", (e) => displayUserSecondarySearchIgrendient(e));
-  inputApareil.addEventListener("keyup", (e) =>displayUserSecondarySearchAppareils(e));
-  inputUstensile.addEventListener("keyup",(e)=> displayUserSecondarySearchUstensile(e));
+  inputIngredient.addEventListener("keyup", (e) =>
+    displayUserSecondarySearchIgrendient(e)
+  );
+  inputApareil.addEventListener("keyup", (e) =>
+    displayUserSecondarySearchAppareils(e)
+  );
+  inputUstensile.addEventListener("keyup", (e) =>
+    displayUserSecondarySearchUstensile(e)
+  );
 
   document.addEventListener("click", (e) => {
     switch (e.target) {

@@ -4,9 +4,6 @@ import { Card } from "./class/card";
 import { testvalue } from "./testValueFunction";
 import { warningMessageText } from "./testValueFunction";
 
-
-
-
 function removeCard() {
   const articles = document.querySelectorAll("article");
 
@@ -15,42 +12,58 @@ function removeCard() {
     article.remove();
   });
 }
+// fonction qui renverra un tableau contenant les recette comprenant element saisie
+const displayUserSecondarySearch = (e, elementsSelected) => {
+  let userInput = e.target.value.toLowerCase();
+  let modifyArray = [];
+  elementsSelected.map((newElement) => {
+    if (newElement.toLowerCase().includes(userInput)) {
+      modifyArray.push(newElement);
+    }
+  });
+  return console.log(modifyArray);
+};
 
-function searchByReference(userInput, datas , searchSecondaryAppliance = "" , searchSecondaryUstensils ="" , searchSecondaryIngredient="") {
+
+
+function searchByReference(
+  userInput,
+  datas,
+  searchSecondaryAppliance = "",
+  searchSecondaryUstensils = "",
+  searchSecondaryIngredient = ""
+) {
   let userInputModify = userInput.toLowerCase();
-  const containerCart = document.querySelector("main");
   const dataDisplayArray = [];
 
   datas.forEach((data) => {
-   /* if (data.appliance.toLowerCase().includes(userInputModify)) {
+    /* if (data.appliance.toLowerCase().includes(userInputModify)) {
       testvalue(data, dataDisplayArray);
     }*/
-    if(searchSecondaryAppliance != ""){
-      if(data.appliance.toLowerCase().includes(searchSecondaryAppliance)){
-        testvalue(data, dataDisplayArray)
-      }
-      
-    }
-    if(searchSecondaryIngredient!= ""){
-      if(data.ingredient.toLowerCase().includes(searchSecondaryIngredient)){
-        testvalue(data, dataDisplayArray)
-      } 
-    }
-    if(searchSecondaryUstensils != ""){
-      if(data.searchSecondaryUstensils.toLowerCase().includes(searchSecondaryUstensils)){
-        testvalue(data, dataDisplayArray)
+  /*  if (searchSecondaryAppliance != "") {
+      if (data.appliance.toLowerCase().includes(searchSecondaryAppliance)) {
+        testvalue(data, dataDisplayArray);
       }
     }
+    if (searchSecondaryIngredient != "") {
+      const ingredients = data.ingredients.forEach((elt)=> elt["ingredient"] )
+      if (ingredients.toLowerCase().includes(searchSecondaryIngredient)) {
+        console.log(ingredients)
+        testvalue(data, dataDisplayArray);
+      }
+    }
+    if (searchSecondaryUstensils != "") {
+      if (
+        data.searchSecondaryUstensils
+          .toLowerCase()
+          .includes(searchSecondaryUstensils)
+      ) {
+        testvalue(data, dataDisplayArray);
+      }
+    }*/
     if (data.description.toLowerCase().includes(userInputModify)) {
       testvalue(data, dataDisplayArray);
     }
-    /*if (data.ustensils) {
-      data.ustensils.forEach((ustensil) => {
-        if (ustensil.toLowerCase().includes(userInputModify)) {
-          testvalue(data, dataDisplayArray);
-        }
-      });
-    }*/
     if (data.ingredients) {
       data.ingredients.forEach((ingredient) => {
         if (ingredient["ingredient"].toLowerCase().includes(userInputModify)) {
@@ -63,17 +76,17 @@ function searchByReference(userInput, datas , searchSecondaryAppliance = "" , se
       testvalue(data, dataDisplayArray);
     }
   });
-  console.log(dataDisplayArray)
+  console.log(dataDisplayArray);
   return dataDisplayArray;
 }
 
-export function search(userInput, datas) {
+export function search(userInput, datas,  searchSecondaryAppliance="",searchSecondaryUstensils="",searchSecondaryIngredient="") {
   const containerCard = document.querySelector("main");
 
   if (userInput.length >= 3) {
     removeCard();
 
-    let arrayReturn = searchByReference(userInput, datas);
+    let arrayReturn = searchByReference(userInput, datas , searchSecondaryAppliance,searchSecondaryUstensils,searchSecondaryIngredient);
 
     arrayReturn.forEach((elementReturn) => {
       new Card(elementReturn).createCard(containerCard);

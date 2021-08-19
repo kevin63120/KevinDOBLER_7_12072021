@@ -24,9 +24,15 @@ function displayCardBase(container) {
   recipes.forEach((recipe) => {
     new Card(recipe).createCard(container);
   });
+  
+  const inputIngredient = document.querySelector("#dataListSecondarySearch1");
+  const inputApareil = document.querySelector("#dataListSecondarySearch2");
+  const inputUstensile = document.querySelector("#dataListSecondarySearch3");
   const input = document.querySelector(".header_searchbar-mainSearchContainer");
+     
+  
   input.addEventListener("keyup", (e) => {
     const curentInput = e.target.value;
-    search(curentInput, recipes);
+    search(curentInput, recipes,inputApareil,inputUstensile,inputIngredient);
   });
 }
