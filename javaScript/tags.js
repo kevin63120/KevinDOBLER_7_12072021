@@ -28,9 +28,7 @@ export function initTags() {
     let value = e.target.value;
     if (e.key === "Enter" && value != "") {
       if (
-        dataSecondarySearch1 ||
-        dataSecondarySearch2 ||
-        dataSecondarySearch3
+        dataSecondarySearch1 ||dataSecondarySearch2 || dataSecondarySearch3
       ) {
         dataSecondarySearch1.value = "";
         dataSecondarySearch2.value = "";

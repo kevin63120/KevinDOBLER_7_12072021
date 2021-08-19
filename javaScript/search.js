@@ -1,9 +1,11 @@
 // Algo 1
 
-import { recipes } from "../assets/data/recipes";
 import { Card } from "./class/card";
 import { testvalue } from "./testValueFunction";
 import { warningMessageText } from "./testValueFunction";
+
+
+
 
 function removeCard() {
   const articles = document.querySelectorAll("article");
@@ -14,22 +16,41 @@ function removeCard() {
   });
 }
 
-function searchByReference(userInput, datas) {
+function searchByReference(userInput, datas , searchSecondaryAppliance = "" , searchSecondaryUstensils ="" , searchSecondaryIngredient="") {
   let userInputModify = userInput.toLowerCase();
   const containerCart = document.querySelector("main");
   const dataDisplayArray = [];
 
   datas.forEach((data) => {
-    if (data.appliance.toLowerCase().includes(userInputModify)) {
+   /* if (data.appliance.toLowerCase().includes(userInputModify)) {
+      testvalue(data, dataDisplayArray);
+    }*/
+    if(searchSecondaryAppliance != ""){
+      if(data.appliance.toLowerCase().includes(searchSecondaryAppliance)){
+        testvalue(data, dataDisplayArray)
+      }
+      
+    }
+    if(searchSecondaryIngredient!= ""){
+      if(data.ingredient.toLowerCase().includes(searchSecondaryIngredient)){
+        testvalue(data, dataDisplayArray)
+      } 
+    }
+    if(searchSecondaryUstensils != ""){
+      if(data.searchSecondaryUstensils.toLowerCase().includes(searchSecondaryUstensils)){
+        testvalue(data, dataDisplayArray)
+      }
+    }
+    if (data.description.toLowerCase().includes(userInputModify)) {
       testvalue(data, dataDisplayArray);
     }
-    if (data.ustensils) {
+    /*if (data.ustensils) {
       data.ustensils.forEach((ustensil) => {
         if (ustensil.toLowerCase().includes(userInputModify)) {
           testvalue(data, dataDisplayArray);
         }
       });
-    }
+    }*/
     if (data.ingredients) {
       data.ingredients.forEach((ingredient) => {
         if (ingredient["ingredient"].toLowerCase().includes(userInputModify)) {
@@ -42,6 +63,7 @@ function searchByReference(userInput, datas) {
       testvalue(data, dataDisplayArray);
     }
   });
+  console.log(dataDisplayArray)
   return dataDisplayArray;
 }
 

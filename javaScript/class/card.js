@@ -64,5 +64,4 @@ export class Card {
       `;
     article.innerHTML = card;
   }
-  
 }
