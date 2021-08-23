@@ -24,7 +24,15 @@ function displayCardBase(container) {
   recipes.forEach((recipe) => {
     new Card(recipe).createCard(container);
   });
-  
+
+  const searchTerms = {
+  main: "" ,
+  appareil: "",
+  ingredient: "",
+  ustensile: ""
+
+}
+
   const inputIngredient = document.querySelector("#dataListSecondarySearch1");
   const inputApareil = document.querySelector("#dataListSecondarySearch2");
   const inputUstensile = document.querySelector("#dataListSecondarySearch3");
@@ -33,6 +41,34 @@ function displayCardBase(container) {
   
   input.addEventListener("keyup", (e) => {
     const curentInput = e.target.value;
-    search(curentInput, recipes,inputApareil,inputUstensile,inputIngredient);
+    searchTerms.main = curentInput
+    searchByTerms()
+    console.log(searchTerms)
   });
+
+  inputApareil.addEventListener("keyup",(e)=>{
+    const curentInput = e.target.value;
+    searchTerms.appareil = curentInput
+    searchByTerms()
+    console.log(searchTerms)
+  })
+  inputIngredient.addEventListener("keyup",(e)=>{
+    const curentInput = e.target.value;
+    searchTerms.ingredient = curentInput
+    searchByTerms()
+    console.log(searchTerms)
+  })
+
+  inputUstensile.addEventListener("keyup", (e)=>{
+    const curentInput = e.target.value;
+    searchTerms.ustensile = curentInput
+    searchTerms()
+    console.log(searchTerms)
+  })
+
+  function searchByTerms(){
+    search(searchTerms.main, recipes,searchTerms.appareil,searchTerms.ustensile,searchTerms.ingredient);
+  }
+
 }
+
