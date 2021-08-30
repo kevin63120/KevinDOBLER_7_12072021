@@ -5,11 +5,22 @@
     }
   }
 
+  export function testValue2(value){
+    let newArray = []
+    if (!newArray.includes(value)) {
+     newArray.push(value);
+    }
+    return newArray
+  }
+
   export function warningMessageText(value , containerMessage, stringmessage) {
     let warningMessage ;
     console.log(value)
     if(value.length === 0){
          warningMessage = `<h2>${stringmessage}</h2>`;
         containerMessage.innerHTML= warningMessage
+    }
+    else{
+      containerMessage.innerHTML = `` 
     }
   }

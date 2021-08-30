@@ -2,15 +2,16 @@ export function initTags() {
   const tagContainer = document.querySelector(".tag-container");
   const tagsBtnClose = document.querySelectorAll(".tags_Btn-Close");
 
-  const dataSecondarySearch1 = document.querySelector(
+  const inputSecondarySearchIngredient = document.querySelector(
     "#dataListSecondarySearch1"
   );
-  const dataSecondarySearch2 = document.querySelector(
+  const inputSecondarySearchAppliance = document.querySelector(
     "#dataListSecondarySearch2"
   );
-  const dataSecondarySearch3 = document.querySelector(
+  const inputSecondarySearchUstensil = document.querySelector(
     "#dataListSecondarySearch3"
   );
+
   let tagsDisplay = [];
 
   function tagAdd(value, array) {
@@ -28,11 +29,13 @@ export function initTags() {
     let value = e.target.value;
     if (e.key === "Enter" && value != "") {
       if (
-        dataSecondarySearch1 ||dataSecondarySearch2 || dataSecondarySearch3
+        inputSecondarySearchIngredient ||
+        inputSecondarySearchAppliance ||
+        inputSecondarySearchUstensil
       ) {
-        dataSecondarySearch1.value = "";
-        dataSecondarySearch2.value = "";
-        dataSecondarySearch3.value = "";
+        inputSecondarySearchIngredient.value = "";
+        inputSecondarySearchAppliance.value = "";
+        inputSecondarySearchUstensil.value = "";
       }
       tagAdd(value, tagsDisplay);
       createTag(tagsDisplay, tagContainer);
@@ -49,9 +52,9 @@ export function initTags() {
     }
   }
 
-  dataSecondarySearch1.addEventListener("keyup", displayTag);
-  dataSecondarySearch2.addEventListener("keyup", displayTag);
-  dataSecondarySearch3.addEventListener("keyup", displayTag);
+  inputSecondarySearchIngredient.addEventListener("keyup", displayTag);
+  inputSecondarySearchAppliance.addEventListener("keyup", displayTag);
+  inputSecondarySearchUstensil.addEventListener("keyup", displayTag);
 }
 
 function tagRemove() {}

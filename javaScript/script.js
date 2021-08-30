@@ -1,10 +1,13 @@
 import "../assets/data/recipes";
 import { initTags } from "./tags";
-import { initSecondarySearch } from "./secondarySearch";
+import { initSecondarySearch, secondarySearch } from "./secondarySearch";
 import { recipes } from "../assets/data/recipes";
 import { Card } from "./class/card";
 import { search } from "./search";
 
+const arrayIngredients = [];
+const arrayUstensiles = [];
+const arrayAppareils = [];
 // algo 1
 
 /*test l'input utilisateur */
@@ -14,10 +17,10 @@ import { search } from "./search";
 3. test les appareil 
 */
 document.addEventListener("DOMContentLoaded", () => {
-  const containerCart = document.querySelector("main");
+  const containerCart = document.querySelector(".card-container");
   displayCardBase(containerCart);
   initTags();
-  initSecondarySearch();
+  //initSecondarySearch();
 });
 
 function displayCardBase(container) {
@@ -26,49 +29,47 @@ function displayCardBase(container) {
   });
 
   const searchTerms = {
-  main: "" ,
-  appareil: "",
-  ingredient: "",
-  ustensile: ""
-
-}
+    main: "",
+    appareil: "",
+    ingredient: "",
+    ustensile: "",
+  };
 
   const inputIngredient = document.querySelector("#dataListSecondarySearch1");
   const inputApareil = document.querySelector("#dataListSecondarySearch2");
   const inputUstensile = document.querySelector("#dataListSecondarySearch3");
   const input = document.querySelector(".header_searchbar-mainSearchContainer");
-     
-  
+
   input.addEventListener("keyup", (e) => {
     const curentInput = e.target.value;
-    searchTerms.main = curentInput
-    searchByTerms()
-    console.log(searchTerms)
+    searchTerms.main = curentInput;
+    searchByTerms();
   });
 
-  inputApareil.addEventListener("keyup",(e)=>{
+  inputApareil.addEventListener("keyup", (e) => {
     const curentInput = e.target.value;
-    searchTerms.appareil = curentInput
-    searchByTerms()
-    console.log(searchTerms)
-  })
-  inputIngredient.addEventListener("keyup",(e)=>{
+    searchTerms.appareil = curentInput;
+    searchByTerms();
+  });
+  inputIngredient.addEventListener("keyup", (e) => {
     const curentInput = e.target.value;
-    searchTerms.ingredient = curentInput
-    searchByTerms()
-    console.log(searchTerms)
-  })
+    searchTerms.ingredient = curentInput;
+    searchByTerms();
+  });
 
-  inputUstensile.addEventListener("keyup", (e)=>{
+  inputUstensile.addEventListener("keyup", (e) => {
     const curentInput = e.target.value;
-    searchTerms.ustensile = curentInput
-    searchTerms()
-    console.log(searchTerms)
-  })
+    searchTerms.ustensile = curentInput;
+    searchByTerms();
+  });
 
-  function searchByTerms(){
-    search(searchTerms.main, recipes,searchTerms.appareil,searchTerms.ustensile,searchTerms.ingredient);
+  function searchByTerms() {
+    search(
+      searchTerms.main,
+      recipes,
+      searchTerms.appareil,
+      searchTerms.ustensile,
+      searchTerms.ingredient
+    );
   }
-
 }
-
