@@ -1,16 +1,18 @@
 // Algo 1
 import { recipes } from "../assets/data/recipes";
 import { Card } from "./class/card";
+import { Data } from "./class/data"
 import { testvalue } from "./testValueFunction";
 import { testValue2 } from "./testValueFunction";
 import { warningMessageText } from "./testValueFunction";
-import { displayUserSecondarySearchIgrendient } from "./secondarySearch";
+import { containerIngredient, displayUserSecondarySearchIgrendient } from "./secondarySearch";
 import { displayUserSecondarySearchUstensile } from "./secondarySearch";
 import { displayUserSecondarySearchAppareils } from "./secondarySearch";
 import { activationIngredientSearch } from "./secondarySearch";
 import { activationAppareilSearch } from "./secondarySearch";
 import { activationUstensileSearch } from "./secondarySearch";
 import { resetSearch } from "./secondarySearch";
+
 
 const containerInput1 = document.querySelector(
   ".header_searchbar-secondarySearchContainer1"
@@ -37,7 +39,7 @@ function removeCard() {
 
 
 function searchByReference(
-  userInput,
+  userInput=null,
   datas,
   searchSecondaryAppliance = "",
   searchSecondaryUstensils = "",
@@ -108,8 +110,7 @@ export function search(
     );
 
     const objetForSecondarySearch = returnAllCurentElementSecondarySearch(arrayReturn);
-    console.log();
-
+    
     inputIngredient.addEventListener("keyup", (e) =>
       displayUserSecondarySearchIgrendient(
         e,
@@ -172,14 +173,18 @@ export function search(
 }
 
 function returnAllCurentElementSecondarySearch(array1) {
-  let ingredient1 = array1.map((elm) => elm.ingredients[0].ingredient);
+  let ingredient1 = array1.map((elm) => elm.ingredients).flat().map(i => i.ingredient);
   let appareil1 = array1.map((elm) => elm.appliance);
-  let ustensile1 = array1.map((elm) => elm.ustensils);
-
+  let ustensile1 = array1.map((elm) => elm.ustensils).flat();
+  
   let curentElementAvailable = {
     ingredientsDisponible: ingredient1,
     appareilsDisponible: appareil1,
     ustensilesDisponible: ustensile1,
   };
+  console.log(curentElementAvailable.ingredientsDisponible)
+  console.log(curentElementAvailable.appareilsDisponible)
+  console.log(curentElementAvailable.ustesilesDisponible)
+  
   return curentElementAvailable;
 }
