@@ -1,13 +1,11 @@
 import "../assets/data/recipes";
 import { initTags } from "./tags";
-import { initSecondarySearch, secondarySearch } from "./secondarySearch";
+import { containerAppareil, containerIngredient, containerUstensil, initSecondarySearch, secondarySearch } from "./secondarySearch";
 import { recipes } from "../assets/data/recipes";
 import { Card } from "./class/card";
 import { search } from "./search";
+import { Data } from "./class/data";
 
-const arrayIngredients = [];
-const arrayUstensiles = [];
-const arrayAppareils = [];
 // algo 1
 
 /*test l'input utilisateur */
@@ -23,10 +21,21 @@ document.addEventListener("DOMContentLoaded", () => {
 	//initSecondarySearch();
 });
 
+
+
+  new Data(recipes).displayHtmlListAppliance();
+  new Data(recipes).displayHtmlListIngedient();
+  new Data(recipes).displayHtmlListUstensile();
+
+
 function displayCardBase(container) {
+  
 	recipes.forEach((recipe) => {
-		new Card(recipe).createCard(container);
+		new Card(recipe).createCard(container); 
+
 	});
+
+
 
 	const searchTerms = {
 		main: "",

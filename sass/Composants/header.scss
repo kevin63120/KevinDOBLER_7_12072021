@@ -156,22 +156,46 @@ ul {
   padding: 0;
   width: 100%;
 }
-li {
+// li {
+//   cursor: pointer;
+//   position: relative;
+//   margin-left: 0;
+//   text-decoration: none;
+//   list-style: none;
+// }
+.secondarySearch-item-ingredient-active {
+  display: block;
   cursor: pointer;
   position: relative;
   margin-left: 0;
   text-decoration: none;
   list-style: none;
 }
-.secondarySearch-item_1:hover {
+.secondarySearch-item-appareil-active {
+  display: block;
+  cursor: pointer;
+  position: relative;
+  margin-left: 0;
+  text-decoration: none;
+  list-style: none;
+}
+.secondarySearch-item-ustensiles-active {
+  display: block;
+  cursor: pointer;
+  position: relative;
+  margin-left: 0;
+  text-decoration: none;
+  list-style: none;
+}
+.secondarySearch-item-ingredient:hover {
   border-radius: 5px;
   background-color: darken($color: #3282f7, $amount: 30%);
 }
-.secondarySearch-item_2:hover {
+.secondarySearch-item-appareil:hover {
   background-color: darken($color: #68d9a4, $amount: 30%);
   border-radius: 5px;
 }
-.secondarySearch-item_3:hover {
+.secondarySearch-item-ustensiles:hover {
   background-color: darken($color: #ed6454, $amount: 30%);
   border-radius: 5px;
 }

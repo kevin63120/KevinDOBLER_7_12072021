@@ -6,13 +6,22 @@
   }
 
   export function testValue2(value){
-    let newArray = []
+    let newArray=[]
     if (!newArray.includes(value)) {
      newArray.push(value);
     }
     return newArray
   }
-
+  export function testArray(array){
+    let newArray=[];
+    array.map((elm)=>{
+      if(!newArray.includes(elm) || newArray.lenght === 0){
+        newArray.push(elm)
+      }
+      return newArray         
+    }
+    )}
+    
   export function warningMessageText(value , containerMessage, stringmessage) {
     let warningMessage ;
     console.log(value)
@@ -24,3 +33,6 @@
       containerMessage.innerHTML = `` 
     }
   }
+
+
+

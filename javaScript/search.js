@@ -12,6 +12,8 @@ import { activationIngredientSearch } from "./secondarySearch";
 import { activationAppareilSearch } from "./secondarySearch";
 import { activationUstensileSearch } from "./secondarySearch";
 import { resetSearch } from "./secondarySearch";
+import { objetForSecondarySearch } from "./secondarySearch"
+import { returnAllCurentElementSecondarySearch } from "./secondarySearch"
 
 
 const containerInput1 = document.querySelector(
@@ -80,7 +82,7 @@ function searchByReference(
       secondSearchByAppliance &&
       secondSearchByIngredient &&
       secondSearchByUstensils &&
-      (mainSearchByIngredient || mainSearchByDescription || mainSearchByName)
+      (mainSearchByIngredient || mainSearchByDescription || mainSearchByName) 
     ) {
       testvalue(data, dataDisplayArray);
     }
@@ -132,26 +134,12 @@ export function search(
       )
     );
 
-    document.addEventListener("click", (e) => {
-      switch (e.target) {
-        case inputIngredient:
-          console.log(objetForSecondarySearch.ingredientsDisponible)
-          activationIngredientSearch(objetForSecondarySearch.ingredientsDisponible);
-          break;
-        case inputUstensile:
-          console.log(objetForSecondarySearch.ustensilesDisponible)
-          activationUstensileSearch(objetForSecondarySearch.ustensilesDisponible);
-          break;
-        case inputApareil:
-          console.log(objetForSecondarySearch.appareilsDisponible)
-          activationAppareilSearch(objetForSecondarySearch.appareilsDisponible);
-          break;
-        default:
-          resetSearch();
-          break;
-      }
-    });
+    
   } else {
+
+   
+
+
     arrayReturn = searchByReference(
       "",
       datas,
@@ -172,19 +160,3 @@ export function search(
   );
 }
 
-function returnAllCurentElementSecondarySearch(array1) {
-  let ingredient1 = array1.map((elm) => elm.ingredients).flat().map(i => i.ingredient);
-  let appareil1 = array1.map((elm) => elm.appliance);
-  let ustensile1 = array1.map((elm) => elm.ustensils).flat();
-  
-  let curentElementAvailable = {
-    ingredientsDisponible: ingredient1,
-    appareilsDisponible: appareil1,
-    ustensilesDisponible: ustensile1,
-  };
-  console.log(curentElementAvailable.ingredientsDisponible)
-  console.log(curentElementAvailable.appareilsDisponible)
-  console.log(curentElementAvailable.ustesilesDisponible)
-  
-  return curentElementAvailable;
-}

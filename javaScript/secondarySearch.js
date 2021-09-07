@@ -3,6 +3,7 @@ import { testvalue } from "./testValueFunction";
 import { arrayUstensiles } from "./script";
 import { arrayIngredients } from "./script";
 import { arrayAppareils } from "./script";
+import { Data } from "./class/data";
 
 // je recupere une list par recherche
 //je la place a la place de mes recherche
@@ -29,21 +30,21 @@ export const containerUstensil = document.querySelector(".active-ustensile");
 
 
 const listIngredientSelected = document.querySelectorAll(
-	".secondarySearch-item_1"
+	".secondarySearch-item-ingredient"
 );
 const listApplianceSelected = document.querySelectorAll(
-	".secondarySearch-item_2"
+	".secondarySearch-item-appareil"
 );
 const listUstensiltSelected = document.querySelectorAll(
-	".secondarySearch-item_3"
+	".secondarySearch-item-ustensiles"
 );
 
 
 
 //  crée un nouveau tableau comtenant tout les élémént HTML à renvoyer
-// const returnIngredient = arrayIngredients.map((ingredient) => {return `<li class="secondarySearch-item_1 col-4">${ingredient}</li> `;  });
-// const returnAppareils = arrayAppareils.map((appareil) => {return `<li class="secondarySearch-item_2 col-4">${appareil}</li> `;});
-// const returnUstensiles = arrayUstensiles.map((ustensile) => {return `<li class="secondarySearch-item_3 col-4">${ustensile}</li> `;});
+// const returnIngredient = arrayIngredients.map((ingredient) => {return `<li class="secondarySearch-item-ingredient col-4">${ingredient}</li> `;  });
+// const returnAppareils = arrayAppareils.map((appareil) => {return `<li class="secondarySearch-item-appareil col-4">${appareil}</li> `;});
+// const returnUstensiles = arrayUstensiles.map((ustensile) => {return `<li class="secondarySearch-item-ustensiles col-4">${ustensile}</li> `;});
 
 function removeSecondSearch(rootElement) {
 	rootElement.innerHTML = "";
@@ -52,6 +53,23 @@ function removeSecondSearch(rootElement) {
 // les trois fonction displaySecondarySearch s'utilise aux moment d'un keyboard event user et modifie leurs valeur en fonction des disponibilité
 // dans le tableau qu'ils recoivent
 
+export function returnAllCurentElementSecondarySearch(array1) {
+	let ingredient1 = array1.map((elm) => elm.ingredients).flat().map(i => i.ingredient);
+	let appareil1 = array1.map((elm) => elm.appliance);
+	let ustensile1 = array1.map((elm) => elm.ustensils).flat();
+	
+	let curentElementAvailable = {
+	  ingredientsDisponible: ingredient1,
+	  appareilsDisponible: appareil1,
+	  ustensilesDisponible: ustensile1,
+	};
+	console.log(curentElementAvailable.ingredientsDisponible)
+	console.log(curentElementAvailable.appareilsDisponible)
+	console.log(curentElementAvailable.ustensilesDisponible)
+	
+	return curentElementAvailable;
+  }
+  
 export const displayUserSecondarySearchIgrendient = (e,arrayIngredientsInput) => {
 	let userInput = e.target.value.toLowerCase();
 	let modifyArray = arrayIngredientsInput
@@ -59,7 +77,7 @@ export const displayUserSecondarySearchIgrendient = (e,arrayIngredientsInput) =>
 			return ingredient.toLowerCase().includes(userInput);
 		})
 		.map((ingredient) => {
-			return `<li class="secondarySearch-item_1 col-4">${ingredient}</li> `;
+			return `<li class="secondarySearch-item-ingredient col-4">${ingredient}</li> `;
 		});
 	containerIngredient.innerHTML = modifyArray.join("");
 };
@@ -71,7 +89,7 @@ export const displayUserSecondarySearchAppareils = (e, arrayAppareilsInput) => {
 			return appareil.toLowerCase().includes(userInput);
 		})
 		.map((appareil) => {
-			return `<li class="secondarySearch-item_2 col-4">${appareil}</li> `;
+			return `<li class="secondarySearch-item-appareil col-4">${appareil}</li> `;
 		});
 	containerAppareil.innerHTML = modifyArray.join("");
 };
@@ -86,43 +104,41 @@ export const displayUserSecondarySearchUstensile = (
 			return ustensile.toLowerCase().includes(userInput);
 		})
 		.map((ustensil) => {
-			return `<li class="secondarySearch-item_3 col-4">${ustensil}</li> `;
+			return `<li class="secondarySearch-item-ustensiles col-4">${ustensil}</li> `;
 		});
 
 	containerUstensil.innerHTML = modifyArray.join("");
 };
 
+
+
+
+
+
 // les function activation active de base les élément de recheche secondaire aux clic et renvoix les données de base non modifié par un input user
-export let activationIngredientSearch = (returnIngredient) => {
-	const result = returnIngredient.map((elem) => {
-		return `<li class="secondarySearch-item_1 col-4">${elem}</li>`;
-	});
+export let activationIngredientSearch = () => {
 	containerInput1.classList.replace("col-lg-2", "col-lg-6");
 	containerInput2.classList.replace("col-lg-6", "col-lg-2");
 	containerInput3.classList.replace("col-lg-6", "col-lg-2");
-	containerIngredient.innerHTML = result;
 	removeSecondSearch(containerAppareil);
 	removeSecondSearch(containerUstensil);
 };
 
-export let activationUstensileSearch = (returnUstensiles) => {
-	console.log(returnUstensiles);
+export let activationUstensileSearch = () => {
+
 	containerInput1.classList.replace("col-lg-6", "col-lg-2");
 	containerInput2.classList.replace("col-lg-6", "col-lg-2");
 	containerInput3.classList.replace("col-lg-2", "col-lg-6");
-	containerUstensil.innerHTML = `<li class="secondarySearch-item_3 col-4">${returnUstensiles.join("")}</li>`;
+	
 	removeSecondSearch(containerIngredient);
 	removeSecondSearch(containerAppareil);
 };
 
-export let activationAppareilSearch = (returnAppareils) => {
-	const result = returnAppareils.map((elem) => {
-		`<li class="secondarySearch-item_2 col-4">${elem}</li>`;
-	});
+export let activationAppareilSearch = () => {
+	
 	containerInput1.classList.replace("col-lg-6", "col-lg-2");
 	containerInput2.classList.replace("col-lg-2", "col-lg-6");
 	containerInput3.classList.replace("col-lg-6", "col-lg-2");
-	containerAppareil.innerHTML = result.join('')
 	removeSecondSearch(containerIngredient);
 	removeSecondSearch(containerUstensil);
 };
@@ -150,4 +166,21 @@ export function resetSearch() {
 	removeSecondSearch(containerIngredient);
 	removeSecondSearch(containerAppareil);
 	removeSecondSearch(containerUstensil);
+	
 }
+document.addEventListener("click", (e) => {
+		switch (e.target) {
+		  case inputIngredient:
+			activationIngredientSearch();
+			break;
+		  case inputUstensile:
+			activationUstensileSearch();
+			break;
+		  case inputApareil:
+			activationAppareilSearch();
+			break;
+		  default:
+			resetSearch();
+			break;
+		}
+	  });

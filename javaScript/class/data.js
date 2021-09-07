@@ -1,43 +1,100 @@
 import { recipes } from "../../assets/data/recipes";
-import { testvalue, testValue2 } from "../testValueFunction";
+import { containerIngredient } from "../secondarySearch";
+import { testArray, testvalue, testValue2 } from "../testValueFunction";
 
-class Data {
+export class Data {
 	constructor(recipes) {
 		this.recipes = recipes;
 	}
 
-	displayHtmlListIngedient() {
-		const listIngredient = this.recipes
-			.map((elm) => elm.ingredients)
-			.flat()
-			.map((i) => i.ingredient);
-		const listIngredientFiltered = testValue2(listIngredient);
-		const HtmlResult = listIngredientFiltered.flat().map((result) => {
-			return `<li class="secondarySearch-item_1 col-4">${result}</li>`;
-		});
-
-		return HtmlResult;
+	displayHtmlListIngedient(ingredient = "") {
+		if (ingredient === "") {
+			const containerIngredient =
+				document.querySelector(".active-ingredient");
+			const listIngredientFiltered = [];
+			const listIngredient = this.recipes
+				.map((elm) => elm.ingredients)
+				.flat()
+				.map((elm) => {
+					let lower = elm.ingredient.toLowerCase();
+					return `<li class="secondarySearch-item-ingredient col-4">${lower}</li>`;
+				});
+			listIngredient.forEach((elm) => {
+				if (!listIngredientFiltered.includes(elm)) {
+					listIngredientFiltered.push(elm);
+				}
+			});
+			console.log(listIngredientFiltered);
+			containerIngredient.innerHTML = listIngredientFiltered
+				.sort()
+				.join("");
+		} else {
+			const listIngredient = ingredient.map((elm) => {
+				return `<li class="secondarySearch-item-ingredient col-4">${elm}</li>`;
+			});
+			containerIngredient.innerHTML = listIngredient;
+		}
 	}
 
-	displayHtmlListAppliance() {
-		const listAppliance = this.recipes.map((elm) => elm.appliance);
-		const listApplianceFiltered = testValue2(listAppliance);
-		const HtmlResult = listApplianceFiltered.map((elem) => {
-			`<li class="secondarySearch-item_2 col-4">${elem}</li>`;
-		});
-
-		return HtmlResult;
+	displayHtmlListAppliance(appliance = "") {
+		const containerAppareil = document.querySelector(".active-appareil");
+		if (appliance === "") {
+			const listApplianceFiltered = [];
+			const listAppliance = this.recipes.map((elm) => {
+				elm.appliance;
+				let lower = elm.appliance.toLowerCase();
+				return `<li class="secondarySearch-item-appareil col-4">${lower}</li>`;
+			});
+			listAppliance.forEach((elm) => {
+				if (!listApplianceFiltered.includes(elm)) {
+					listApplianceFiltered.push(elm);
+				}
+			});
+			containerAppareil.innerHTML = listApplianceFiltered.join("");
+		} else {
+			const listApplianceFiltered = [];
+			const listAppliance = appliance.map((elm) => {
+				let lower = elm.toLocaleLowerCase();
+				return `<li class="secondarySearch-item-appareil col-4">${lower}</li>`;
+			});
+			listAppliance.forEach((elm) => {
+				if (!listApplianceFiltered.includes(elm)) {
+					listApplianceFiltered.push(elm);
+				}
+			});
+			containerAppareil.innerHTML = listApplianceFiltered.join("");
+		}
 	}
 
-	displayHtmlListUstensile() {
-		const listUstensile = this.recipes.map((elm) => elm.ustensile);
-		const listUstensileFiltered = testValue2(listUstensile);
-		const HtmlResult = listUstensileFiltered.map((elem) => {
-			`<li class="secondarySearch-item_3 col-4">${elem}</li>`;
-		});
+	displayHtmlListUstensile(ustensile = "") {
+		const containerUstensile = document.querySelector(".active-ustensile");
+		if(ustensile === ""){
+			const listUstensile = this.recipes.map((elm) =>
+				elm.ustensils.flat().map((elm) => {
+					let lower = elm.toLowerCase();
+					return `<li class="secondarySearch-item-ustensiles col-4">${lower}</li>`;
+				})
+			);
+			const listUstensileFiltered = [];
+			listUstensile.flat().forEach((element) => {
+				if (!listUstensileFiltered.includes(element)) {
+					listUstensileFiltered.push(element);
+				}
+			});
+			containerUstensile.innerHTML = listUstensileFiltered.join("");
+		}else{
+            const listUstensileFiltered = [];
+            const listUstensile = ustensile.map((elm)=>{
+                let lower = elm.toLowerCase()
+                return  `<li class="secondarySearch-item-ustensiles col-4">${lower}</li>`;
+            })
+            listUstensile.forEach((elm)=>{
+                if(!listUstensileFiltered.includes(elm)){
+                    listUstensileFiltered.push(elm);
+                }
+            containerUstensile.innerHTML = listUstensileFiltered
+            })
 
-		return HtmlResult;
+        }
 	}
 }
-
-let html1 = new Data(recipes).displayHtmlListIngedient();
