@@ -144,7 +144,7 @@ export let activationAppareilSearch = () => {
 };
 
 export function resetSearch() {
-	if (
+	/*if (
 		containerInput1.classList === "col-6" ||
 		containerInput3.classList === "col-6" ||
 		containerInput3.classList === "col-6"
@@ -166,7 +166,7 @@ export function resetSearch() {
 	removeSecondSearch(containerIngredient);
 	removeSecondSearch(containerAppareil);
 	removeSecondSearch(containerUstensil);
-	
+	*/
 }
 document.addEventListener("click", (e) => {
 		switch (e.target) {

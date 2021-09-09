@@ -1,5 +1,5 @@
 import { recipes } from "../../assets/data/recipes";
-import { containerIngredient } from "../secondarySearch";
+import { containerIngredient, containerAppareil, containerUstensil } from "../secondarySearch";
 import { testArray, testvalue, testValue2 } from "../testValueFunction";
 
 export class Data {
@@ -98,3 +98,6 @@ export class Data {
         }
 	}
 }
+
+
+

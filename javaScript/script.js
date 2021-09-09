@@ -23,9 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-  new Data(recipes).displayHtmlListAppliance();
-  new Data(recipes).displayHtmlListIngedient();
-  new Data(recipes).displayHtmlListUstensile();
+
 
 
 function displayCardBase(container) {

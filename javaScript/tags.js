@@ -11,6 +11,8 @@ export function initTags() {
   const inputSecondarySearchUstensil = document.querySelector(
     "#dataListSecondarySearch3"
   );
+  const tagIngredientOnListBaseHtml = document.querySelectorAll(".secondarySearch-item-ingredient ");
+
 
   let tagsDisplay = [];
 
@@ -52,7 +54,12 @@ export function initTags() {
     }
   }
 
-  inputSecondarySearchIngredient.addEventListener("keyup", displayTag);
+  tagIngredientOnListBaseHtml.forEach((tag)=>{
+    document.addEventListener("click", (e)=>{
+      value =  e.target.value;
+      console.log(value)
+    });
+  })
   inputSecondarySearchAppliance.addEventListener("keyup", displayTag);
   inputSecondarySearchUstensil.addEventListener("keyup", displayTag);
 }

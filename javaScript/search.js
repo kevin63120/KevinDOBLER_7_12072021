@@ -3,7 +3,6 @@ import { recipes } from "../assets/data/recipes";
 import { Card } from "./class/card";
 import { Data } from "./class/data"
 import { testvalue } from "./testValueFunction";
-import { testValue2 } from "./testValueFunction";
 import { warningMessageText } from "./testValueFunction";
 import { containerIngredient, displayUserSecondarySearchIgrendient } from "./secondarySearch";
 import { displayUserSecondarySearchUstensile } from "./secondarySearch";
@@ -30,6 +29,21 @@ const inputIngredient = document.querySelector("#dataListSecondarySearch1");
 const inputApareil = document.querySelector("#dataListSecondarySearch2");
 const inputUstensile = document.querySelector("#dataListSecondarySearch3");
 
+inputIngredient.addEventListener("click", () =>{
+  new Data(recipes).displayHtmlListIngedient()
+}
+);
+inputApareil.addEventListener("click", () =>
+{
+  new Data(recipes).displayHtmlListAppliance()
+}
+);
+
+inputUstensile.addEventListener("click", () =>{
+ new Data(recipes).displayHtmlListUstensile()
+}
+);
+
 function removeCard() {
   const articles = document.querySelectorAll("article");
 
@@ -38,6 +52,7 @@ function removeCard() {
     article.remove();
   });
 }
+
 
 
 function searchByReference(
@@ -84,7 +99,9 @@ function searchByReference(
       secondSearchByUstensils &&
       (mainSearchByIngredient || mainSearchByDescription || mainSearchByName) 
     ) {
-      testvalue(data, dataDisplayArray);
+     dataDisplayArray.push(data)
+     new Data().displayHtmlListIngedient(ingredient)
+  
     }
   });
 
@@ -113,31 +130,35 @@ export function search(
 
     const objetForSecondarySearch = returnAllCurentElementSecondarySearch(arrayReturn);
     
-    inputIngredient.addEventListener("keyup", (e) =>
-      displayUserSecondarySearchIgrendient(
-        e,
-        objetForSecondarySearch.ingredientsDisponible
-      )
+      inputIngredient.addEventListener("click", (e) =>{
+     //   new Data().displayHtmlListIngedient(objetForSecondarySearch.ingredientsDisponible)
+      }
+     // displayUserSecondarySearchIgrendient( e,objetForSecondarySearch.ingredientsDisponible)
     );
 
-    inputApareil.addEventListener("keyup", (e) =>
-      displayUserSecondarySearchAppareils(
-        e,
-        objetForSecondarySearch.appareilsDisponible
-      )
+    inputApareil.addEventListener("click", (e) =>
+      {/*new Data().displayHtmlListAppliance(objetForSecondarySearch.appareilsDisponible)*/}
+      //displayUserSecondarySearchAppareils( e,objetForSecondarySearch.appareilsDisponible)
     );
 
-    inputUstensile.addEventListener("keyup", (e) =>
-      displayUserSecondarySearchUstensile(
-        e,
-        objetForSecondarySearch.ustensilesDisponible
-      )
+    inputUstensile.addEventListener("click", (e) =>{}
+     // displayUserSecondarySearchUstensile(e, objetForSecondarySearch.ustensilesDisponible)
+    );
+
+    inputIngredient.addEventListener("keyup", (e) =>{displayUserSecondarySearchIgrendient(e, objetForSecondarySearch.ingredientsDisponible)}
+      
+    );
+
+    inputApareil.addEventListener("keyup", (e) =>{displayUserSecondarySearchAppareils(e, objetForSecondarySearch.appareilsDisponible)}
+      
+    );
+
+    inputUstensile.addEventListener("keyup", (e) =>{displayUserSecondarySearchUstensile(e, objetForSecondarySearch.ustensilesDisponible)}
+      
     );
 
     
   } else {
-
-   
 
 
     arrayReturn = searchByReference(
@@ -147,8 +168,28 @@ export function search(
       searchSecondaryUstensils,
       searchSecondaryIngredient
     );
-    returnAllCurentElementSecondarySearch(arrayReturn);
+    
   }
+
+
+  const objetForSecondarySearch = returnAllCurentElementSecondarySearch(arrayReturn);
+  console.log(objetForSecondarySearch)
+  
+
+
+
+  inputIngredient.addEventListener("keyup", (e) =>{displayUserSecondarySearchIgrendient(e, objetForSecondarySearch.ingredientsDisponible)}
+    
+  );
+
+  inputApareil.addEventListener("keyup", (e) =>{displayUserSecondarySearchAppareils(e, objetForSecondarySearch.appareilsDisponible)}
+    
+  );
+
+  inputUstensile.addEventListener("keyup", (e) =>{displayUserSecondarySearchUstensile(e, objetForSecondarySearch.ustensilesDisponible)}
+    
+  );
+
 
   arrayReturn.forEach((elementReturn) => {
     new Card(elementReturn).createCard(containerCard);
@@ -158,5 +199,7 @@ export function search(
     containerWarningMessage,
     'aucune recette corespondante, essayé "coco", "oeuf" '
   );
+
+  
 }
 
