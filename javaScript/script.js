@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	displayCardBase(containerCart);
 	initTags();
 	//initSecondarySearch();
+
 });
 
 

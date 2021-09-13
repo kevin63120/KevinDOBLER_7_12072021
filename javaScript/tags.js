@@ -55,7 +55,7 @@ export function initTags() {
   }
 
   tagIngredientOnListBaseHtml.forEach((tag)=>{
-    document.addEventListener("click", (e)=>{
+    tag.addEventListener("click", (e)=>{
       value =  e.target.value;
       console.log(value)
     });
@@ -73,3 +73,5 @@ tags.forEach((tag) => {
     }
   });
 });
+
+

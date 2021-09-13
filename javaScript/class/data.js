@@ -1,6 +1,8 @@
-import { recipes } from "../../assets/data/recipes";
-import { containerIngredient, containerAppareil, containerUstensil } from "../secondarySearch";
-import { testArray, testvalue, testValue2 } from "../testValueFunction";
+import {
+	containerIngredient,
+	containerAppareil,
+	containerUstensil,
+} from "../secondarySearch";
 
 export class Data {
 	constructor(recipes) {
@@ -24,7 +26,6 @@ export class Data {
 					listIngredientFiltered.push(elm);
 				}
 			});
-			console.log(listIngredientFiltered);
 			containerIngredient.innerHTML = listIngredientFiltered
 				.sort()
 				.join("");
@@ -68,7 +69,7 @@ export class Data {
 
 	displayHtmlListUstensile(ustensile = "") {
 		const containerUstensile = document.querySelector(".active-ustensile");
-		if(ustensile === ""){
+		if (ustensile === "") {
 			const listUstensile = this.recipes.map((elm) =>
 				elm.ustensils.flat().map((elm) => {
 					let lower = elm.toLowerCase();
@@ -82,22 +83,18 @@ export class Data {
 				}
 			});
 			containerUstensile.innerHTML = listUstensileFiltered.join("");
-		}else{
-            const listUstensileFiltered = [];
-            const listUstensile = ustensile.map((elm)=>{
-                let lower = elm.toLowerCase()
-                return  `<li class="secondarySearch-item-ustensiles col-4">${lower}</li>`;
-            })
-            listUstensile.forEach((elm)=>{
-                if(!listUstensileFiltered.includes(elm)){
-                    listUstensileFiltered.push(elm);
-                }
-            containerUstensile.innerHTML = listUstensileFiltered
-            })
-
-        }
+		} else {
+			const listUstensileFiltered = [];
+			const listUstensile = ustensile.map((elm) => {
+				let lower = elm.toLowerCase();
+				return `<li class="secondarySearch-item-ustensiles col-4">${lower}</li>`;
+			});
+			listUstensile.forEach((elm) => {
+				if (!listUstensileFiltered.includes(elm)) {
+					listUstensileFiltered.push(elm);
+				}
+				containerUstensile.innerHTML = listUstensileFiltered;
+			});
+		}
 	}
 }
-
-
-
