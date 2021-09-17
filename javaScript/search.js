@@ -16,6 +16,7 @@ import { activationUstensileSearch } from "./secondarySearch";
 import { resetSearch } from "./secondarySearch";
 import { objetForSecondarySearch } from "./secondarySearch";
 import { returnAllCurentElementSecondarySearch } from "./secondarySearch";
+import { initTags } from "./tags";
 
 const containerInput1 = document.querySelector(
 	".header_searchbar-secondarySearchContainer1"
@@ -90,16 +91,7 @@ function searchByReference(
 		) {
 			dataDisplayArray.push(data);
 		} else {
-			// inputIngredient.addEventListener("click", () => {
-			// 	new Data(recipes).displayHtmlListIngedient();
-			// });
-			// inputApareil.addEventListener("click", () => {
-			// 	new Data(recipes).displayHtmlListAppliance();
-			// });
-
-			// inputUstensile.addEventListener("click", () => {
-			// 	new Data(recipes).displayHtmlListUstensile();
-			// });
+			
 		}
 	});
 
@@ -126,6 +118,7 @@ export function search(
 			searchSecondaryIngredient
 		);
 
+		
 		const objetForSecondarySearch =
 			returnAllCurentElementSecondarySearch(arrayReturn);
 
@@ -134,6 +127,7 @@ export function search(
 				e,
 				objetForSecondarySearch.ingredientsDisponible
 			);
+			initTags()
 		});
 
 		inputApareil.addEventListener("keyup", (e) => {
@@ -141,6 +135,7 @@ export function search(
 				e,
 				objetForSecondarySearch.appareilsDisponible
 			);
+			initTags()
 		});
 
 		inputUstensile.addEventListener("keyup", (e) => {
@@ -148,12 +143,14 @@ export function search(
 				e,
 				objetForSecondarySearch.ustensilesDisponible
 			);
+			initTags()
 		});
-    inputIngredient.addEventListener("click", (e) => {
+    inputIngredient.addEventListener("click ", (e) => {
 			displayUserSecondarySearchIgrendient(
 				e,
 				objetForSecondarySearch.ingredientsDisponible
 			);
+			initTags()
 		});
 
 		inputApareil.addEventListener("click", (e) => {
@@ -161,6 +158,7 @@ export function search(
 				e,
 				objetForSecondarySearch.appareilsDisponible
 			);
+			initTags()
 		});
 
 		inputUstensile.addEventListener("click", (e) => {
@@ -168,6 +166,7 @@ export function search(
 				e,
 				objetForSecondarySearch.ustensilesDisponible
 			);
+			initTags()
 		});
     
     
@@ -192,6 +191,7 @@ export function search(
 			e,
 			objetForSecondarySearch.ingredientsDisponible
 		);
+		initTags()
 	});
 
 	inputApareil.addEventListener("keyup", (e) => {
@@ -199,6 +199,7 @@ export function search(
 			e,
 			objetForSecondarySearch.appareilsDisponible
 		);
+		initTags()
 	});
 
 	inputUstensile.addEventListener("keyup", (e) => {
@@ -206,12 +207,14 @@ export function search(
 			e,
 			objetForSecondarySearch.ustensilesDisponible
 		);
+		initTags()
 	});
   inputIngredient.addEventListener("click", (e) => {
     displayUserSecondarySearchIgrendient(
       e,
       objetForSecondarySearch.ingredientsDisponible
     );
+	initTags()
   });
 
   inputApareil.addEventListener("click", (e) => {
@@ -219,6 +222,7 @@ export function search(
       e,
       objetForSecondarySearch.appareilsDisponible
     );
+	initTags()
   });
 
   inputUstensile.addEventListener("click", (e) => {
@@ -226,6 +230,7 @@ export function search(
       e,
       objetForSecondarySearch.ustensilesDisponible
     );
+	initTags()
   });
 
 	arrayReturn.forEach((elementReturn) => {

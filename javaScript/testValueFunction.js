@@ -14,10 +14,12 @@
   }
   export function testArray(array){
     let newArray=[];
-    array.map((elm)=>{
-      if(!newArray.includes(elm) || newArray.lenght === 0){
+    array.array.forEach(element => {
+      
+    });((elm)=>{
+      if(!newArray.includes(elm)){
         newArray.push(elm)
-      }
+      }else
       return newArray         
     }
     )}
@@ -33,6 +35,4 @@
       containerMessage.innerHTML = `` 
     }
   }
-
-
 

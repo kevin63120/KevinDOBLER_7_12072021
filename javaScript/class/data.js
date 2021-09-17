@@ -35,6 +35,7 @@ export class Data {
 			});
 			containerIngredient.innerHTML = listIngredient;
 		}
+		return this
 	}
 
 	displayHtmlListAppliance(appliance = "") {
@@ -65,6 +66,7 @@ export class Data {
 			});
 			containerAppareil.innerHTML = listApplianceFiltered.join("");
 		}
+		return this
 	}
 
 	displayHtmlListUstensile(ustensile = "") {
@@ -96,5 +98,6 @@ export class Data {
 				containerUstensile.innerHTML = listUstensileFiltered;
 			});
 		}
+		return this
 	}
 }

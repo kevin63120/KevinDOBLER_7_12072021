@@ -46,8 +46,15 @@ const listUstensiltSelected = document.querySelectorAll(
 // const returnAppareils = arrayAppareils.map((appareil) => {return `<li class="secondarySearch-item-appareil col-4">${appareil}</li> `;});
 // const returnUstensiles = arrayUstensiles.map((ustensile) => {return `<li class="secondarySearch-item-ustensiles col-4">${ustensile}</li> `;});
 
-function removeSecondSearch(rootElement) {
-	rootElement.innerHTML = "";
+function hideSecondSearch(rootElement) {
+	rootElement.style.display = "none";
+
+	// changer le remove pour un Hide et modifier la classe css
+}
+function appearSecondSearch(rootElement) {
+	rootElement.style.display = "flex";
+
+	// changer le remove pour un Hide et modifier la classe css
 }
 
 // les trois fonction displaySecondarySearch s'utilise aux moment d'un keyboard event user et modifie leurs valeur en fonction des disponibilité
@@ -57,16 +64,13 @@ export function returnAllCurentElementSecondarySearch(array1) {
 	let ingredient1 = array1.map((elm) => elm.ingredients).flat().map(i => i.ingredient);
 	let appareil1 = array1.map((elm) => elm.appliance);
 	let ustensile1 = array1.map((elm) => elm.ustensils).flat();
-	
+
 	let curentElementAvailable = {
 	  ingredientsDisponible: ingredient1,
 	  appareilsDisponible: appareil1,
 	  ustensilesDisponible: ustensile1,
 	};
-	console.log(curentElementAvailable.ingredientsDisponible)
-	console.log(curentElementAvailable.appareilsDisponible)
-	console.log(curentElementAvailable.ustensilesDisponible)
-	
+
 	return curentElementAvailable;
   }
   
@@ -106,7 +110,6 @@ export const displayUserSecondarySearchUstensile = (
 		.map((ustensil) => {
 			return `<li class="secondarySearch-item-ustensiles col-4">${ustensil}</li> `;
 		});
-
 	containerUstensil.innerHTML = modifyArray.join("");
 };
 
@@ -120,8 +123,10 @@ export let activationIngredientSearch = () => {
 	containerInput1.classList.replace("col-lg-2", "col-lg-6");
 	containerInput2.classList.replace("col-lg-6", "col-lg-2");
 	containerInput3.classList.replace("col-lg-6", "col-lg-2");
-	removeSecondSearch(containerAppareil);
-	removeSecondSearch(containerUstensil);
+	
+	appearSecondSearch(containerIngredient)
+	hideSecondSearch(containerAppareil);
+	hideSecondSearch(containerUstensil);
 };
 
 export let activationUstensileSearch = () => {
@@ -129,9 +134,9 @@ export let activationUstensileSearch = () => {
 	containerInput1.classList.replace("col-lg-6", "col-lg-2");
 	containerInput2.classList.replace("col-lg-6", "col-lg-2");
 	containerInput3.classList.replace("col-lg-2", "col-lg-6");
-	
-	removeSecondSearch(containerIngredient);
-	removeSecondSearch(containerAppareil);
+	appearSecondSearch(containerUstensil)
+	hideSecondSearch(containerIngredient);
+	hideSecondSearch(containerAppareil);
 };
 
 export let activationAppareilSearch = () => {
@@ -139,19 +144,20 @@ export let activationAppareilSearch = () => {
 	containerInput1.classList.replace("col-lg-6", "col-lg-2");
 	containerInput2.classList.replace("col-lg-2", "col-lg-6");
 	containerInput3.classList.replace("col-lg-6", "col-lg-2");
-	removeSecondSearch(containerIngredient);
-	removeSecondSearch(containerUstensil);
+	appearSecondSearch(containerAppareil)
+	hideSecondSearch(containerIngredient);
+	hideSecondSearch(containerUstensil);
 };
 
 export function resetSearch() {
-	/*if (
-		containerInput1.classList === "col-6" ||
-		containerInput3.classList === "col-6" ||
-		containerInput3.classList === "col-6"
+	if (
+		containerInput1.classList === "col-lg-6" ||
+		containerInput3.classList === "col-lg-6" ||
+		containerInput3.classList === "col-lg-6"
 	) {
-		containerInput1.classList.replace("col-6", "col-2");
-		containerInput2.classList.replace("col-6", "col-2");
-		containerInput3.classList.replace("col-6", "col-2");
+		containerInput1.classList.replace("col-lg-6", "col-lg-2");
+		containerInput2.classList.replace("col-lg-6", "col-lg-2");
+		containerInput3.classList.replace("col-lg-6", "col-lg-2");
 	}
 	if (
 		containerInput1.classList === "col-10" ||
@@ -163,10 +169,10 @@ export function resetSearch() {
 		containerInput3.classList.replace("col-10", "col-2");
 	}
 
-	removeSecondSearch(containerIngredient);
-	removeSecondSearch(containerAppareil);
-	removeSecondSearch(containerUstensil);
-	*/
+	hideSecondSearch(containerIngredient);
+	hideSecondSearch(containerAppareil);
+	hideSecondSearch(containerUstensil);
+	
 }
 document.addEventListener("click", (e) => {
 		switch (e.target) {

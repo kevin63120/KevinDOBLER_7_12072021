@@ -18,14 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const containerCart = document.querySelector(".card-container");
 	displayCardBase(containerCart);
 	initTags();
-	//initSecondarySearch();
-
 });
-
-
-
-
-
 
 function displayCardBase(container) {
   
@@ -33,8 +26,6 @@ function displayCardBase(container) {
 		new Card(recipe).createCard(container); 
 
 	});
-
-
 
 	const searchTerms = {
 		main: "",
@@ -68,6 +59,28 @@ function displayCardBase(container) {
 	});
 
 	inputUstensile.addEventListener("keyup", (e) => {
+		const curentInput = e.target.value;
+		searchTerms.ustensile = curentInput;
+		searchByTerms();
+	});
+	input.addEventListener("click", (e) => {
+		const curentInput = e.target.value;
+		searchTerms.main = curentInput;
+		searchByTerms();
+	});
+
+	inputApareil.addEventListener("click", (e) => {
+		const curentInput = e.target.value;
+		searchTerms.appareil = curentInput;
+		searchByTerms();
+	});
+	inputIngredient.addEventListener("click", (e) => {
+		const curentInput = e.target.value;
+		searchTerms.ingredient = curentInput;
+		searchByTerms();
+	});
+
+	inputUstensile.addEventListener("click", (e) => {
 		const curentInput = e.target.value;
 		searchTerms.ustensile = curentInput;
 		searchByTerms();
