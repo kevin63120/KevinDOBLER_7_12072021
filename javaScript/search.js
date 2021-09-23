@@ -18,19 +18,13 @@ import { objetForSecondarySearch } from "./secondarySearch";
 import { returnAllCurentElementSecondarySearch } from "./secondarySearch";
 import { initTags } from "./tags";
 
-const containerInput1 = document.querySelector(
-	".header_searchbar-secondarySearchContainer1"
-);
-const containerInput2 = document.querySelector(
-	".header_searchbar-secondarySearchContainer2"
-);
-const containerInput3 = document.querySelector(
-	".header_searchbar-secondarySearchContainer3"
-);
+//global DOM Selection Items
 
 const inputIngredient = document.querySelector("#dataListSecondarySearch1");
 const inputApareil = document.querySelector("#dataListSecondarySearch2");
 const inputUstensile = document.querySelector("#dataListSecondarySearch3");
+
+
 
 function removeCard() {
 	const articles = document.querySelectorAll("article");
@@ -41,15 +35,18 @@ function removeCard() {
 	});
 }
 
+// first algo search 
 function searchByReference(
 	userInput = null,
 	datas,
 	searchSecondaryAppliance = "",
 	searchSecondaryUstensils = "",
-	searchSecondaryIngredient = ""
+	searchSecondaryIngredient = "",
+	tags = []
 ) {
 	let userInputModify = userInput.toLowerCase();
 	const dataDisplayArray = [];
+	
 
 	datas.forEach((data) => {
 		const ingredient = data.ingredients.map(
@@ -81,33 +78,44 @@ function searchByReference(
 			.join(" ")
 			.toLowerCase()
 			.includes(searchSecondaryIngredient);
+		
+		const secondeSearchByTag = tags.map(tag =>  ingredient.includes(tag))
+		//const searchByTagIngredient = tags.map(tag=> {return ingredient.join("").toLowerCase().includes(tag)})
+		//const searchByTagAppliance = data.appliance.toLowerCase().includes(tag);
+		//const searchByTagUstensile = data.ustensils.join("").toLowerCase().includes(tag);
+
 		if (
 			secondSearchByAppliance &&
 			secondSearchByIngredient &&
 			secondSearchByUstensils &&
+			secondeSearchByTag &&
+			// searchByTagUstensile&&
+			// searchByTagAppliance &&
 			(mainSearchByIngredient ||
 				mainSearchByDescription ||
 				mainSearchByName)
 		) {
 			dataDisplayArray.push(data);
-		} else {
-			
-		}
+		} 
 	});
 
 	return dataDisplayArray;
 }
 
+//Global Search function 
 export function search(
 	userInput,
 	datas,
 	searchSecondaryAppliance = "",
 	searchSecondaryUstensils = "",
-	searchSecondaryIngredient = ""
+	searchSecondaryIngredient = "",
+	tags = []
 ) {
 	const containerCard = document.querySelector(".card-container");
 	const containerWarningMessage = document.querySelector(".warning");
 	let arrayReturn;
+	
+
 	removeCard();
 	if (userInput.length >= 3) {
 		arrayReturn = searchByReference(
@@ -115,7 +123,8 @@ export function search(
 			datas,
 			searchSecondaryAppliance,
 			searchSecondaryUstensils,
-			searchSecondaryIngredient
+			searchSecondaryIngredient,
+			tags
 		);
 
 		
@@ -178,14 +187,15 @@ export function search(
 			datas,
 			searchSecondaryAppliance,
 			searchSecondaryUstensils,
-			searchSecondaryIngredient
+			searchSecondaryIngredient,
+			tags
 		);
 	}
 
 	const objetForSecondarySearch =
 		returnAllCurentElementSecondarySearch(arrayReturn);
 	console.log(objetForSecondarySearch);
-
+	console.log(tags)
 	inputIngredient.addEventListener("keyup", (e) => {
 		displayUserSecondarySearchIgrendient(
 			e,

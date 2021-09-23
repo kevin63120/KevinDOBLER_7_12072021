@@ -70,7 +70,7 @@ export function returnAllCurentElementSecondarySearch(array1) {
 	  appareilsDisponible: appareil1,
 	  ustensilesDisponible: ustensile1,
 	};
-
+	console.log(curentElementAvailable)
 	return curentElementAvailable;
   }
   
@@ -149,9 +149,9 @@ export let activationAppareilSearch = () => {
 	hideSecondSearch(containerUstensil);
 };
 
-export function resetSearch() {
+function resetSearch() {
 	if (
-		containerInput1.classList === "col-lg-6" ||
+		containerInput1.classlist=== "col-lg-6" ||
 		containerInput3.classList === "col-lg-6" ||
 		containerInput3.classList === "col-lg-6"
 	) {
