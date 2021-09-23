@@ -39,10 +39,10 @@ function removeCard() {
 function searchByReference(
 	userInput = null,
 	datas,
-	searchSecondaryAppliance = "",
-	searchSecondaryUstensils = "",
-	searchSecondaryIngredient = "",
-	tags = []
+	searchSecondaryAppliance = [],
+	searchSecondaryUstensils = [],
+	searchSecondaryIngredient = [],
+	//tags = []
 ) {
 	let userInputModify = userInput.toLowerCase();
 	const dataDisplayArray = [];
@@ -79,7 +79,8 @@ function searchByReference(
 			.toLowerCase()
 			.includes(searchSecondaryIngredient);
 		
-		const secondeSearchByTag = tags.map(tag =>  ingredient.includes(tag))
+		//const secondeSearchByTag = tags.filter(tag =>  ingredient.includes(tag))
+	//	console.log(secondeSearchByTag)
 		//const searchByTagIngredient = tags.map(tag=> {return ingredient.join("").toLowerCase().includes(tag)})
 		//const searchByTagAppliance = data.appliance.toLowerCase().includes(tag);
 		//const searchByTagUstensile = data.ustensils.join("").toLowerCase().includes(tag);
@@ -88,7 +89,7 @@ function searchByReference(
 			secondSearchByAppliance &&
 			secondSearchByIngredient &&
 			secondSearchByUstensils &&
-			secondeSearchByTag &&
+			//secondeSearchByTag &&
 			// searchByTagUstensile&&
 			// searchByTagAppliance &&
 			(mainSearchByIngredient ||
@@ -106,10 +107,9 @@ function searchByReference(
 export function search(
 	userInput,
 	datas,
-	searchSecondaryAppliance = "",
-	searchSecondaryUstensils = "",
-	searchSecondaryIngredient = "",
-	tags = []
+	searchSecondaryAppliance = [],
+	searchSecondaryUstensils = [],
+	searchSecondaryIngredient = [],
 ) {
 	const containerCard = document.querySelector(".card-container");
 	const containerWarningMessage = document.querySelector(".warning");
@@ -124,7 +124,6 @@ export function search(
 			searchSecondaryAppliance,
 			searchSecondaryUstensils,
 			searchSecondaryIngredient,
-			tags
 		);
 
 		
@@ -188,14 +187,12 @@ export function search(
 			searchSecondaryAppliance,
 			searchSecondaryUstensils,
 			searchSecondaryIngredient,
-			tags
 		);
 	}
 
 	const objetForSecondarySearch =
 		returnAllCurentElementSecondarySearch(arrayReturn);
 	console.log(objetForSecondarySearch);
-	console.log(tags)
 	inputIngredient.addEventListener("keyup", (e) => {
 		displayUserSecondarySearchIgrendient(
 			e,

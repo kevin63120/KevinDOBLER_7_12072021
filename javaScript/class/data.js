@@ -19,7 +19,7 @@ export class Data {
 				.flat()
 				.map((elm) => {
 					let lower = elm.ingredient.toLowerCase();
-					return `<li class="secondarySearch-item-ingredient col-4">${lower}</li>`;
+					return `<li class="secondarySearch-item-ingredient col-4" id = "ingredient-item">${lower}</li>`;
 				});
 			listIngredient.forEach((elm) => {
 				if (!listIngredientFiltered.includes(elm)) {
@@ -31,7 +31,7 @@ export class Data {
 				.join("");
 		} else {
 			const listIngredient = ingredient.map((elm) => {
-				return `<li class="secondarySearch-item-ingredient col-4">${elm}</li>`;
+				return `<li class="secondarySearch-item-ingredient col-4" id = "ingredient-item">${elm}</li>`;
 			});
 			containerIngredient.innerHTML = listIngredient;
 		}
@@ -45,7 +45,7 @@ export class Data {
 			const listAppliance = this.recipes.map((elm) => {
 				elm.appliance;
 				let lower = elm.appliance.toLowerCase();
-				return `<li class="secondarySearch-item-appareil col-4">${lower}</li>`;
+				return `<li class="secondarySearch-item-appareil col-4 " id = "appliance-item">${lower}</li>`;
 			});
 			listAppliance.forEach((elm) => {
 				if (!listApplianceFiltered.includes(elm)) {
@@ -57,7 +57,7 @@ export class Data {
 			const listApplianceFiltered = [];
 			const listAppliance = appliance.map((elm) => {
 				let lower = elm.toLocaleLowerCase();
-				return `<li class="secondarySearch-item-appareil col-4">${lower}</li>`;
+				return `<li class="secondarySearch-item-appareil  col-4 " id="appliance-item">${lower}</li>`;
 			});
 			listAppliance.forEach((elm) => {
 				if (!listApplianceFiltered.includes(elm)) {
@@ -75,7 +75,7 @@ export class Data {
 			const listUstensile = this.recipes.map((elm) =>
 				elm.ustensils.flat().map((elm) => {
 					let lower = elm.toLowerCase();
-					return `<li class="secondarySearch-item-ustensiles col-4">${lower}</li>`;
+					return `<li class="secondarySearch-item-ustensiles col-4" id = "ustensile-item">${lower}</li>`;
 				})
 			);
 			const listUstensileFiltered = [];
@@ -89,7 +89,7 @@ export class Data {
 			const listUstensileFiltered = [];
 			const listUstensile = ustensile.map((elm) => {
 				let lower = elm.toLowerCase();
-				return `<li class="secondarySearch-item-ustensiles col-4">${lower}</li>`;
+				return `<li class="secondarySearch-item-ustensiles col-4  id = "ustensile-item"">${lower}</li>`;
 			});
 			listUstensile.forEach((elm) => {
 				if (!listUstensileFiltered.includes(elm)) {

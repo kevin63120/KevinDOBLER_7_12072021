@@ -1,10 +1,10 @@
-import "../assets/data/recipes";
 import { initTags } from "./tags";
 import { recipes } from "../assets/data/recipes";
 import { Card } from "./class/card";
 import { search } from "./search";
 import {removeTags} from "./tags";
 import {tagsDisplay} from "./tags";
+import { searchByTerms, searchTerms } from "./terms";
 
 
 // algo 1
@@ -32,21 +32,15 @@ function displayCardBase(container) {
 
 	});
 
-	const searchTerms = {
-		main: "",
-		appareil: "",
-		ingredient: "",
-		ustensile: "",
-		tags:[],
-	};
+	
     
     document.addEventListener("click", (e)=>{
 		let value = e.target.innerHTML
 		if(value === searchTerms.tag){
 			removeTags()
 		}
-		searchTerms.tags = tagsDisplay
-	    console.log(searchTerms.tags)
+		//searchTerms.tags = tagsDisplay
+	    //console.log(searchTerms.tags)
 	})
 	
 
@@ -64,21 +58,20 @@ function displayCardBase(container) {
 		searchTerms.main = curentInput;
 		searchByTerms();
 	});
-
 	inputApareil.addEventListener("keyup", (e) => {
 		const curentInput = e.target.value;
-		searchTerms.appareil = curentInput;
+		//searchTerms.appareil = curentInput;
 		searchByTerms();
 	});
 	inputIngredient.addEventListener("keyup", (e) => {
 		const curentInput = e.target.value;
-		searchTerms.ingredient = curentInput;
+		//searchTerms.ingredient = curentInput;
 		searchByTerms();
 	});
 
 	inputUstensile.addEventListener("keyup", (e) => {
 		const curentInput = e.target.value;
-		searchTerms.ustensile = curentInput;
+		//searchTerms.ustensile = curentInput;
 		searchByTerms();
 	});
 	input.addEventListener("click", (e) => {
@@ -89,18 +82,18 @@ function displayCardBase(container) {
 
 	inputApareil.addEventListener("click", (e) => {
 		const curentInput = e.target.value;
-		searchTerms.appareil = curentInput;
+		// searchTerms.appareil = curentInput;
 		searchByTerms();
 	});
 	inputIngredient.addEventListener("click", (e) => {
 		const curentInput = e.target.value;
-		searchTerms.ingredient = curentInput;
+		// searchTerms.ingredient = curentInput;
 		searchByTerms();
 	});
 
 	inputUstensile.addEventListener("click", (e) => {
 		const curentInput = e.target.value;
-		searchTerms.ustensile = curentInput;
+		//searchTerms.ustensile = curentInput;
 		searchByTerms();
 	});
 
@@ -109,20 +102,10 @@ function displayCardBase(container) {
 		
 			tagsContainerDom.forEach((tag)=>{
 				console.log(tag.textContent)
-				searchTerms.tags = tag.innerHTML
+				//searchTerms.tags = tag.innerHTML
 				
 				searchByTerms();
 		})
 	})
 
-	function searchByTerms() {
-		search(
-			searchTerms.main,
-			recipes,
-			searchTerms.appareil,
-			searchTerms.ustensile,
-			searchTerms.ingredient,
-			searchTerms.tags
-		);
-	}
 }

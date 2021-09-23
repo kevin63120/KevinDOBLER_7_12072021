@@ -81,7 +81,7 @@ export const displayUserSecondarySearchIgrendient = (e,arrayIngredientsInput) =>
 			return ingredient.toLowerCase().includes(userInput);
 		})
 		.map((ingredient) => {
-			return `<li class="secondarySearch-item-ingredient col-4">${ingredient}</li> `;
+			return `<li class="secondarySearch-item-ingredient col-4" id="ingredient-item">${ingredient}</li> `;
 		});
 	containerIngredient.innerHTML = modifyArray.join("");
 };
@@ -93,7 +93,7 @@ export const displayUserSecondarySearchAppareils = (e, arrayAppareilsInput) => {
 			return appareil.toLowerCase().includes(userInput);
 		})
 		.map((appareil) => {
-			return `<li class="secondarySearch-item-appareil col-4">${appareil}</li> `;
+			return `<li class="secondarySearch-item-appareil col-4"id="appliance-item">${appareil}</li> `;
 		});
 	containerAppareil.innerHTML = modifyArray.join("");
 };
@@ -108,7 +108,7 @@ export const displayUserSecondarySearchUstensile = (
 			return ustensile.toLowerCase().includes(userInput);
 		})
 		.map((ustensil) => {
-			return `<li class="secondarySearch-item-ustensiles col-4">${ustensil}</li> `;
+			return `<li class="secondarySearch-item-ustensiles col-4" id="ustensils-item">${ustensil}</li> `;
 		});
 	containerUstensil.innerHTML = modifyArray.join("");
 };

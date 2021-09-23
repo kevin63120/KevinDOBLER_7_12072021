@@ -1,4 +1,5 @@
 import {recipes} from "../assets/data/recipes"
+import { searchByTerms, searchTerms } from "./terms";
  export let tagsDisplay = [];
 const tagsBtnClose = document.querySelectorAll(".tags_Btn-Close");
 
@@ -50,15 +51,44 @@ export function initTags() {
 	}
 
 	let elementTag = document.querySelectorAll("li");
-
+  let ingredientContainer = document.querySelector("#dataListSecondarySearch1");
+  let applianceContainer = document.querySelector("#dataListSecondarySearch2");
+  let ustensilContainer = document.querySelector("#dataListSecondarySearch3")
   
 	document.addEventListener("click", (e) => {
 		e.stopPropagation();
     let value = e.target
 		if (elementTag) {
+
 			elementTag.forEach((tag) => {
 				tag.addEventListener("click", () => {
           tagAdd(tag.innerHTML, tagsDisplay)
+
+          /**
+           * 1 - Vérifier à quelle catégorie appartient le tag (ingrediénts, ustensiles, appareils)
+           * 2 - Lors du clic sur un élément de la liste, on l'ajoute aux searchTerms
+           * 3 - on relance la recherche
+           */
+
+          // 1
+          // TODO
+            if(e.target == ingredientContainer){
+             searchTerms.ingredient.push(tag.innerHTML)
+            }
+            if(e.target == applianceContainer ){
+             searchTerms.appareil.push(tag.innerHTML)
+             console.log(searchTerms)
+            }
+            if(e.target == ustensilContainer) {
+              searchTerms.ustensile.push(tag.innerHTML)
+            }
+            console.log(searchTerms)
+            
+           // 2
+           
+           
+           // 3
+           searchByTerms()
           console.log(tagsDisplay)
 		return	createTag(tagsDisplay, tagContainer);
 				});
