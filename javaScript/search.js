@@ -78,20 +78,12 @@ function searchByReference(
 			.join(" ")
 			.toLowerCase()
 			.includes(searchSecondaryIngredient);
-		
-		//const secondeSearchByTag = tags.filter(tag =>  ingredient.includes(tag))
-	//	console.log(secondeSearchByTag)
-		//const searchByTagIngredient = tags.map(tag=> {return ingredient.join("").toLowerCase().includes(tag)})
-		//const searchByTagAppliance = data.appliance.toLowerCase().includes(tag);
-		//const searchByTagUstensile = data.ustensils.join("").toLowerCase().includes(tag);
 
 		if (
 			secondSearchByAppliance &&
 			secondSearchByIngredient &&
 			secondSearchByUstensils &&
-			//secondeSearchByTag &&
-			// searchByTagUstensile&&
-			// searchByTagAppliance &&
+
 			(mainSearchByIngredient ||
 				mainSearchByDescription ||
 				mainSearchByName)

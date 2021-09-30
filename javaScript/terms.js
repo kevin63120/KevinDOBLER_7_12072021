@@ -18,6 +18,6 @@ export function searchByTerms() {
 		searchTerms.appareil,
 		searchTerms.ustensile,
 		searchTerms.ingredient,
-	//	searchTerms.tags
+		searchTerms.tags
 	);
 }

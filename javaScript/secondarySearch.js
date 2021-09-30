@@ -70,7 +70,6 @@ export function returnAllCurentElementSecondarySearch(array1) {
 	  appareilsDisponible: appareil1,
 	  ustensilesDisponible: ustensile1,
 	};
-	console.log(curentElementAvailable)
 	return curentElementAvailable;
   }
   
@@ -81,9 +80,10 @@ export const displayUserSecondarySearchIgrendient = (e,arrayIngredientsInput) =>
 			return ingredient.toLowerCase().includes(userInput);
 		})
 		.map((ingredient) => {
-			return `<li class="secondarySearch-item-ingredient col-4" id="ingredient-item">${ingredient}</li> `;
+			return `<li class="secondarySearch-item-ingredient item col-4"  data-name = "${ingredient}">${ingredient}</li> `;
 		});
-	containerIngredient.innerHTML = modifyArray.join("");
+		let finalArray = [...new Set(modifyArray)]
+	containerIngredient.innerHTML = finalArray.join("");
 };
 
 export const displayUserSecondarySearchAppareils = (e, arrayAppareilsInput) => {
@@ -93,24 +93,23 @@ export const displayUserSecondarySearchAppareils = (e, arrayAppareilsInput) => {
 			return appareil.toLowerCase().includes(userInput);
 		})
 		.map((appareil) => {
-			return `<li class="secondarySearch-item-appareil col-4"id="appliance-item">${appareil}</li> `;
+			return `<li class="secondarySearch-item-appareil item col-4" data-name = "${appareil}">${appareil}</li> `;
 		});
-	containerAppareil.innerHTML = modifyArray.join("");
+	let finalArray = [...new Set(modifyArray)]
+	containerAppareil.innerHTML = finalArray.join("");
 };
 
-export const displayUserSecondarySearchUstensile = (
-	e,
-	arrayUstensilesInput
-) => {
+export const displayUserSecondarySearchUstensile = (e,arrayUstensilesInput) => {
 	let userInput = e.target.value.toLowerCase();
 	let modifyArray = arrayUstensilesInput
 		.filter((ustensile) => {
 			return ustensile.toLowerCase().includes(userInput);
 		})
 		.map((ustensil) => {
-			return `<li class="secondarySearch-item-ustensiles col-4" id="ustensils-item">${ustensil}</li> `;
+			return `<li class="secondarySearch-item-ustensiles item col-4"  data-name = "${ustensil}">${ustensil}</li> `;
 		});
-	containerUstensil.innerHTML = modifyArray.join("");
+		let finalArray = [...new Set(modifyArray)]
+	containerUstensil.innerHTML = finalArray.join("");
 };
 
 
@@ -150,25 +149,7 @@ export let activationAppareilSearch = () => {
 };
 
 function resetSearch() {
-	if (
-		containerInput1.classlist=== "col-lg-6" ||
-		containerInput3.classList === "col-lg-6" ||
-		containerInput3.classList === "col-lg-6"
-	) {
-		containerInput1.classList.replace("col-lg-6", "col-lg-2");
-		containerInput2.classList.replace("col-lg-6", "col-lg-2");
-		containerInput3.classList.replace("col-lg-6", "col-lg-2");
-	}
-	if (
-		containerInput1.classList === "col-10" ||
-		containerInput3.classList === "col-10" ||
-		containerInput3.classList === "col-10"
-	) {
-		containerInput1.classList.replace("col-10", "col-2");
-		containerInput2.classList.replace("col-10", "col-2");
-		containerInput3.classList.replace("col-10", "col-2");
-	}
-
+	
 	hideSecondSearch(containerIngredient);
 	hideSecondSearch(containerAppareil);
 	hideSecondSearch(containerUstensil);

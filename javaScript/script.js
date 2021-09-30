@@ -1,4 +1,4 @@
-import { initTags } from "./tags";
+import { deleteTag, deleteTags, initTags } from "./tags";
 import { recipes } from "../assets/data/recipes";
 import { Card } from "./class/card";
 import { search } from "./search";
@@ -15,15 +15,24 @@ import { searchByTerms, searchTerms } from "./terms";
 2. test les ustensiles
 3. test les appareil 
 */
-let tags  =  document.querySelectorAll(".tag");
 
+
+	
 document.addEventListener("DOMContentLoaded", () => {
 	const containerCart = document.querySelector(".card-container");
+	const tagsBtnClose = document.querySelector(".tags_Btn-Close");
+	const tags = document.querySelectorAll(".tag")
+	
+	
 	displayCardBase(containerCart);
 	initTags();
 	
 	
+	
 });
+
+
+
 
 function displayCardBase(container) {
   
@@ -32,16 +41,6 @@ function displayCardBase(container) {
 
 	});
 
-	
-    
-    document.addEventListener("click", (e)=>{
-		let value = e.target.innerHTML
-		if(value === searchTerms.tag){
-			removeTags()
-		}
-		//searchTerms.tags = tagsDisplay
-	    //console.log(searchTerms.tags)
-	})
 	
 
 	const inputIngredient = document.querySelector("#dataListSecondarySearch1");
@@ -61,51 +60,45 @@ function displayCardBase(container) {
 	inputApareil.addEventListener("keyup", (e) => {
 		const curentInput = e.target.value;
 		//searchTerms.appareil = curentInput;
-		searchByTerms();
+		//searchByTerms();
 	});
 	inputIngredient.addEventListener("keyup", (e) => {
 		const curentInput = e.target.value;
 		//searchTerms.ingredient = curentInput;
-		searchByTerms();
+		//searchByTerms();
 	});
 
 	inputUstensile.addEventListener("keyup", (e) => {
 		const curentInput = e.target.value;
 		//searchTerms.ustensile = curentInput;
-		searchByTerms();
+		//searchByTerms();
 	});
 	input.addEventListener("click", (e) => {
 		const curentInput = e.target.value;
-		searchTerms.main = curentInput;
+		//searchTerms.main = curentInput;
 		searchByTerms();
+		
 	});
 
 	inputApareil.addEventListener("click", (e) => {
 		const curentInput = e.target.value;
-		// searchTerms.appareil = curentInput;
+		//searchTerms.appareil = curentInput;
 		searchByTerms();
+		
 	});
 	inputIngredient.addEventListener("click", (e) => {
 		const curentInput = e.target.value;
-		// searchTerms.ingredient = curentInput;
+		//searchTerms.ingredient = curentInput;
 		searchByTerms();
+		
 	});
 
 	inputUstensile.addEventListener("click", (e) => {
 		const curentInput = e.target.value;
 		//searchTerms.ustensile = curentInput;
 		searchByTerms();
+		
 	});
 
-	document.addEventListener("change", ()=>{
-		if(tagsContainerDom)
-		
-			tagsContainerDom.forEach((tag)=>{
-				console.log(tag.textContent)
-				//searchTerms.tags = tag.innerHTML
-				
-				searchByTerms();
-		})
-	})
 
 }
