@@ -107,7 +107,7 @@ export const displayUserSecondarySearchUstensile = (e,arrayUstensilesInput) => {
 	containerUstensil.innerHTML = finalArray.join("");
 };
 
-// les function activation active de base les élément de recheche secondaire aux clic et renvoix les données de base non modifié par un input user
+// les function activation active de base les élément de recheche secondaire aux clic et renvoi les données de base non modifié par un input user
 export let activationIngredientSearch = () => {
 	containerInput1.classList.replace("col-lg-2", "col-lg-6");
 	containerInput2.classList.replace("col-lg-6", "col-lg-2");

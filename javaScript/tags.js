@@ -1,10 +1,11 @@
 
 import { searchByTerms, searchTerms } from "./terms";
-export let tagsDisplay = [];
+
 const tagsBtnClose = document.querySelectorAll(".tags_Btn-Close");
 const tag = document.querySelectorAll(".tag");
-
+let tagsDisplay = [];
 export function initTags() {
+	
 	const tagContainer = document.querySelector(".tag-container");
 
 	function removeTag(){
@@ -13,22 +14,26 @@ export function initTags() {
 			tag.children[0].addEventListener("click", () => {
 				let value = tag.innerText;
 
-				if (searchTerms.ingredient) {
-					let elmIndex = searchTerms.ingredient.indexOf(value);
+				if (searchTerms.ingredient.includes(value)) {
+				let elmIndex = searchTerms.ingredient.indexOf(value);
 					searchTerms.ingredient.splice(elmIndex, 1);
+				tagsDisplay = tagsDisplay.filter((term) => term !== value)
 					tag.remove()
 					searchByTerms();
+					console.log(searchTerms)
 					
 				}
 				if (searchTerms.appareil) {
 					let elmIndex = searchTerms.appareil.indexOf(value);
 					searchTerms.appareil.splice(elmIndex, 1);
+					tagsDisplay = tagsDisplay.filter((term) => term !== value)
 					tag.remove()
 					searchByTerms();
 
 				}
 				if (searchTerms.ustensile) {
 					let elmIndex = searchTerms.ustensile.indexOf(value);
+					tagsDisplay = tagsDisplay.filter((term) => term !== value)
 					searchTerms.ustensile.splice(elmIndex, 1);
 					tag.remove()
 					searchByTerms();
@@ -41,14 +46,8 @@ export function initTags() {
 
 
 	function tagAdd(value, array) {
-		if (array.length < 4) {
 			array.push(value);
 			return array;
-		} else {
-			array.splice(0, 0, value);
-			array.splice(4, 1);
-			return array;
-		}
 	}
 
 	function createTag(array, container) {
@@ -84,23 +83,23 @@ export function initTags() {
 				// 1
 				// TODO
 				if (e.target == ingredientContainer) {
-					searchTerms.ingredient.push(tag.innerHTML);			
-					tagAdd(tag.innerHTML, tagsDisplay);
+					searchTerms.ingredient.push(tag.innerHTML);
 					searchByTerms();
+					tagAdd(tag.innerHTML, tagsDisplay)
 					createTag(tagsDisplay, tagContainer);
 					removeTag()
 				}
 				if (e.target == applianceContainer) {
 					searchTerms.appareil.push(tag.innerHTML);
-					tagAdd(tag.innerHTML, tagsDisplay);
 					searchByTerms();
-					createTag(tagsDisplay, tagContainer);
+					tagAdd(tag.innerHTML, tagsDisplay)
+					createTag(tagsDisplay, tagContainer);;
 					removeTag()
 				}
 				if (e.target == ustensilContainer) {
 					searchTerms.ustensile.push(tag.innerHTML);
-					tagAdd(tag.innerHTML, tagsDisplay);
 					searchByTerms();
+					tagAdd(tag.innerHTML, tagsDisplay)
 					createTag(tagsDisplay, tagContainer);
 					removeTag()
 				}

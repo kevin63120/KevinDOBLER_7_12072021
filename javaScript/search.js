@@ -31,9 +31,7 @@ function searchByReference(
 	searchSecondaryIngredient = []
 ) {
 	let userInputModify = userInput.toLowerCase();
-	const dataDisplayArray = [];
-
-	datas.forEach((data) => {
+	const dataDisplayArray = datas.filter((data) => {
 		const ingredient = data.ingredients.map(
 			(ingredient) => ingredient["ingredient"]
 		);
@@ -62,16 +60,14 @@ function searchByReference(
 			(selectedIngredient) => ingredient.includes(selectedIngredient)
 		);
 
-		if (
+		return Boolean(
 			secondSearchByAppliance &&
 			secondSearchByIngredient &&
 			secondSearchByUstensils &&
 			(mainSearchByIngredient ||
 				mainSearchByDescription ||
 				mainSearchByName)
-		) {
-			dataDisplayArray.push(data);
-		}
+		);
 	});
 
 	return dataDisplayArray;

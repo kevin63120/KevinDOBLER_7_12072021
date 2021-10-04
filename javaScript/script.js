@@ -42,22 +42,7 @@ function displayCardBase(container) {
 		searchByTerms();
 		
 	});
-	inputApareil.addEventListener("keyup", (e) => {
-		const curentInput = e.target.value;
-		//searchTerms.appareil = curentInput;
-		//searchByTerms();
-	});
-	inputIngredient.addEventListener("keyup", (e) => {
-		const curentInput = e.target.value;
-		//searchTerms.ingredient = curentInput;
-		//searchByTerms();
-	});
 
-	inputUstensile.addEventListener("keyup", (e) => {
-		const curentInput = e.target.value;
-		//searchTerms.ustensile = curentInput;
-		//searchByTerms();
-	});
 
 	inputApareil.addEventListener("click", (e) => {
 		const curentInput = e.target.value;
