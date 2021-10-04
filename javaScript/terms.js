@@ -1,6 +1,4 @@
-
 import { recipes } from "../assets/data/recipes";
-
 import { search } from "./search";
 
 export const searchTerms = {

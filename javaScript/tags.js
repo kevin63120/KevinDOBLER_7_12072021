@@ -1,26 +1,11 @@
-import { recipes } from "../assets/data/recipes";
+
 import { searchByTerms, searchTerms } from "./terms";
 export let tagsDisplay = [];
 const tagsBtnClose = document.querySelectorAll(".tags_Btn-Close");
 const tag = document.querySelectorAll(".tag");
 
-
 export function initTags() {
-
 	const tagContainer = document.querySelector(".tag-container");
-
-	const inputSecondarySearchIngredient = document.querySelector(
-		"#dataListSecondarySearch1"
-	);
-	const inputSecondarySearchAppliance = document.querySelector(
-		"#dataListSecondarySearch2"
-	);
-	const inputSecondarySearchUstensil = document.querySelector(
-		"#dataListSecondarySearch3"
-	);
-	const tagIngredientOnListBaseHtml = document.querySelectorAll(
-		".secondarySearch-item-ingredient "
-	);
 
 	function removeTag(){
 		let tags = document.querySelectorAll(".tag");
@@ -55,8 +40,6 @@ export function initTags() {
 		});
 	}
 
-	
-	
 
 	function tagAdd(value, array) {
 		if (array.length < 4) {
@@ -125,17 +108,10 @@ export function initTags() {
 					createTag(tagsDisplay, tagContainer);
 					removeTag()
 				}
-
-				// 2
-
-				// 3
-
-				// Event listener pour supprimer
 			});
 		});
 	});
-
 	
 }
 
-// Selection de tag
+

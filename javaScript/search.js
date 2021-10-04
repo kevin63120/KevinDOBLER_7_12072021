@@ -1,20 +1,9 @@
 // Algo 1
-import { recipes } from "../assets/data/recipes";
 import { Card } from "./class/card";
-import { Data } from "./class/data";
-import { testvalue } from "./testValueFunction";
 import { warningMessageText } from "./testValueFunction";
-import {
-	containerIngredient,
-	displayUserSecondarySearchIgrendient,
-} from "./secondarySearch";
+import {displayUserSecondarySearchIgrendient,} from "./secondarySearch";
 import { displayUserSecondarySearchUstensile } from "./secondarySearch";
 import { displayUserSecondarySearchAppareils } from "./secondarySearch";
-import { activationIngredientSearch } from "./secondarySearch";
-import { activationAppareilSearch } from "./secondarySearch";
-import { activationUstensileSearch } from "./secondarySearch";
-import { resetSearch } from "./secondarySearch";
-import { objetForSecondarySearch } from "./secondarySearch";
 import { returnAllCurentElementSecondarySearch } from "./secondarySearch";
 import { initTags } from "./tags";
 
@@ -23,8 +12,6 @@ import { initTags } from "./tags";
 const inputIngredient = document.querySelector("#dataListSecondarySearch1");
 const inputApareil = document.querySelector("#dataListSecondarySearch2");
 const inputUstensile = document.querySelector("#dataListSecondarySearch3");
-
-
 
 function removeCard() {
 	const articles = document.querySelectorAll("article");
@@ -35,18 +22,16 @@ function removeCard() {
 	});
 }
 
-// first algo search 
+// first algo search
 function searchByReference(
 	userInput = null,
 	datas,
 	searchSecondaryAppliance = [],
 	searchSecondaryUstensils = [],
-	searchSecondaryIngredient = [],
-	//tags = []
+	searchSecondaryIngredient = []
 ) {
 	let userInputModify = userInput.toLowerCase();
 	const dataDisplayArray = [];
-	
 
 	datas.forEach((data) => {
 		const ingredient = data.ingredients.map(
@@ -65,43 +50,44 @@ function searchByReference(
 			.toLowerCase()
 			.includes(userInputModify);
 
-		const secondSearchByAppliance = searchSecondaryAppliance
-			.every((selectedyAppliance) => data.appliance.includes(selectedyAppliance));
+		const secondSearchByAppliance = searchSecondaryAppliance.every(
+			(selectedyAppliance) => data.appliance.includes(selectedyAppliance)
+		);
 
-		const secondSearchByUstensils = searchSecondaryUstensils
-			.every((selectedUstensil) => data.ustensils.includes(selectedUstensil));
+		const secondSearchByUstensils = searchSecondaryUstensils.every(
+			(selectedUstensil) => data.ustensils.includes(selectedUstensil)
+		);
 
-		const secondSearchByIngredient = searchSecondaryIngredient
-			.every((selectedIngredient) => ingredient.includes(selectedIngredient));
+		const secondSearchByIngredient = searchSecondaryIngredient.every(
+			(selectedIngredient) => ingredient.includes(selectedIngredient)
+		);
 
 		if (
 			secondSearchByAppliance &&
 			secondSearchByIngredient &&
 			secondSearchByUstensils &&
-
 			(mainSearchByIngredient ||
 				mainSearchByDescription ||
 				mainSearchByName)
 		) {
 			dataDisplayArray.push(data);
-		} 
+		}
 	});
 
 	return dataDisplayArray;
 }
 
-//Global Search function 
+//Global Search function
 export function search(
 	userInput,
 	datas,
 	searchSecondaryAppliance = [],
 	searchSecondaryUstensils = [],
-	searchSecondaryIngredient = [],
+	searchSecondaryIngredient = []
 ) {
 	const containerCard = document.querySelector(".card-container");
 	const containerWarningMessage = document.querySelector(".warning");
 	let arrayReturn;
-	
 
 	removeCard();
 	if (userInput.length >= 3) {
@@ -110,19 +96,18 @@ export function search(
 			datas,
 			searchSecondaryAppliance,
 			searchSecondaryUstensils,
-			searchSecondaryIngredient,
+			searchSecondaryIngredient
 		);
 
-		
 		const objetForSecondarySearch =
 			returnAllCurentElementSecondarySearch(arrayReturn);
 
-    inputIngredient.addEventListener("click ", (e) => {
+		inputIngredient.addEventListener("click ", (e) => {
 			displayUserSecondarySearchIgrendient(
 				e,
 				objetForSecondarySearch.ingredientsDisponible
 			);
-			initTags()
+			initTags();
 		});
 
 		inputApareil.addEventListener("click", (e) => {
@@ -130,7 +115,7 @@ export function search(
 				e,
 				objetForSecondarySearch.appareilsDisponible
 			);
-			initTags()
+			initTags();
 		});
 
 		inputUstensile.addEventListener("click", (e) => {
@@ -138,25 +123,21 @@ export function search(
 				e,
 				objetForSecondarySearch.ustensilesDisponible
 			);
-			initTags()
+			initTags();
 		});
-    
-    
-  
-
 	} else {
 		arrayReturn = searchByReference(
 			"",
 			datas,
 			searchSecondaryAppliance,
 			searchSecondaryUstensils,
-			searchSecondaryIngredient,
+			searchSecondaryIngredient
 		);
 	}
 
 	const objetForSecondarySearch =
 		returnAllCurentElementSecondarySearch(arrayReturn);
-	console.log({objetForSecondarySearch});
+	console.log({ objetForSecondarySearch });
 	inputIngredient.addEventListener("keyup", (e) => {
 		displayUserSecondarySearchIgrendient(
 			e,
@@ -169,7 +150,6 @@ export function search(
 			e,
 			objetForSecondarySearch.appareilsDisponible
 		);
-		
 	});
 
 	inputUstensile.addEventListener("keyup", (e) => {
@@ -177,31 +157,30 @@ export function search(
 			e,
 			objetForSecondarySearch.ustensilesDisponible
 		);
-		
 	});
-  inputIngredient.addEventListener("click", (e) => {
-    displayUserSecondarySearchIgrendient(
-      e,
-      objetForSecondarySearch.ingredientsDisponible
-    );
-	initTags()
-  });
+	inputIngredient.addEventListener("click", (e) => {
+		displayUserSecondarySearchIgrendient(
+			e,
+			objetForSecondarySearch.ingredientsDisponible
+		);
+		initTags();
+	});
 
-  inputApareil.addEventListener("click", (e) => {
-    displayUserSecondarySearchAppareils(
-      e,
-      objetForSecondarySearch.appareilsDisponible
-    );
-	initTags()
-  });
+	inputApareil.addEventListener("click", (e) => {
+		displayUserSecondarySearchAppareils(
+			e,
+			objetForSecondarySearch.appareilsDisponible
+		);
+		initTags();
+	});
 
-  inputUstensile.addEventListener("click", (e) => {
-    displayUserSecondarySearchUstensile(
-      e,
-      objetForSecondarySearch.ustensilesDisponible
-    );
-	initTags()
-  });
+	inputUstensile.addEventListener("click", (e) => {
+		displayUserSecondarySearchUstensile(
+			e,
+			objetForSecondarySearch.ustensilesDisponible
+		);
+		initTags();
+	});
 
 	arrayReturn.forEach((elementReturn) => {
 		new Card(elementReturn).createCard(containerCard);

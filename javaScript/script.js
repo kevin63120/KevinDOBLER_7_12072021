@@ -5,18 +5,6 @@ import { search } from "./search";
 import {removeTags} from "./tags";
 import {tagsDisplay} from "./tags";
 import { searchByTerms, searchTerms } from "./terms";
-
-
-// algo 1
-
-/*test l'input utilisateur */
-/* 
-1. test le titre de la recette pour verifier une corespondence
-2. test les ustensiles
-3. test les appareil 
-*/
-
-
 	
 document.addEventListener("DOMContentLoaded", () => {
 	const containerCart = document.querySelector(".card-container");
@@ -24,9 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	initTags();
 	
 });
-
-
-
 
 function displayCardBase(container) {
   

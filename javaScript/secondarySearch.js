@@ -39,13 +39,6 @@ const listUstensiltSelected = document.querySelectorAll(
 	".secondarySearch-item-ustensiles"
 );
 
-
-
-//  crée un nouveau tableau comtenant tout les élémént HTML à renvoyer
-// const returnIngredient = arrayIngredients.map((ingredient) => {return `<li class="secondarySearch-item-ingredient col-4">${ingredient}</li> `;  });
-// const returnAppareils = arrayAppareils.map((appareil) => {return `<li class="secondarySearch-item-appareil col-4">${appareil}</li> `;});
-// const returnUstensiles = arrayUstensiles.map((ustensile) => {return `<li class="secondarySearch-item-ustensiles col-4">${ustensile}</li> `;});
-
 function hideSecondSearch(rootElement) {
 	if (rootElement) {
 		rootElement.style.display = "none";
@@ -113,11 +106,6 @@ export const displayUserSecondarySearchUstensile = (e,arrayUstensilesInput) => {
 		let finalArray = [...new Set(modifyArray)]
 	containerUstensil.innerHTML = finalArray.join("");
 };
-
-
-
-
-
 
 // les function activation active de base les élément de recheche secondaire aux clic et renvoix les données de base non modifié par un input user
 export let activationIngredientSearch = () => {
