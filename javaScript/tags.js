@@ -16,27 +16,26 @@ export function initTags() {
 				if (searchTerms.ingredient) {
 					let elmIndex = searchTerms.ingredient.indexOf(value);
 					searchTerms.ingredient.splice(elmIndex, 1);
-					console.log('tag', searchTerms);
 					tag.remove()
 					searchByTerms();
-					console.log(searchTerms);
+					
 				}
 				if (searchTerms.appareil) {
 					let elmIndex = searchTerms.appareil.indexOf(value);
 					searchTerms.appareil.splice(elmIndex, 1);
 					tag.remove()
 					searchByTerms();
-					console.log(searchTerms);
+
 				}
 				if (searchTerms.ustensile) {
 					let elmIndex = searchTerms.ustensile.indexOf(value);
 					searchTerms.ustensile.splice(elmIndex, 1);
 					tag.remove()
 					searchByTerms();
-					console.log(searchTerms);
+				
 				}
 			});
-			console.log("value de tag", tag,"value de search terms", searchTerms)
+			
 		});
 	}
 
@@ -85,8 +84,7 @@ export function initTags() {
 				// 1
 				// TODO
 				if (e.target == ingredientContainer) {
-					searchTerms.ingredient.push(tag.innerHTML);
-					console.log(searchTerms);
+					searchTerms.ingredient.push(tag.innerHTML);			
 					tagAdd(tag.innerHTML, tagsDisplay);
 					searchByTerms();
 					createTag(tagsDisplay, tagContainer);
@@ -94,7 +92,6 @@ export function initTags() {
 				}
 				if (e.target == applianceContainer) {
 					searchTerms.appareil.push(tag.innerHTML);
-					console.log(searchTerms);
 					tagAdd(tag.innerHTML, tagsDisplay);
 					searchByTerms();
 					createTag(tagsDisplay, tagContainer);
@@ -102,7 +99,6 @@ export function initTags() {
 				}
 				if (e.target == ustensilContainer) {
 					searchTerms.ustensile.push(tag.innerHTML);
-					console.log(searchTerms);
 					tagAdd(tag.innerHTML, tagsDisplay);
 					searchByTerms();
 					createTag(tagsDisplay, tagContainer);

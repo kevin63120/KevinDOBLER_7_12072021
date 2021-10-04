@@ -10,8 +10,6 @@ export const searchTerms = {
 }; 
 
 export function searchByTerms() {
-	
-	console.log('terms', searchTerms);
 	search(
 		searchTerms.main,
 		recipes,

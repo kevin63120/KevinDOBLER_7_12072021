@@ -1,7 +1,7 @@
 // Algo 1
 import { Card } from "./class/card";
 import { warningMessageText } from "./testValueFunction";
-import {displayUserSecondarySearchIgrendient,} from "./secondarySearch";
+import { displayUserSecondarySearchIgrendient } from "./secondarySearch";
 import { displayUserSecondarySearchUstensile } from "./secondarySearch";
 import { displayUserSecondarySearchAppareils } from "./secondarySearch";
 import { returnAllCurentElementSecondarySearch } from "./secondarySearch";
@@ -102,29 +102,55 @@ export function search(
 		const objetForSecondarySearch =
 			returnAllCurentElementSecondarySearch(arrayReturn);
 
-		inputIngredient.addEventListener("click ", (e) => {
-			displayUserSecondarySearchIgrendient(
-				e,
-				objetForSecondarySearch.ingredientsDisponible
-			);
-			initTags();
-		});
+		if (inputIngredient) {
+			inputIngredient.addEventListener("keyup", (e) => {
+				displayUserSecondarySearchIgrendient(
+					e,
+					objetForSecondarySearch.ingredientsDisponible
+				);
+				initTags();
+			});
+			inputIngredient.addEventListener("click ", (e) => {
+				displayUserSecondarySearchIgrendient(
+					e,
+					objetForSecondarySearch.ingredientsDisponible
+				);
+				initTags();
+			});
+		}
 
-		inputApareil.addEventListener("click", (e) => {
-			displayUserSecondarySearchAppareils(
-				e,
-				objetForSecondarySearch.appareilsDisponible
-			);
-			initTags();
-		});
-
-		inputUstensile.addEventListener("click", (e) => {
-			displayUserSecondarySearchUstensile(
-				e,
-				objetForSecondarySearch.ustensilesDisponible
-			);
-			initTags();
-		});
+		if (inputApareil) {
+			inputApareil.addEventListener("keyup", (e) => {
+				displayUserSecondarySearchAppareils(
+					e,
+					objetForSecondarySearch.appareilsDisponible
+				);
+				initTags();
+			});
+			inputApareil.addEventListener("click", (e) => {
+				displayUserSecondarySearchAppareils(
+					e,
+					objetForSecondarySearch.appareilsDisponible
+				);
+				initTags();
+			});
+		}
+		if (inputUstensile) {
+			inputUstensile.addEventListener("keyup", (e) => {
+				displayUserSecondarySearchUstensile(
+					e,
+					objetForSecondarySearch.ustensilesDisponible
+				);
+				initTags();
+			});
+			inputUstensile.addEventListener("click", (e) => {
+				displayUserSecondarySearchUstensile(
+					e,
+					objetForSecondarySearch.ustensilesDisponible
+				);
+				initTags();
+			});
+		}
 	} else {
 		arrayReturn = searchByReference(
 			"",
@@ -137,50 +163,59 @@ export function search(
 
 	const objetForSecondarySearch =
 		returnAllCurentElementSecondarySearch(arrayReturn);
-	console.log({ objetForSecondarySearch });
-	inputIngredient.addEventListener("keyup", (e) => {
-		displayUserSecondarySearchIgrendient(
-			e,
-			objetForSecondarySearch.ingredientsDisponible
-		);
-	});
 
-	inputApareil.addEventListener("keyup", (e) => {
-		displayUserSecondarySearchAppareils(
-			e,
-			objetForSecondarySearch.appareilsDisponible
-		);
-	});
+	if (inputIngredient) {
+		inputIngredient.addEventListener("keyup", (e) => {
+			displayUserSecondarySearchIgrendient(
+				e,
+				objetForSecondarySearch.ingredientsDisponible
+			);
+			initTags();
+		});
 
-	inputUstensile.addEventListener("keyup", (e) => {
-		displayUserSecondarySearchUstensile(
-			e,
-			objetForSecondarySearch.ustensilesDisponible
-		);
-	});
-	inputIngredient.addEventListener("click", (e) => {
-		displayUserSecondarySearchIgrendient(
-			e,
-			objetForSecondarySearch.ingredientsDisponible
-		);
-		initTags();
-	});
+		inputIngredient.addEventListener("click", (e) => {
+			displayUserSecondarySearchIgrendient(
+				e,
+				objetForSecondarySearch.ingredientsDisponible
+			);
+			initTags();
+		});
+	}
 
-	inputApareil.addEventListener("click", (e) => {
-		displayUserSecondarySearchAppareils(
-			e,
-			objetForSecondarySearch.appareilsDisponible
-		);
-		initTags();
-	});
+	if (inputApareil) {
+		inputApareil.addEventListener("keyup", (e) => {
+			displayUserSecondarySearchAppareils(
+				e,
+				objetForSecondarySearch.appareilsDisponible
+			);
+			initTags();
+		});
 
-	inputUstensile.addEventListener("click", (e) => {
-		displayUserSecondarySearchUstensile(
-			e,
-			objetForSecondarySearch.ustensilesDisponible
-		);
-		initTags();
-	});
+		inputApareil.addEventListener("click", (e) => {
+			displayUserSecondarySearchAppareils(
+				e,
+				objetForSecondarySearch.appareilsDisponible
+			);
+			initTags();
+		});
+	}
+
+	if (inputUstensile) {
+		inputUstensile.addEventListener("keyup", (e) => {
+			displayUserSecondarySearchUstensile(
+				e,
+				objetForSecondarySearch.ustensilesDisponible
+			);
+			initTags();
+		});
+		inputUstensile.addEventListener("click", (e) => {
+			displayUserSecondarySearchUstensile(
+				e,
+				objetForSecondarySearch.ustensilesDisponible
+			);
+			initTags();
+		});
+	}
 
 	arrayReturn.forEach((elementReturn) => {
 		new Card(elementReturn).createCard(containerCard);
