@@ -8,16 +8,18 @@ export const searchTerms = {
 	appareil: [],
 	ingredient: [],
 	ustensile: [],
-	tags:[],
+	
 }; 
 
 export function searchByTerms() {
+	
+	console.log('terms', searchTerms);
 	search(
 		searchTerms.main,
 		recipes,
 		searchTerms.appareil,
 		searchTerms.ustensile,
 		searchTerms.ingredient,
-		searchTerms.tags
+		
 	);
 }

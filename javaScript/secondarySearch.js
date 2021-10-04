@@ -47,7 +47,9 @@ const listUstensiltSelected = document.querySelectorAll(
 // const returnUstensiles = arrayUstensiles.map((ustensile) => {return `<li class="secondarySearch-item-ustensiles col-4">${ustensile}</li> `;});
 
 function hideSecondSearch(rootElement) {
-	rootElement.style.display = "none";
+	if (rootElement) {
+		rootElement.style.display = "none";
+	}
 
 	// changer le remove pour un Hide et modifier la classe css
 }

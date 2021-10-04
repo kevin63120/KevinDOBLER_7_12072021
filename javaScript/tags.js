@@ -4,15 +4,6 @@ export let tagsDisplay = [];
 const tagsBtnClose = document.querySelectorAll(".tags_Btn-Close");
 const tag = document.querySelectorAll(".tag");
 
-export let deleteTags = (tag, e) => {
-	btn = e.taget;
-	if (btn === tagsBtnClose) {
-		tag.innerHTML = "";
-	}
-};
-
-
-
 
 export function initTags() {
 
@@ -31,37 +22,41 @@ export function initTags() {
 		".secondarySearch-item-ingredient "
 	);
 
-	
-	let tags = document.querySelectorAll(".tag");
-	console.log(tags)	
+	function removeTag(){
+		let tags = document.querySelectorAll(".tag");
 		tags.forEach((tag) => {
-			tag.children[0].addEventListener("click", (e) => {
+			tag.children[0].addEventListener("click", () => {
+				let value = tag.innerText;
+
 				if (searchTerms.ingredient) {
-					let value = tag.innerText;
 					let elmIndex = searchTerms.ingredient.indexOf(value);
 					searchTerms.ingredient.splice(elmIndex, 1);
-
+					console.log('tag', searchTerms);
+					tag.remove()
 					searchByTerms();
 					console.log(searchTerms);
 				}
-				if (searchTerms.appareil.includes(tag.innerHTML)) {
-					let value = tag.innerText;
+				if (searchTerms.appareil) {
 					let elmIndex = searchTerms.appareil.indexOf(value);
 					searchTerms.appareil.splice(elmIndex, 1);
-
+					tag.remove()
 					searchByTerms();
 					console.log(searchTerms);
 				}
-				if (searchTerms.ustensile.includes(tag.innerHTML)) {
-					let value = tag.innerText;
+				if (searchTerms.ustensile) {
 					let elmIndex = searchTerms.ustensile.indexOf(value);
 					searchTerms.ustensile.splice(elmIndex, 1);
-
+					tag.remove()
 					searchByTerms();
 					console.log(searchTerms);
 				}
 			});
+			console.log("value de tag", tag,"value de search terms", searchTerms)
 		});
+	}
+
+	
+	
 
 	function tagAdd(value, array) {
 		if (array.length < 4) {
@@ -112,6 +107,7 @@ export function initTags() {
 					tagAdd(tag.innerHTML, tagsDisplay);
 					searchByTerms();
 					createTag(tagsDisplay, tagContainer);
+					removeTag()
 				}
 				if (e.target == applianceContainer) {
 					searchTerms.appareil.push(tag.innerHTML);
@@ -119,6 +115,7 @@ export function initTags() {
 					tagAdd(tag.innerHTML, tagsDisplay);
 					searchByTerms();
 					createTag(tagsDisplay, tagContainer);
+					removeTag()
 				}
 				if (e.target == ustensilContainer) {
 					searchTerms.ustensile.push(tag.innerHTML);
@@ -126,14 +123,19 @@ export function initTags() {
 					tagAdd(tag.innerHTML, tagsDisplay);
 					searchByTerms();
 					createTag(tagsDisplay, tagContainer);
+					removeTag()
 				}
 
 				// 2
 
 				// 3
+
+				// Event listener pour supprimer
 			});
 		});
 	});
+
+	
 }
 
 // Selection de tag

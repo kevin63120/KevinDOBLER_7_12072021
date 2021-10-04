@@ -65,19 +65,14 @@ function searchByReference(
 			.toLowerCase()
 			.includes(userInputModify);
 
-		const secondSearchByAppliance = data.appliance
-			.toLowerCase()
-			.includes(searchSecondaryAppliance);
+		const secondSearchByAppliance = searchSecondaryAppliance
+			.every((selectedyAppliance) => data.appliance.includes(selectedyAppliance));
 
-		const secondSearchByUstensils = data.ustensils
-			.join("")
-			.toLowerCase()
-			.includes(searchSecondaryUstensils);
+		const secondSearchByUstensils = searchSecondaryUstensils
+			.every((selectedUstensil) => data.ustensils.includes(selectedUstensil));
 
-		const secondSearchByIngredient = ingredient
-			.join(" ")
-			.toLowerCase()
-			.includes(searchSecondaryIngredient);
+		const secondSearchByIngredient = searchSecondaryIngredient
+			.every((selectedIngredient) => ingredient.includes(selectedIngredient));
 
 		if (
 			secondSearchByAppliance &&
@@ -122,29 +117,6 @@ export function search(
 		const objetForSecondarySearch =
 			returnAllCurentElementSecondarySearch(arrayReturn);
 
-		inputIngredient.addEventListener("keyup", (e) => {
-			displayUserSecondarySearchIgrendient(
-				e,
-				objetForSecondarySearch.ingredientsDisponible
-			);
-			initTags()
-		});
-
-		inputApareil.addEventListener("keyup", (e) => {
-			displayUserSecondarySearchAppareils(
-				e,
-				objetForSecondarySearch.appareilsDisponible
-			);
-			initTags()
-		});
-
-		inputUstensile.addEventListener("keyup", (e) => {
-			displayUserSecondarySearchUstensile(
-				e,
-				objetForSecondarySearch.ustensilesDisponible
-			);
-			initTags()
-		});
     inputIngredient.addEventListener("click ", (e) => {
 			displayUserSecondarySearchIgrendient(
 				e,
@@ -184,13 +156,12 @@ export function search(
 
 	const objetForSecondarySearch =
 		returnAllCurentElementSecondarySearch(arrayReturn);
-	console.log(objetForSecondarySearch);
+	console.log({objetForSecondarySearch});
 	inputIngredient.addEventListener("keyup", (e) => {
 		displayUserSecondarySearchIgrendient(
 			e,
 			objetForSecondarySearch.ingredientsDisponible
 		);
-		initTags()
 	});
 
 	inputApareil.addEventListener("keyup", (e) => {
@@ -198,7 +169,7 @@ export function search(
 			e,
 			objetForSecondarySearch.appareilsDisponible
 		);
-		initTags()
+		
 	});
 
 	inputUstensile.addEventListener("keyup", (e) => {
@@ -206,7 +177,7 @@ export function search(
 			e,
 			objetForSecondarySearch.ustensilesDisponible
 		);
-		initTags()
+		
 	});
   inputIngredient.addEventListener("click", (e) => {
     displayUserSecondarySearchIgrendient(

@@ -20,14 +20,8 @@ import { searchByTerms, searchTerms } from "./terms";
 	
 document.addEventListener("DOMContentLoaded", () => {
 	const containerCart = document.querySelector(".card-container");
-	const tagsBtnClose = document.querySelector(".tags_Btn-Close");
-	const tags = document.querySelectorAll(".tag")
-	
-	
 	displayCardBase(containerCart);
 	initTags();
-	
-	
 	
 });
 
@@ -57,45 +51,26 @@ function displayCardBase(container) {
 		searchTerms.main = curentInput;
 		searchByTerms();
 	});
-	inputApareil.addEventListener("keyup", (e) => {
-		const curentInput = e.target.value;
-		//searchTerms.appareil = curentInput;
-		//searchByTerms();
-	});
-	inputIngredient.addEventListener("keyup", (e) => {
-		const curentInput = e.target.value;
-		//searchTerms.ingredient = curentInput;
-		//searchByTerms();
-	});
-
-	inputUstensile.addEventListener("keyup", (e) => {
-		const curentInput = e.target.value;
-		//searchTerms.ustensile = curentInput;
-		//searchByTerms();
-	});
+	
 	input.addEventListener("click", (e) => {
 		const curentInput = e.target.value;
-		//searchTerms.main = curentInput;
 		searchByTerms();
 		
 	});
 
 	inputApareil.addEventListener("click", (e) => {
 		const curentInput = e.target.value;
-		//searchTerms.appareil = curentInput;
 		searchByTerms();
 		
 	});
 	inputIngredient.addEventListener("click", (e) => {
 		const curentInput = e.target.value;
-		//searchTerms.ingredient = curentInput;
 		searchByTerms();
 		
 	});
 
 	inputUstensile.addEventListener("click", (e) => {
 		const curentInput = e.target.value;
-		//searchTerms.ustensile = curentInput;
 		searchByTerms();
 		
 	});
