@@ -86,14 +86,14 @@ export function initTags() {
 					searchTerms.ingredient.push(tag.innerHTML);
 					searchByTerms();
 					tagAdd(tag.innerHTML, tagsDisplay)
-					createTag(tagsDisplay, tagContainer);
+					createTag(tagsDisplay, tagContainer);		
 					removeTag()
 				}
 				if (e.target == applianceContainer) {
 					searchTerms.appareil.push(tag.innerHTML);
 					searchByTerms();
 					tagAdd(tag.innerHTML, tagsDisplay)
-					createTag(tagsDisplay, tagContainer);;
+					createTag(tagsDisplay, tagContainer);
 					removeTag()
 				}
 				if (e.target == ustensilContainer) {
