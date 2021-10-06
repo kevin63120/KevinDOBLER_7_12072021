@@ -15,26 +15,26 @@ export function initTags() {
 				let value = tag.innerText;
 
 				if (searchTerms.ingredient.includes(value)) {
-				let elmIndex = searchTerms.ingredient.indexOf(value);
-					searchTerms.ingredient.splice(elmIndex, 1);
+				searchTerms.ingredient= searchTerms.ingredient.filter((term) => term !== value)
 				tagsDisplay = tagsDisplay.filter((term) => term !== value)
 					tag.remove()
 					searchByTerms();
+					console.log("tag", (tagsDisplay))
 					console.log(searchTerms)
 					
 				}
 				if (searchTerms.appareil) {
-					let elmIndex = searchTerms.appareil.indexOf(value);
-					searchTerms.appareil.splice(elmIndex, 1);
+					searchTerms.appareil = searchTerms.appareil.filter((term) => term !== value)
 					tagsDisplay = tagsDisplay.filter((term) => term !== value)
 					tag.remove()
+					console.log("tag", (searchTerms))
 					searchByTerms();
 
 				}
 				if (searchTerms.ustensile) {
-					let elmIndex = searchTerms.ustensile.indexOf(value);
 					tagsDisplay = tagsDisplay.filter((term) => term !== value)
-					searchTerms.ustensile.splice(elmIndex, 1);
+					searchTerms.ustensile = searchTerms.ustensile.filter((term) => term !== value)
+					console.log("tag", (searchTerms))
 					tag.remove()
 					searchByTerms();
 				
