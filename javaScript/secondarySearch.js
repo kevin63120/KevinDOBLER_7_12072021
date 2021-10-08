@@ -158,6 +158,12 @@ document.addEventListener("click", (e) => {
 			break;
 		  default:
 			resetSearch();
+			if(containerInput1 || containerInput2 || containerInput3){
+				containerInput1.classList.replace("col-lg-6", "col-lg-2");
+			containerInput2.classList.replace("col-lg-6", "col-lg-2");
+			containerInput3.classList.replace("col-lg-6", "col-lg-2");
+			}
+			
 			break;
 		}
 	  });

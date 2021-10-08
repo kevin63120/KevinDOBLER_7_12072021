@@ -45,15 +45,16 @@ export function initTags() {
 	}
 
 
-	function tagAdd(value, array) {
-			array.push(value);
+	function tagAdd(value,type, array) {
+			array.push([value,type]);
 			return array;
 	}
 
-	function createTag(array, container) {
+	function createTag(array, container, type ="") {
 		if (array.length != 0) {
+			console.log(array)
 			const result = array.map((tag) => {
-				return `<button type="button" class="tag btn btn-primary m-1">${tag}<img class="tags_Btn-Close ml-3 " data-tag ="${tag}"src="./pictures/x-circle.svg" width="20px" height="20px" alt=""/>
+				return `<button type="button" class="tag btn btn-primary m-1"data-type ="${type}"  >${tag}<img class="tags_Btn-Close ml-3 " data-tag ="${tag}"src="./pictures/x-circle.svg" width="20px" height="20px"alt=""/>
         </button>`;
 			});
 			return (container.innerHTML = result.join(""));
@@ -82,27 +83,40 @@ export function initTags() {
 				 */
 				// 1
 				// TODO
-				if (e.target == ingredientContainer) {
-					searchTerms.ingredient.push(tag.innerHTML);
-					searchByTerms();
-					tagAdd(tag.innerHTML, tagsDisplay)
-					createTag(tagsDisplay, tagContainer);		
-					removeTag()
+			
+				if (e.target===ingredientContainer){
+					searchTerms.ingredient.push(tag.innerHTML);					
 				}
-				if (e.target == applianceContainer) {
-					searchTerms.appareil.push(tag.innerHTML);
-					searchByTerms();
-					tagAdd(tag.innerHTML, tagsDisplay)
-					createTag(tagsDisplay, tagContainer);
-					removeTag()
+				if (e.target === applianceContainer){
+					searchTerms.appareil.push(tag.innerHTML);					
 				}
-				if (e.target == ustensilContainer) {
+				if(e.target === ustensilContainer){
+					
 					searchTerms.ustensile.push(tag.innerHTML);
-					searchByTerms();
-					tagAdd(tag.innerHTML, tagsDisplay)
-					createTag(tagsDisplay, tagContainer);
-					removeTag()
 				}
+				let arrayDiplayOnPage = [...searchTerms.ingredient,...searchTerms.ustensile,...searchTerms.appareil];
+				createTag(arrayDiplayOnPage, tagContainer);
+				console.log(searchTerms);
+					searchByTerms();
+					removeTag();
+					e.stopPropagation();
+				
+				// if (e.target === applianceContainer) {
+				 	
+				// 	searchByTerms();
+				// 	tagAdd(tag.innerHTML, tagsDisplay)
+				// 	createTag(tagsDisplay, tagContainer, "appliance");
+				// 	removeTag()
+				// 	e.stopPropagation()
+				// }
+				// if (e.target === ustensilContainer) {
+				// 	searchTerms.ustensile.push(tag.innerHTML);
+				// 	searchByTerms();
+				// 	tagAdd(tag.innerHTML, tagsDisplay)
+				// 	createTag(tagsDisplay, tagContainer ,"ustensil");
+				// 	removeTag()
+				// 	e.stopPropagation()
+				// }
 			});
 		});
 	});
