@@ -41,15 +41,42 @@ export function initTags() {
 		});
 	}
 
-	function createTag(array, container, type = "") {
-		if (array.length != 0) {
-			console.log(array);
-			const result = array.map((tag) => {
-				return `<button type="button" class="tag btn btn-primary m-1"data-type ="${type}"  >${tag}<img class="tags_Btn-Close ml-3 " data-tag ="${tag}"src="./pictures/x-circle.svg" width="20px" height="20px"alt=""/>
-        </button>`;
+	function createTag(source, container) {
+		if (source) {
+			console.log(source);
+			const domString = Object.entries(source).map( (elm) =>{
+				console.log(elm )
+				if(elm[0] === "ingredient" && elm[1] !=""){
+				console.log(elm[1])
+				let result =  elm[1].map(elm =>{
+					return `<button type="button" class="tag btn tag-color1 btn-secondary m-1 ml-0" >${elm}<img class="tags_Btn-Close ml-3 " data-tag ="${elm}"src="./pictures/x-circle.svg" width="20px" height="20px"alt=""/>
+        			</button>`;
+				})
+				return result
+					
+				}
+				if (elm[0] === "appareil" && elm[1] !=""){
+					let result =  elm[1].map(elm =>{
+						return `<button type="button" class="tag btn tag-color3 btn-secondary m-1 ml-0" >${elm}<img class="tags_Btn-Close ml-3 " data-tag ="${elm}"src="./pictures/x-circle.svg" width="20px" height="20px"alt=""/>
+						</button>`;
+					})
+					return result
+						
+				}
+				if (elm[0] === "ustensile" && elm[1] !=""){
+					let result =  elm[1].map(elm =>{
+						return `<button type="button" class="tag btn tag-color2 btn-secondary m-1 ml-0" >${elm}<img class="tags_Btn-Close ml-3 " data-tag ="${elm}"src="./pictures/x-circle.svg" width="20px" height="20px"alt=""/>
+						</button>`;
+					})
+					return result
+						
+				}
+				
 			});
-			return (container.innerHTML = result.join(""));
+
+			return (container.innerHTML = domString.join(" "));
 		}
+		searchByTerms();
 	}
 
 	let elementTag = document.querySelectorAll(".item");
@@ -79,7 +106,7 @@ export function initTags() {
 					...searchTerms.ustensile,
 					...searchTerms.appareil,
 				];
-				createTag(arrayDiplayOnPage, tagContainer);
+				createTag(searchTerms, tagContainer);
 				console.log(searchTerms);
 				searchByTerms();
 				removeTag();
