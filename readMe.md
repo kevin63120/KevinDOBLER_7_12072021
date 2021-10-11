@@ -20,7 +20,7 @@ Le code utilise deux branches pour tester les differentes versions de l'algoryth
 
 >la première est la branche ***main***
 
->La seconde est la branche ***algo2Final***
+>La seconde est la branche ***2emeAlgoVersionFinal***
 
 La branch main contient la version de l'algorythme la plus performante.
 
