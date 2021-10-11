@@ -6,8 +6,7 @@ export const searchTerms = {
 	appareil: [],
 	ingredient: [],
 	ustensile: [],
-	
-}; 
+};
 
 export function searchByTerms() {
 	search(
@@ -15,7 +14,6 @@ export function searchByTerms() {
 		recipes,
 		searchTerms.appareil,
 		searchTerms.ustensile,
-		searchTerms.ingredient,
-		
+		searchTerms.ingredient
 	);
 }

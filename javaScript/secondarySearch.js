@@ -1,24 +1,6 @@
-import { recipes } from "../assets/data/recipes";
-import { testvalue } from "./testValueFunction";
-import { arrayUstensiles } from "./script";
-import { arrayIngredients } from "./script";
-import { arrayAppareils } from "./script";
-import { Data } from "./class/data";
-
-// je recupere une list par recherche
-//je la place a la place de mes recherche
-
-//export function initSecondarySearch() {
-const containerInput1 = document.querySelector(
-	".header_searchbar-secondarySearchContainer1"
-);
-const containerInput2 = document.querySelector(
-	".header_searchbar-secondarySearchContainer2"
-);
-const containerInput3 = document.querySelector(
-	".header_searchbar-secondarySearchContainer3"
-);
-
+const containerInput1 = document.querySelector(".header_searchbar-secondarySearchContainer1");
+const containerInput2 = document.querySelector(".header_searchbar-secondarySearchContainer2");
+const containerInput3 = document.querySelector(".header_searchbar-secondarySearchContainer3");
 const inputIngredient = document.querySelector("#dataListSecondarySearch1");
 const inputApareil = document.querySelector("#dataListSecondarySearch2");
 const inputUstensile = document.querySelector("#dataListSecondarySearch3");
@@ -27,29 +9,13 @@ const inputUstensile = document.querySelector("#dataListSecondarySearch3");
 export const containerIngredient = document.querySelector(".active-ingredient");
 export const containerAppareil = document.querySelector(".active-appareil");
 export const containerUstensil = document.querySelector(".active-ustensile");
-
-
-const listIngredientSelected = document.querySelectorAll(
-	".secondarySearch-item-ingredient"
-);
-const listApplianceSelected = document.querySelectorAll(
-	".secondarySearch-item-appareil"
-);
-const listUstensiltSelected = document.querySelectorAll(
-	".secondarySearch-item-ustensiles"
-);
-
 function hideSecondSearch(rootElement) {
 	if (rootElement) {
 		rootElement.style.display = "none";
 	}
-
-	// changer le remove pour un Hide et modifier la classe css
 }
 function appearSecondSearch(rootElement) {
 	rootElement.style.display = "flex";
-
-	// changer le remove pour un Hide et modifier la classe css
 }
 
 // les trois fonction displaySecondarySearch s'utilise aux moment d'un keyboard event user et modifie leurs valeur en fonction des disponibilité
@@ -107,19 +73,16 @@ export const displayUserSecondarySearchUstensile = (e,arrayUstensilesInput) => {
 	containerUstensil.innerHTML = finalArray.join("");
 };
 
-// les function activation active de base les élément de recheche secondaire aux clic et renvoi les données de base non modifié par un input user
 export let activationIngredientSearch = () => {
 	containerInput1.classList.replace("col-lg-2", "col-lg-6");
 	containerInput2.classList.replace("col-lg-6", "col-lg-2");
 	containerInput3.classList.replace("col-lg-6", "col-lg-2");
-	
 	appearSecondSearch(containerIngredient)
 	hideSecondSearch(containerAppareil);
 	hideSecondSearch(containerUstensil);
 };
 
 export let activationUstensileSearch = () => {
-
 	containerInput1.classList.replace("col-lg-6", "col-lg-2");
 	containerInput2.classList.replace("col-lg-6", "col-lg-2");
 	containerInput3.classList.replace("col-lg-2", "col-lg-6");
@@ -128,8 +91,7 @@ export let activationUstensileSearch = () => {
 	hideSecondSearch(containerAppareil);
 };
 
-export let activationAppareilSearch = () => {
-	
+export let activationAppareilSearch = () => {	
 	containerInput1.classList.replace("col-lg-6", "col-lg-2");
 	containerInput2.classList.replace("col-lg-2", "col-lg-6");
 	containerInput3.classList.replace("col-lg-6", "col-lg-2");
@@ -138,12 +100,10 @@ export let activationAppareilSearch = () => {
 	hideSecondSearch(containerUstensil);
 };
 
-function resetSearch() {
-	
+function resetSearch() {	
 	hideSecondSearch(containerIngredient);
 	hideSecondSearch(containerAppareil);
-	hideSecondSearch(containerUstensil);
-	
+	hideSecondSearch(containerUstensil);	
 }
 document.addEventListener("click", (e) => {
 		switch (e.target) {
@@ -162,8 +122,7 @@ document.addEventListener("click", (e) => {
 				containerInput1.classList.replace("col-lg-6", "col-lg-2");
 				containerInput2.classList.replace("col-lg-6", "col-lg-2");
 				containerInput3.classList.replace("col-lg-6", "col-lg-2");
-			}
-			
+			}			
 			break;
 		}
 	  });

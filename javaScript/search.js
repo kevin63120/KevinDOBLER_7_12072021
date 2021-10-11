@@ -8,7 +8,6 @@ import { returnAllCurentElementSecondarySearch } from "./secondarySearch";
 import { initTags } from "./tags";
 
 //global DOM Selection Items
-
 const inputIngredient = document.querySelector("#dataListSecondarySearch1");
 const inputApareil = document.querySelector("#dataListSecondarySearch2");
 const inputUstensile = document.querySelector("#dataListSecondarySearch3");
@@ -62,11 +61,11 @@ function searchByReference(
 
 		return Boolean(
 			secondSearchByAppliance &&
-			secondSearchByIngredient &&
-			secondSearchByUstensils &&
-			(mainSearchByIngredient ||
-				mainSearchByDescription ||
-				mainSearchByName)
+				secondSearchByIngredient &&
+				secondSearchByUstensils &&
+				(mainSearchByIngredient ||
+					mainSearchByDescription ||
+					mainSearchByName)
 		);
 	});
 
