@@ -21,7 +21,7 @@ function removeCard() {
 	});
 }
 
-// first algo search
+// second algo search 
 function searchByReference(
 	userInput = null,
 	datas,
@@ -30,7 +30,10 @@ function searchByReference(
 	searchSecondaryIngredient = []
 ) {
 	let userInputModify = userInput.toLowerCase();
-	const dataDisplayArray = datas.filter((data) => {
+	const dataDisplayArray = [];
+	
+
+	for(let data of datas) {
 		const ingredient = data.ingredients.map(
 			(ingredient) => ingredient["ingredient"]
 		);
@@ -47,27 +50,27 @@ function searchByReference(
 			.toLowerCase()
 			.includes(userInputModify);
 
-		const secondSearchByAppliance = searchSecondaryAppliance.every(
-			(selectedyAppliance) => data.appliance.includes(selectedyAppliance)
-		);
+		const secondSearchByAppliance = searchSecondaryAppliance
+			.every((selectedyAppliance) => data.appliance.includes(selectedyAppliance));
 
-		const secondSearchByUstensils = searchSecondaryUstensils.every(
-			(selectedUstensil) => data.ustensils.includes(selectedUstensil)
-		);
+		const secondSearchByUstensils = searchSecondaryUstensils
+			.every((selectedUstensil) => data.ustensils.includes(selectedUstensil));
 
-		const secondSearchByIngredient = searchSecondaryIngredient.every(
-			(selectedIngredient) => ingredient.includes(selectedIngredient)
-		);
+		const secondSearchByIngredient = searchSecondaryIngredient
+			.every((selectedIngredient) => ingredient.includes(selectedIngredient));
 
-		return Boolean(
+		if (
 			secondSearchByAppliance &&
-				secondSearchByIngredient &&
-				secondSearchByUstensils &&
-				(mainSearchByIngredient ||
-					mainSearchByDescription ||
-					mainSearchByName)
-		);
-	});
+			secondSearchByIngredient &&
+			secondSearchByUstensils &&
+
+			(mainSearchByIngredient ||
+				mainSearchByDescription ||
+				mainSearchByName)
+		) {
+			dataDisplayArray.push(data);
+		} 
+	};
 
 	return dataDisplayArray;
 }
