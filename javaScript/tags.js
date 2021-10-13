@@ -16,8 +16,7 @@ export function initTags() {
 					tagsDisplay = tagsDisplay.filter((term) => term !== value);
 					tag.remove();
 					searchByTerms();
-					console.log("tag", tagsDisplay);
-					console.log(searchTerms);
+			
 				}
 				if (searchTerms.appareil) {
 					searchTerms.appareil = searchTerms.appareil.filter(
@@ -25,7 +24,7 @@ export function initTags() {
 					);
 					tagsDisplay = tagsDisplay.filter((term) => term !== value);
 					tag.remove();
-					console.log("tag", searchTerms);
+			
 					searchByTerms();
 				}
 				if (searchTerms.ustensile) {
@@ -33,7 +32,7 @@ export function initTags() {
 					searchTerms.ustensile = searchTerms.ustensile.filter(
 						(term) => term !== value
 					);
-					console.log("tag", searchTerms);
+					
 					tag.remove();
 					searchByTerms();
 				}
@@ -43,11 +42,11 @@ export function initTags() {
 
 	function createTag(source, container) {
 		if (source) {
-			console.log(source);
+		
 			const domString = Object.entries(source).map( (elm) =>{
-				console.log(elm )
+			
 				if(elm[0] === "ingredient" && elm[1] !=""){
-				console.log(elm[1])
+			
 				let result =  elm[1].map(elm =>{
 					return `<button type="button" class="tag btn tag-color1 btn-secondary m-1 ml-0" >${elm}<img class="tags_Btn-Close ml-3 " data-tag ="${elm}"src="./pictures/x-circle.svg" width="20px" height="20px"alt=""/>
         			</button>`;
@@ -107,7 +106,7 @@ export function initTags() {
 					...searchTerms.appareil,
 				];
 				createTag(searchTerms, tagContainer);
-				console.log(searchTerms);
+	
 				searchByTerms();
 				removeTag();
 				e.stopPropagation();
